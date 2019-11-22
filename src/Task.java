@@ -1,23 +1,24 @@
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 public class Task {
-    private long status; // enum Status
+    private Enum status;
     private long id;
-    private long description;
-    private LocalTime supposedTimeExecute;
-    private LocalTime actualTimeExecute;
-    private LocalTime startTime;
+    private String description;
+    private LocalDateTime supposedTimeExecute;
+    private LocalDateTime actualTimeExecute;
+    private LocalDateTime startTime;
     private long type;
     private long employee;
     private int level;
+    private long process;
 
     public Task(){}
 
-    public long getStatus() {
+    public Enum getStatus() {
         return status;
     }
 
-    public void setStatus(long status) {
+    public void setStatus(Enum status) {
         this.status = status;
     }
 
@@ -29,35 +30,35 @@ public class Task {
         this.id = id;
     }
 
-    public long getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(long description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public LocalTime getSupposedTimeExecute() {
+    public LocalDateTime getSupposedTimeExecute() {
         return supposedTimeExecute;
     }
 
-    public void setSupposedTimeExecute(LocalTime supposedTimeExecute) {
+    public void setSupposedTimeExecute(LocalDateTime supposedTimeExecute) {
         this.supposedTimeExecute = supposedTimeExecute;
     }
 
-    public LocalTime getActualTimeExecute() {
+    public LocalDateTime getActualTimeExecute() {
         return actualTimeExecute;
     }
 
-    public void setActualTimeExecute(LocalTime actualTimeExecute) {
+    public void setActualTimeExecute(LocalDateTime actualTimeExecute) {
         this.actualTimeExecute = actualTimeExecute;
     }
 
-    public LocalTime getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalTime startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
@@ -84,4 +85,8 @@ public class Task {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    private long getProcess(){ return process;}
+
+    private void setProcess(long process){ this.process = process;}
 }
