@@ -9,6 +9,7 @@ public class Employee {
     private String lastName;
 
     public Employee() {
+
     }
 
     public Employee(String firstName, String lastName) {
