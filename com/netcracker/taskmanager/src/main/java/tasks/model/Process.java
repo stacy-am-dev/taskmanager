@@ -1,21 +1,29 @@
+package main.java.tasks.model;
+
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.time.LocalDateTime;
 
+
 public class Process {
-    ArrayList <String> tasks=new ArrayList<>();
-    private long id;
+
+    private long processId;
     private String description;
-    private LocalDateTime supposedTimeExecute;
-    private LocalDateTime actualTimeExecute;
-    private LocalDateTime startTime;
+    private String name;
+    private LocalDateTime starDate;
+    private LocalDateTime endDate;
+    private LocalDateTime excpectaionStartDate;
+    private LocalDateTime excpectaionEndDate;
+    private String status;
     public Process(){
 
     }
-    public long getId() {
-        return id;
+    public long getprocessId() {
+        return processId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long processId) {
+        this.processId = processId;
     }
 
     public String getDescription() {
@@ -24,6 +32,20 @@ public class Process {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setName(String name){
+        this.name=name;
+    }
+
+    public String getName(){
+        return name;
+    }
+    public void setStatus(String status){
+        this.status=status;
+    }
+    public String getStatus(){
+        return status;
     }
 
     public LocalDateTime getSupposedTimeExecute() {
@@ -52,7 +74,7 @@ public class Process {
     public void saveToFile(OutputStream out){
 
     }
-    public void upload(InputStram out){
+    public void upload(InputStream out){
 
     }
 }

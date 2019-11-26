@@ -1,3 +1,5 @@
+package main.java.tasks.model;
+
 public class Skill {
     private long skillID;
     private String nameSkill;

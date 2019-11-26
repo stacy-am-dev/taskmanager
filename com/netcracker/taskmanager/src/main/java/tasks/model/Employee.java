@@ -1,4 +1,6 @@
-import java.util.HashMap;
+package main.java.tasks.model;
+
+
 
 public class Employee {
     private long employeeID;
