@@ -1,0 +1,8 @@
+package main.java.tasks.model.util;
+
+public enum TaskType{
+    PERFORMED,
+    WAIT_PERFORM,
+    WAIT_ACTION,
+    WAIT_SCRIPT
+}

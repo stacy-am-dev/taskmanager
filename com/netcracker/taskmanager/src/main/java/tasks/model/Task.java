@@ -1,28 +1,26 @@
 package main.java.tasks.model;
 
 import java.time.LocalDateTime;
+import main.java.tasks.model.util.TaskStatus;
+import main.java.tasks.model.util.TaskType;
+import main.java.tasks.model.util.TaskPriority;
 
 public class Task {
-    private Enum status;
     private long id;
+    private TaskStatus status;
+    private TaskType type;
+    private TaskPriority priority;
+    private String name;
     private String description;
-    private LocalDateTime supposedTimeExecute;
+    private long idProcess;
+    private long idEmployee;
+    private LocalDateTime durationTimeExecute;
     private LocalDateTime actualTimeExecute;
-    private LocalDateTime startTime;
-    private long type;
-    private long employee;
-    private int level;
-    private long process;
+    private LocalDateTime endTime;
+    private String descriptionEmployee;
+
 
     public Task(){}
-
-    public Enum getStatus() {
-        return status;
-    }
-
-    public void setStatus(Enum status) {
-        this.status = status;
-    }
 
     public long getId() {
         return id;
@@ -40,12 +38,12 @@ public class Task {
         this.description = description;
     }
 
-    public LocalDateTime getSupposedTimeExecute() {
-        return supposedTimeExecute;
+    public LocalDateTime getDurationTimeExecute() {
+        return durationTimeExecute;
     }
 
-    public void setSupposedTimeExecute(LocalDateTime supposedTimeExecute) {
-        this.supposedTimeExecute = supposedTimeExecute;
+    public void setDurationTimeExecute(LocalDateTime durationTimeExecute) {
+        this.durationTimeExecute = durationTimeExecute;
     }
 
     public LocalDateTime getActualTimeExecute() {
@@ -56,39 +54,39 @@ public class Task {
         this.actualTimeExecute = actualTimeExecute;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
-    public long getType() {
-        return type;
+    public long getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setType(long type) {
-        this.type = type;
+    public void setIdEmployee(long idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
-    public long getEmployee() {
-        return employee;
+    public long getIdProcess(){ return idProcess;}
+
+    public void setIdProcess(long idProcess){ this.idProcess = idProcess;}
+
+    public String getName() {
+        return name;
     }
 
-    public void setEmployee(long employee) {
-        this.employee = employee;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getLevel() {
-        return level;
+    public String getDescriptionEmployee() {
+        return descriptionEmployee;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setDescriptionEmployee(String descriptionEmployee) {
+        this.descriptionEmployee = descriptionEmployee;
     }
-
-    private long getProcess(){ return process;}
-
-    private void setProcess(long process){ this.process = process;}
 }

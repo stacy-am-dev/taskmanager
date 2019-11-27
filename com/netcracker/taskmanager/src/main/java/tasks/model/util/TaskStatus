@@ -1,0 +1,11 @@
+package main.java.tasks.model.util;
+
+public enum TaskStatus{
+    OCCUPIED,
+    STARTED,
+    IN_PROGRESS,
+    WAITING,
+    DELAYED,
+    FINISHED,
+    FREE
+}
