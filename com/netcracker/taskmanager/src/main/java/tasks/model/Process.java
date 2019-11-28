@@ -137,7 +137,7 @@ public class Process {
 
     /**
      *Function of obtaining start time procecss
-      * @return starDate the start time of the process
+      * @return startDate the start time of the process
      */
     public LocalDateTime getStartDate(){
         return startDate;
