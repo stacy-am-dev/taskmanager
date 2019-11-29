@@ -6,8 +6,17 @@ package main.java.tasks.model;
  * @version 1.0
  */
 public class EmployeeSkill {
+    /**
+     * Employee's identifier
+     */
     private Long employeeId;
+    /**
+     * Identifier of skill
+     */
     private Long skillId;
+    /**
+     * Level of skill
+     */
     private int skillLevel;
 
     /*

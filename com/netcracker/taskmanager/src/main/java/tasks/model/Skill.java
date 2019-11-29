@@ -6,10 +6,25 @@ package main.java.tasks.model;
  * @version 1.0
  */
 public class Skill {
+    /**
+     * Identifier of skill
+     */
     private Long skillId;
+    /**
+     * Name of skill
+     */
     private String skillName;
+    /**
+     * Minimal level of skill
+     */
     private int minLevel;
+    /**
+     * Maximal level of skill
+     */
     private int maxLevel;
+    /**
+     * Description of skill
+     */
     private String skillDescription;
 
     /*
@@ -33,8 +48,6 @@ public class Skill {
      */
     public Skill() {
     }
-
-
     /*
      *Function receives value of field {@link Skill#skillId}
      *@return skillId
@@ -42,7 +55,6 @@ public class Skill {
     public Long getSkillId() {
         return skillId;
     }
-
     /*
      *Procedure defines value of field {@link Skill#skillId}
      *@param skillId

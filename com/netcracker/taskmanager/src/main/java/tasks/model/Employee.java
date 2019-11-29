@@ -6,11 +6,29 @@ package main.java.tasks.model;
  * @version 1.0
  */
 public class Employee {
+    /**
+     * Employee's identifier
+     */
     private Long employeeId;
+    /**
+     * Employee's username
+     */
     private String username;
+    /**
+     * Employee's password
+     */
     private String password;
+    /**
+     * Employee's name
+     */
     private String firstName;
+    /**
+     * Employee's surname
+     */
     private String lastName;
+    /**
+     * Employee's email
+     */
     private String email;
 
     /*
