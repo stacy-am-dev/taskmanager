@@ -1,11 +1,11 @@
-package main.java.tasks.model;
+
 
 /*
  *Class describes  employees with such properties as <b>employeeId</b>,
  * <b>email</b>, <b>username</b>, <b>password</b>, <b>firstName</b>, <b>lastName</b>.
  * @version 1.0
  */
-public class Employee {
+public class Employee  implements EmployeeProxyInterface{
     /**
      * Employee's identifier
      */
