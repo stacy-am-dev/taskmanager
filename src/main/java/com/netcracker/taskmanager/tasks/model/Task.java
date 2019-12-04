@@ -1,4 +1,4 @@
-package main.java.tasks.model;
+package com.netcracker.taskmanager.tasks.model;
 
 import java.time.LocalDateTime;
 import main.java.tasks.model.util.TaskStatus;

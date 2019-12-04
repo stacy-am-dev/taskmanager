@@ -1,4 +1,4 @@
-
+package com.netcracker.taskmanager.tasks.model;
 
 /*
  *Class describes  employees with such properties as <b>employeeId</b>,
@@ -30,6 +30,8 @@ public class Employee  implements EmployeeProxyInterface{
      * Employee's email
      */
     private String email;
+
+    private Skill skill
 
     /*
      *Constructor creates new object
@@ -143,5 +145,13 @@ public class Employee  implements EmployeeProxyInterface{
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 }

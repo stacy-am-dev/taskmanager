@@ -1,8 +1,9 @@
-package main.java.tasks.model;
+package com.netcracker.taskmanager.tasks.model;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
+
 
 /**
  * Describes the workflow. Process contains a description, name, starDate, endDate,excpectaionStartDate,excpectaionEndDate,status
@@ -41,6 +42,8 @@ public class Process {
      * Process status
      */
     private ProcessStatus status;
+
+    private Employee employee;
     /**
        *Constructor creates new object with definite values
      * @param processId - ID of process
@@ -142,20 +145,55 @@ public class Process {
     public LocalDateTime getStartDate(){
         return startDate;
     }
-    public void setStarDate(LocalDateTime startDate){
-        this.startDate=startDate;
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
     }
+
     public LocalDateTime getEndDate(){
         return endDate;
     }
+
     public void setEndDate(LocalDateTime endDate){
         this.endDate=endDate;
+    }
+
+    public long getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(long processId) {
+        this.processId = processId;
+    }
+
+    public LocalDateTime getExcpectaionStartDate() {
+        return excpectaionStartDate;
+    }
+
+    public void setExcpectaionStartDate(LocalDateTime excpectaionStartDate) {
+        this.excpectaionStartDate = excpectaionStartDate;
+    }
+
+    public ProcessStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ProcessStatus status) {
+        this.status = status;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public void saveToFile(OutputStream out){
 
     }
-    public void upload(InputStream out){
+    public void upload(InputStream in){
 
     }
 }

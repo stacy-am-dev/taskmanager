@@ -1,4 +1,4 @@
-package main.java.tasks.model;
+package com.netcracker.taskmanager.tasks.model;
 
 /*
  *Class describes skills of employees with such properties as <b>skillId</b>,
