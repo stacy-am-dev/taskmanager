@@ -1,10 +1,7 @@
-package main;
+package com.netcracker.taskmanager;
 
-import com.netcracker.taskmanager.tasks.model.Employee;
-import com.netcracker.taskmanager.tasks.model.ProcessStatus;
-import com.netcracker.taskmanager.tasks.model.Task;
-import com.netcracker.taskmanager.tasks.model.Process;
-
+import com.netcracker.taskmanager.model.*;
+import com.netcracker.taskmanager.model.Process;
 
 import java.time.LocalDateTime;
 

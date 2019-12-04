@@ -1,9 +1,9 @@
-package main;
+package com.netcracker.taskmanager;
 
 
-import java.io.*;
-
-import main.java.com.netcracker.taskmanager.tasks.model.Process;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 
 
@@ -28,11 +28,11 @@ public class Singleton {
 //        FileWriter out = new FileWriter("Process");
 //        out.write(process.getName() + " " + process.getStartDate() + " " + process.getEndDate() + " " + process.getDescription());
 
-        process.saveToFile(out);
+     //   process.saveToFile(out);
     }
 
-    public Process upload(InputStream in) {
-        Process process = new Process();
-        process.upload(in);
-    }
+//    public Process upload(InputStream in) {
+//       // Process process = new Process();
+//       // process.upload(in);
+//    }
 }

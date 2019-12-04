@@ -1,11 +1,12 @@
-package com.netcracker.taskmanager.tasks.model;
+package com.netcracker.taskmanager.model;
 
+import com.netcracker.taskmanager.tasks.model.Skill;
 /*
  *Class describes  employees with such properties as <b>employeeId</b>,
  * <b>email</b>, <b>username</b>, <b>password</b>, <b>firstName</b>, <b>lastName</b>.
  * @version 1.0
  */
-public class Employee  implements EmployeeProxyInterface{
+public class Employee  implements EmployeeProxyInterface {
     /**
      * Employee's identifier
      */
@@ -31,7 +32,7 @@ public class Employee  implements EmployeeProxyInterface{
      */
     private String email;
 
-    private Skill skill
+    private Skill skill;
 
     /*
      *Constructor creates new object

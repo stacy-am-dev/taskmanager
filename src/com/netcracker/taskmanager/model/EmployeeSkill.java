@@ -1,4 +1,4 @@
-package com.netcracker.taskmanager.tasks.model;
+package com.netcracker.taskmanager.model;
 
 /*
  *Class describes relation between skills and employees with such properties as

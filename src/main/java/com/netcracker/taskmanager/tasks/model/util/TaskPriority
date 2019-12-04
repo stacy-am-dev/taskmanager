@@ -1,7 +1,0 @@
-package main.java.tasks.model.util;
-
-public enum TaskPriority{
-    HIGH_PRIORITY,
-    STANDART_PRIORITY,
-    LOW_PRIORITY
-}

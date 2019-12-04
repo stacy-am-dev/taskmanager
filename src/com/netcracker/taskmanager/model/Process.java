@@ -1,9 +1,8 @@
-package com.netcracker.taskmanager.tasks.model;
+package com.netcracker.taskmanager.model;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
-
 
 /**
  * Describes the workflow. Process contains a description, name, starDate, endDate,excpectaionStartDate,excpectaionEndDate,status

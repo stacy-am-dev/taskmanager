@@ -1,4 +1,4 @@
-package com.netcracker.taskmanager.tasks.model;
+package com.netcracker.taskmanager.model;
 
 public interface EmployeeProxyInterface {
     /*
