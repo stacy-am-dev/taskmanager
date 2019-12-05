@@ -1,6 +1,5 @@
 package com.netcracker.taskmanager.model;
 
-import com.netcracker.taskmanager.tasks.model.Skill;
 /*
  *Class describes  employees with such properties as <b>employeeId</b>,
  * <b>email</b>, <b>username</b>, <b>password</b>, <b>firstName</b>, <b>lastName</b>.
