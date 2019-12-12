@@ -5,7 +5,7 @@ package com.netcracker.taskmanager.model;
  * <b>email</b>, <b>username</b>, <b>password</b>, <b>firstName</b>, <b>lastName</b>.
  * @version 1.0
  */
-public class Employee  implements EmployeeProxyInterface {
+public class Employee  {
     /**
      * Employee's identifier
      */
@@ -30,8 +30,6 @@ public class Employee  implements EmployeeProxyInterface {
      * Employee's email
      */
     private String email;
-
-    private Skill skill;
 
     /*
      *Constructor creates new object
@@ -147,11 +145,4 @@ public class Employee  implements EmployeeProxyInterface {
         this.email = email;
     }
 
-    public Skill getSkill() {
-        return skill;
-    }
-
-    public void setSkill(Skill skill) {
-        this.skill = skill;
-    }
 }
