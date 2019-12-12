@@ -17,10 +17,10 @@ public class TaskManagerFacade {
           //  process.setStatus(ProcessStatus.IN_PROGRESS);
             //process.setStartDate();
 
-        }
-        else{
-            process.setStatus(ProcessStatus.ERROR);
-        }
+       // }
+     //   else{
+         //   process.setStatus(ProcessStatus.ERROR);
+      //  }
         return process.getEndDate();
     }
 }
