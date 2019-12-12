@@ -1,6 +1,6 @@
 package com.netcracker.taskmanager.model;
 
-public interface EmployeeProxyInterface {
+public interface EmployeeProxy{
     /*
      *Function receives value of employee's identifier
      *@return employeeId
