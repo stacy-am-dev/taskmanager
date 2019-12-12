@@ -11,10 +11,10 @@ public class TaskManagerFacade {
         Employee employee = new Employee();
         Process process = new Process();
         process.setStatus(ProcessStatus.PLANNING);
-        if(employee.getSkill().getSkillDescription().equals(task.getDescription())){
-            process.setStatus(ProcessStatus.PLANNED);
-            process.setEmployee(employee);
-            process.setStatus(ProcessStatus.IN_PROGRESS);
+      //  if(employee.getSkill().getSkillDescription().equals(task.getDescription())){
+        //    process.setStatus(ProcessStatus.PLANNED);
+         //   process.setEmployee(employee);
+          //  process.setStatus(ProcessStatus.IN_PROGRESS);
             //process.setStartDate();
 
         }
