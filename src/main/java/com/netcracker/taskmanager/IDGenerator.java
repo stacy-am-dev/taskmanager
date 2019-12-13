@@ -1,36 +1,34 @@
 package com.netcracker.taskmanager;
 
 /**
- * Class describes generator identifier with such properties as <b>DEFAULT</b>,
- * <b>generatorId</b>, <>step</>
+ * Class describes generator identifier with such properties as <b>last</b>, <b>step</b>
  */
 public class IDGenerator {
     /**
-     * Default identifier
+     * Last identifier
      */
-    private static final long DEFAULT = 1;
-    /**
-     * Generator identifier
-     */
-    private long generatorId;
+    private long last;
+
     /**
      * Increase step
      */
-    private int step;
+    private long step;
 
     /**
-     * Constructor creates new object with default value
+     * Constructor creates new object
      * @see IDGenerator#IDGenerator()
      */
     public IDGenerator(){
-        generatorId = DEFAULT;
+        this(1, 1);
     }
 
     /**
      * Constructor creates new object with definite value
+     * @param last
      * @param step
      */
-    public IDGenerator(int step){
+    public IDGenerator(long last, long step){
+        this.last = last;
         this.step = step;
     }
 
@@ -38,7 +36,7 @@ public class IDGenerator {
      * Function receives value of field {@link IDGenerator#step}
      * @return step
      */
-    public int getStep() {
+    public long getStep() {
         return step;
     }
 
@@ -46,15 +44,15 @@ public class IDGenerator {
      * Procedure defines value of field {@link IDGenerator#step}
      * @param step
      */
-    public void setStep(int step) {
+    public void setStep(long step) {
         this.step = step;
     }
 
     /**
-     * Function receives value of field {@link IDGenerator#generatorId}
-     * @return generatorId
+     * Function receives value of field {@link IDGenerator#last}
+     * @return last
      */
-    public long getGeneratorId() {
-        return generatorId;
+    public long getLast(){
+        return last;
     }
 }
