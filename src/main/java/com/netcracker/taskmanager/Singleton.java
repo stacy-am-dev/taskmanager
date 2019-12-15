@@ -26,12 +26,7 @@ public class Singleton {
         return localInstance;
     }
 
-    public void save(Process process, OutputStream out) throws IOException {
-//        FileWriter out = new FileWriter("Process");
-//        out.write(process.getName() + " " + process.getStartDate() + " " + process.getEndDate() + " " + process.getDescription());
 
-        process.saveToFile(out);
-    }
 
     public Process upload(InputStream in) {
         Process process = new Process();
