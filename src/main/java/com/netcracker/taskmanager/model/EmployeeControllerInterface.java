@@ -1,40 +1,46 @@
 package com.netcracker.taskmanager.model;
 
-import com.netcracker.taskmanager.exception.NoSuchEmployee;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 
 import java.util.List;
 
 public interface EmployeeControllerInterface{
-    /*
-     *Procedure creates new employee
+    /**
+     *Function creates and receives new employee
      */
     Employee createEmployee();
-    /*
-     *Procedure updates employee
+    /**
+     *Function updates employee
      *@param employeeId
      *@param employee
+     *@return Employee
      */
     Employee updateEmployee (Long employeeId, Employee employee);
-    /*
+    /**
      *Procedure deletes employee
      *@param employeeId
      */
     void deleteEmployee(Long employeeId) throws TaskManagerException;
-    /*
-     *Function receives employee
-     *@param employeeId
-     *@return employee
+    /**
+     *Procedure deletes employee
+     *@param employee
      */
     void deleteEmployee(Employee employee) throws TaskManagerException;
-    /*
+    /**
      *Function receives employee
      *@param employeeId
-     *@return employee
+     *@return Employee
      */
     Employee getEmployee(Long employeeId);
-
+    /**
+     *Function receives employee
+     *@param username
+     *@return Employee
+     */
     Employee getEmployee(String username);
-
+    /**
+     *Function receives list of employees
+     *@return List<Employee>
+     */
     List<Employee> getAllEmployees();
 }

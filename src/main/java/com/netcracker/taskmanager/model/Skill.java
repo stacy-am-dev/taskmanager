@@ -1,6 +1,6 @@
 package com.netcracker.taskmanager.model;
 
-/*
+/**
  *Class describes skills of employees with such properties as <b>skillId</b>,
  * <b>skillName</b>, <b>minLevel</b>, <b>maxLevel</b>, <b>skillDescription</b>.
  * @version 1.0
@@ -27,7 +27,7 @@ public class Skill {
      */
     private String skillDescription;
 
-    /*
+    /**
      *Constructor creates new object with definite values
      * @param skillId - ID of skill
      * @param skillName - name of skill
@@ -42,20 +42,20 @@ public class Skill {
         maxLevel = max;
     }
 
-    /*
+    /**
      *Constructor creates new object
      * @see Skill#Skill(Long, String, int, int)
      */
     public Skill() {
     }
-    /*
+    /**
      *Function receives value of field {@link Skill#skillId}
      *@return skillId
      */
     public Long getSkillId() {
         return skillId;
     }
-    /*
+    /**
      *Procedure defines value of field {@link Skill#skillId}
      *@param skillId
      */
@@ -63,7 +63,7 @@ public class Skill {
         this.skillId = skillId;
     }
 
-    /*
+    /**
      *Function receives value of field {@link Skill#skillName}
      *@return skillName
      */
@@ -71,7 +71,7 @@ public class Skill {
         return skillName;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link Skill#skillName}
      *@param skillName
      */
@@ -79,7 +79,7 @@ public class Skill {
         this.skillName = skillName;
     }
 
-    /*
+    /**
      *Function receives value of field {@link Skill#minLevel}
      *@return minLevel
      */
@@ -87,7 +87,7 @@ public class Skill {
         return minLevel;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link Skill#minLevel}
      *@param minLevel
      */
@@ -95,7 +95,7 @@ public class Skill {
         this.minLevel = minLevel;
     }
 
-    /*
+    /**
      *Function receives value of field {@link Skill#maxLevel}
      *@return maxLevel
      */
@@ -103,7 +103,7 @@ public class Skill {
         return maxLevel;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link Skill#maxLevel}
      *@param maxLevel
      */
@@ -111,7 +111,7 @@ public class Skill {
         this.maxLevel = maxLevel;
     }
 
-    /*
+    /**
      *Function receives value of field {@link Skill#skillDescription}
      *@return skillDescription
      */
@@ -119,7 +119,7 @@ public class Skill {
         return skillDescription;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link Skill#skillDescription}
      *@param skillDescription
      */

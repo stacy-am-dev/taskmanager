@@ -1,6 +1,6 @@
 package com.netcracker.taskmanager.model;
 
-/*
+/**
  *Class describes  employees with such properties as <b>employeeId</b>,
  * <b>email</b>, <b>username</b>, <b>password</b>, <b>firstName</b>, <b>lastName</b>.
  * @version 1.0
@@ -31,14 +31,14 @@ public class Employee  {
      */
     private String email;
 
-    /*
+    /**
      *Constructor creates new object
      * @see Employee#Employee(String, String)
      */
     public Employee() {
     }
 
-    /*
+    /**
      *Constructor creates new object with definite values
      * @param firstName - name of employee
      * @param lastName - surname of employee
@@ -49,7 +49,7 @@ public class Employee  {
         this.lastName = lastName;
     }
 
-    /*
+    /**
      *Function receives value of field {@link Employee#employeeId}
      *@return employeeId
      */
@@ -57,7 +57,7 @@ public class Employee  {
         return employeeId;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link Employee#employeeId}
      *@param employeeId
      */
@@ -65,7 +65,7 @@ public class Employee  {
         this.employeeId = employeeId;
     }
 
-    /*
+    /**
      *Function receives value of field {@link Employee#username}
      *@return username
      */
@@ -73,7 +73,7 @@ public class Employee  {
         return username;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link Employee#username}
      *@param username
      */
@@ -81,7 +81,7 @@ public class Employee  {
         this.username = username;
     }
 
-    /*
+    /**
      *Function receives value of field {@link Employee#password}
      *@return password
      */
@@ -89,7 +89,7 @@ public class Employee  {
         return password;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link Employee#password}
      *@param password
      */
@@ -97,7 +97,7 @@ public class Employee  {
         this.password = password;
     }
 
-    /*
+    /**
      *Function receives value of field {@link Employee#firstName}
      *@return firstName
      */
@@ -105,7 +105,7 @@ public class Employee  {
         return firstName;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link Employee#firstName}
      *@param firstName
      */
@@ -113,15 +113,15 @@ public class Employee  {
         this.firstName = firstName;
     }
 
-    /*
-     *Function receives value of field {@link Employee#LastName}
+    /**
+     *Function receives value of field {@link Employee#lastName}
      *@return lastName
      */
     public String getLastName() {
         return lastName;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link Employee#lastName}
      *@param lastName
      */
@@ -129,7 +129,7 @@ public class Employee  {
         this.lastName = lastName;
     }
 
-    /*
+    /**
      *Function receives value of field {@link Employee#email}
      *@return email
      */
@@ -137,7 +137,7 @@ public class Employee  {
         return email;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link Employee#email}
      *@param email
      */

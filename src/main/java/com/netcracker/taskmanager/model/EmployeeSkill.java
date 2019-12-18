@@ -1,6 +1,6 @@
 package com.netcracker.taskmanager.model;
 
-/*
+/**
  *Class describes relation between skills and employees with such properties as
  * <b>employeeId</b>, <b>skillId</b>, <b>skillLevel</b>.
  * @version 1.0
@@ -19,13 +19,13 @@ public class EmployeeSkill {
      */
     private int skillLevel;
 
-    /*
+    /**
      *Constructor creates new object
      */
     public EmployeeSkill() {
     }
 
-    /*
+    /**
      *Function receives value of field {@link EmployeeSkill#employeeId}
      *@return employeeId
      */
@@ -33,7 +33,7 @@ public class EmployeeSkill {
         return employeeId;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link EmployeeSkill#employeeId}
      *@param employeeId
      */
@@ -41,7 +41,7 @@ public class EmployeeSkill {
         this.employeeId = employeeId;
     }
 
-    /*
+    /**
      *Function receives value of field {@link EmployeeSkill#skillId}
      *@return skillId
      */
@@ -49,7 +49,7 @@ public class EmployeeSkill {
         return skillId;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link EmployeeSkill#skillId}
      *@param skillId
      */
@@ -57,7 +57,7 @@ public class EmployeeSkill {
         this.skillId = skillId;
     }
 
-    /*
+    /**
      *Function receives value of field {@link EmployeeSkill#skillLevel}
      *@return skillLevel
      */
@@ -65,7 +65,7 @@ public class EmployeeSkill {
         return skillLevel;
     }
 
-    /*
+    /**
      *Procedure defines value of field {@link EmployeeSkill#skillLevel}
      *@param skillLevel
      */
