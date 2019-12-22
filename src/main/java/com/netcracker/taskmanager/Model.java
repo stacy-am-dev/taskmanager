@@ -16,7 +16,7 @@ public class Model {
     private Collection<Task> tasks;
     private Collection<EmployeeSkill> employeeSkills;
     private Collection<SkillOfTask> skillOfTasks;
-    private Collection<TaskDependencies> taskDependencies;
+    private Collection<TaskDependency> taskDependencies;
 
     Model() {
         employees = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Model {
 
     public Model(ArrayList<Employee> employees, ArrayList<Process> processes, ArrayList<Skill> skills,
                  ArrayList<Task> tasks, ArrayList<EmployeeSkill> employeeSkills, ArrayList<SkillOfTask> skillOfTasks,
-                 ArrayList<TaskDependencies> taskDependencies) {
+                 ArrayList<TaskDependency> taskDependencies) {
         this.employees = employees;
         this.processes = processes;
         this.skills = skills;
@@ -88,11 +88,11 @@ public class Model {
         this.skillOfTasks = skillOfTasks;
     }
 
-    public Collection<TaskDependencies> getTaskDependencies() {
+    public Collection<TaskDependency> getTaskDependencies() {
         return taskDependencies;
     }
 
-    public void setTaskDependencies(Collection<TaskDependencies> taskDependencies) {
+    public void setTaskDependencies(Collection<TaskDependency> taskDependencies) {
         this.taskDependencies = taskDependencies;
     }
 
