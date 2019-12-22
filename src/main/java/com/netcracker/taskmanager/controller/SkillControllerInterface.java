@@ -1,6 +1,8 @@
-package com.netcracker.taskmanager.model;
+package com.netcracker.taskmanager.controller;
 
-public interface SkillProxy {
+import com.netcracker.taskmanager.model.Skill;
+
+public interface SkillControllerInterface {
     /**
      * Function receives value of skill's identifier
      * @return skillID
