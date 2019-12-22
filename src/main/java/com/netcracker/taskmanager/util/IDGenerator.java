@@ -1,4 +1,4 @@
-package com.netcracker.taskmanager;
+package com.netcracker.taskmanager.util;
 
 /**
  * Class describes generator identifier with such properties as <b>last</b>, <b>step</b>
@@ -54,5 +54,22 @@ public class IDGenerator {
      */
     public long getLast(){
         return last;
+    }
+
+    /**
+     * Procedure defines value of field {@link IDGenerator#last}
+     * @param last
+     */
+    public void setLast(long last) {
+        this.last = last;
+    }
+
+    /**
+     * Function returns new value of last identifier
+     * @param step
+     * @return last
+     */
+    public long generate(long step){
+        return this.last += step;
     }
 }
