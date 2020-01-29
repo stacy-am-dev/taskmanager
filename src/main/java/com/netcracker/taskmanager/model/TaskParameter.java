@@ -1,9 +1,14 @@
 package com.netcracker.taskmanager.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "taskParameter")
 public class TaskParameter {
     /**
      * Id of task
      */
+    @XmlAttribute
     private Long taskId;
     /**
      * Name of parameter

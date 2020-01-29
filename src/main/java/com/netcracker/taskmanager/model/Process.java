@@ -1,5 +1,7 @@
 package com.netcracker.taskmanager.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
@@ -7,11 +9,13 @@ import java.time.LocalDateTime;
 /**
  * Describes the workflow. Process contains a description, name, starDate, endDate,excpectaionStartDate,excpectaionEndDate,status
  */
+@XmlRootElement(name = "process")
 public class Process {
 
     /**
      * process identifier
      */
+    @XmlAttribute
     private long processId;
     /**
      * process description

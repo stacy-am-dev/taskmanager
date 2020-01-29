@@ -1,9 +1,14 @@
 package com.netcracker.taskmanager.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "processParameter")
 public class ProcessParameter {
     /**
      * Id of Process
      */
+    @XmlAttribute
     private Long processId;
     /**
      * Name of parameter

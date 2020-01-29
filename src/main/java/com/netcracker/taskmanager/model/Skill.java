@@ -1,14 +1,19 @@
 package com.netcracker.taskmanager.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *Class describes skills of employees with such properties as <b>skillId</b>,
  * <b>skillName</b>, <b>minLevel</b>, <b>maxLevel</b>, <b>skillDescription</b>.
  * @version 1.0
  */
+@XmlRootElement(name = "skill")
 public class Skill {
     /**
      * Identifier of skill
      */
+    @XmlAttribute
     private Long skillId;
     /**
      * Name of skill
@@ -31,8 +36,8 @@ public class Skill {
      *Constructor creates new object with definite values
      * @param skillId - ID of skill
      * @param skillName - name of skill
-     * @param minLevel - minimal level of skill
-     * @param maxLevel - maximal level of skill
+     * @param min - minimal level of skill
+     * @param max - maximal level of skill
      * @see Skill#Skill()
      */
     public Skill(Long skillId, String skillName, int min, int max) {

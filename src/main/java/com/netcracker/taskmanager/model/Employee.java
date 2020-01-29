@@ -1,14 +1,19 @@
 package com.netcracker.taskmanager.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *Class describes  employees with such properties as <b>employeeId</b>,
  * <b>email</b>, <b>username</b>, <b>password</b>, <b>firstName</b>, <b>lastName</b>.
  * @version 1.0
  */
+@XmlRootElement(name = "employee")
 public class Employee  {
     /**
      * Employee's identifier
      */
+    @XmlAttribute
     private Long employeeId;
     /**
      * Employee's username

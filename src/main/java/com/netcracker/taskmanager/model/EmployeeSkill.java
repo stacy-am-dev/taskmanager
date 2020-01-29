@@ -1,14 +1,19 @@
 package com.netcracker.taskmanager.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *Class describes relation between skills and employees with such properties as
  * <b>employeeId</b>, <b>skillId</b>, <b>skillLevel</b>.
  * @version 1.0
  */
+@XmlRootElement(name = "employeeSkill")
 public class EmployeeSkill {
     /**
      * Employee's identifier
      */
+    @XmlAttribute
     private Long employeeId;
     /**
      * Identifier of skill

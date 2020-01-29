@@ -1,16 +1,22 @@
 package com.netcracker.taskmanager.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Class describes task dependencies with such properties as <b>taskIdFrom</b>, <b>taskIdTo</b>
  */
+@XmlRootElement(name = "taskDependency")
 public class TaskDependency {
     /**
      * Task dependencies from task's identifier
      */
+    @XmlAttribute
     private long taskIdFrom;
     /**
      * Task dependencies to task's identifier
      */
+    @XmlAttribute
     private long taskIdTo;
 
     /**
