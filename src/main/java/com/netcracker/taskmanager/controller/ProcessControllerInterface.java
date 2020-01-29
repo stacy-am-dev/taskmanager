@@ -7,16 +7,16 @@ import java.util.List;
 public interface ProcessControllerInterface {
     /**
      * Function creates new Process
+     * @param process
      */
-    Process createProcess();
+    Process createProcess(Process process);
 
     /**
      * Function update process
-     * @param processId
      * @param process
      * @return Process
      */
-    Process updateProcess(Long processId, Process process);
+    Process updateProcess(Process process);
 
     /**
      * Function delete process
@@ -37,14 +37,14 @@ public interface ProcessControllerInterface {
      * @param processId
      * @return Process
      */
-    Process getProcess(Long processId);
+    Process getProcessBySomething(Long processId);
 
     /**
      * Function receives process
      * @param processName
      * @return Process
      */
-    Process getProcess(String processName);
+    Process getProcessBySomething(String processName);
 
     /**
      * Function receives list of processs

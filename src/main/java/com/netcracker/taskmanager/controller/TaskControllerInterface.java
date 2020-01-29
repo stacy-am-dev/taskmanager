@@ -9,16 +9,16 @@ public interface TaskControllerInterface {
 
     /**
      * Function creates new task
+     *  @param task
      */
-    Task createTask();
+    Task createTask(Task task);
 
     /**
      * Function update task
-     * @param taskId
      * @param task
      * @return Task
      */
-    Task updateTask(Long taskId, Task task);
+    Task updateTask(Task task);
 
     /**
      * Function delete task
@@ -39,14 +39,14 @@ public interface TaskControllerInterface {
      * @param taskId
      * @return Task
      */
-    Task getTask(Long taskId);
+    Task getTaskBySomething(Long taskId);
 
     /**
      * Function receives task
      * @param taskName
      * @return Task
      */
-    Task getTask(String taskName);
+    Task getTaskBySomething(String taskName);
 
     /**
      * Function receives list of tasks
