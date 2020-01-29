@@ -1,97 +1,56 @@
 package com.netcracker.taskmanager.controller;
 
+import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Skill;
 
+import java.util.List;
+
 public interface SkillControllerInterface {
-    /**
-     * Function receives value of skill's identifier
-     * @return skillID
-     */
-    long getSkillId();
 
     /**
-     * Procedure defines value of skill's identifier
+     * Function creates new skill
+     */
+    Skill createSkill();
+
+    /**
+     * Function update skill
      * @param skillId
+     * @param skill
+     * @return Skill
      */
-    void setSkillId(long skillId);
-
-    /**
-     * Function receives value of skill's name
-     * @return skillName
-     */
-    String getSkillName();
-
-    /**
-     * Procedure defines value of skill's name
-     * @param skillName
-     */
-    void setSkillName(String skillName);
-
-    /**
-     * Function receives value of skill's minimum level
-     * @return minLevel
-     */
-    int getMinLevel();
-
-    /**
-     * Procedure defines value of skill's minimum level
-     * @param minLevel
-     */
-    void setMinLevel(int minLevel);
-
-    /**
-     * Function receives value of skill's maximum level
-     * @return msxLevel
-     */
-    int getMaxLevel();
-
-    /**
-     * Procedure defines value of skill's maximum level
-     * @param maxLevel
-     */
-    void setMaxLevel(int maxLevel);
-
-    /**
-     * Function receives value of skill's description
-     * @return skillDescription
-     */
-    String getSkillDescription();
-
-    /**
-     * Procedure defines value of skill's description
-     * @param skillDescription
-     */
-    void setSkillDescription(String skillDescription);
-
-    /**
-     * Function receives value of skill
-     * @return skill
-     */
-    Skill getSkill();
-
-    /**
-     * Procedure defines value of skill
-     * @param skillId
-     * @param newSkill
-     */
-    void setSkill(long skillId, Skill newSkill);
-
-    /**
-     * Function creates skill
-     */
-    void createSkill();
-
-    /**
-     * Function add skill
-     * @param skillId
-     * @param newSkill
-     */
-    void addSkill(long skillId, Skill newSkill);
+    Skill updateSkill(Long skillId, Skill skill);
 
     /**
      * Function delete skill
      * @param skillId
+     * @throws TaskManagerException
      */
-    void deleteSkill(long skillId);
+    void deleteSkill(Long skillId) throws TaskManagerException;
 
+    /**
+     * Function delete skill
+     * @param skill
+     * @throws TaskManagerException
+     */
+    void deleteSkill(Skill skill) throws TaskManagerException;
+
+    /**
+     * Function receives skill
+     * @param skillId
+     * @return Skill
+     */
+    Skill getSkill(Long skillId);
+
+    /**
+     * Function receives skill
+     * @param skillName
+     * @return Skill
+     */
+    Skill getSkill(String skillName);
+
+    /**
+     * Function receives list of skills
+     * @return List<Skill>
+     */
+    List<Skill> getAllSkill();
 }
