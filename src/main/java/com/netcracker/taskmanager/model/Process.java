@@ -42,7 +42,7 @@ public class Process {
      */
     private ProcessStatus status;
 
-    private Employee employee;
+
     /**
        *Constructor creates new object with definite values
      * @param processId - ID of process
@@ -179,14 +179,6 @@ public class Process {
 
     public void setStatus(ProcessStatus status) {
         this.status = status;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 
     public void saveToFile(OutputStream out){
