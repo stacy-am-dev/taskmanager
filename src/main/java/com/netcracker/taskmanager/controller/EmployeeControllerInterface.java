@@ -1,6 +1,7 @@
-package com.netcracker.taskmanager.model;
+package com.netcracker.taskmanager.controller;
 
 import com.netcracker.taskmanager.exception.TaskManagerException;
+import com.netcracker.taskmanager.model.Employee;
 
 import java.util.List;
 
