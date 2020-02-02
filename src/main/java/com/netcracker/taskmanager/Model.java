@@ -1,7 +1,6 @@
 package com.netcracker.taskmanager;
 
 import com.netcracker.taskmanager.model.*;
-import com.netcracker.taskmanager.tasks.model.SkillOfTask;
 
 
 import java.lang.Process;
