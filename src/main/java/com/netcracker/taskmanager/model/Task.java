@@ -1,6 +1,7 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
 
@@ -16,7 +17,7 @@ public class Task {
     /**
      * Task's identifier
      */
-    @XmlAttribute
+    @XmlAttribute(name = "taskId")
     private long taskId;
 
     /**
@@ -37,6 +38,7 @@ public class Task {
     /**
      * Task's name
      */
+    @XmlElement
     private String name;
 
     /**

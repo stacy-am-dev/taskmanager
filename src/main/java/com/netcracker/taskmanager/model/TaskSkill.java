@@ -1,6 +1,7 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -8,29 +9,31 @@ import javax.xml.bind.annotation.XmlRootElement;
  * <b>skillId</b>, <b>levelSkill</b>
  */
 @XmlRootElement(name = "skillOfTask")
-public class SkillOfTask {
+public class TaskSkill {
     /**
      * Task identifier
      */
-    @XmlAttribute
+    @XmlAttribute(name = "taskId")
     private long taskId;
     /**
      * Skill identifier
      */
+    @XmlAttribute(name = "skillId")
     private long skillId;
     /**
      * Level of skill
      */
+    @XmlElement
     private int levelSkill;
 
     /**
      * Constructor creates new object
      */
-    public SkillOfTask() {
+    public TaskSkill() {
     }
 
     /**
-     * Function receives value of field {@link SkillOfTask#taskId}
+     * Function receives value of field {@link TaskSkill#taskId}
      * @return taskId
      */
     public long getTaskId() {
@@ -38,7 +41,7 @@ public class SkillOfTask {
     }
 
     /**
-     * Procedure defines value of field {@link SkillOfTask#taskId}
+     * Procedure defines value of field {@link TaskSkill#taskId}
      * @param taskId
      */
     public void setTaskId(long taskId) {
@@ -46,7 +49,7 @@ public class SkillOfTask {
     }
 
     /**
-     * Function receives value of field {@link SkillOfTask#skillId}
+     * Function receives value of field {@link TaskSkill#skillId}
      * @return skillId
      */
     public long getSkillId() {
@@ -54,7 +57,7 @@ public class SkillOfTask {
     }
 
     /**
-     * Procedure defines value of field {@link SkillOfTask#skillId}
+     * Procedure defines value of field {@link TaskSkill#skillId}
      * @param skillId
      */
     public void setSkillId(long skillId) {
@@ -62,7 +65,7 @@ public class SkillOfTask {
     }
 
     /**
-     * Function receives value of field {@link SkillOfTask#levelSkill}
+     * Function receives value of field {@link TaskSkill#levelSkill}
      * @return levelSkill
      */
     public int getLevelSkill() {
@@ -70,7 +73,7 @@ public class SkillOfTask {
     }
 
     /**
-     * Procedure defines value of field {@link SkillOfTask#levelSkill}
+     * Procedure defines value of field {@link TaskSkill#levelSkill}
      * @param levelSkill
      */
     public void setLevelSkill(int levelSkill) {

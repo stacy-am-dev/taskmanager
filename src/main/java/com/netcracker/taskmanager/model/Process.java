@@ -1,6 +1,7 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -15,7 +16,7 @@ public class Process {
     /**
      * process identifier
      */
-    @XmlAttribute
+    @XmlAttribute(name = "processId")
     private long processId;
     /**
      * process description
@@ -24,6 +25,7 @@ public class Process {
     /**
      *  process name
      */
+    @XmlElement
     private String name;
     /**
      * process starDate

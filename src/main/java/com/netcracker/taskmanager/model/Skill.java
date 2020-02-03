@@ -1,6 +1,7 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -13,11 +14,12 @@ public class Skill {
     /**
      * Identifier of skill
      */
-    @XmlAttribute
+    @XmlAttribute(name = "skillId")
     private Long skillId;
     /**
      * Name of skill
      */
+    @XmlElement
     private String skillName;
     /**
      * Minimal level of skill

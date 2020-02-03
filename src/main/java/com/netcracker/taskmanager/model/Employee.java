@@ -13,7 +13,7 @@ public class Employee  {
     /**
      * Employee's identifier
      */
-    @XmlAttribute
+    @XmlAttribute(name = "employeeId")
     private Long employeeId;
     /**
      * Employee's username

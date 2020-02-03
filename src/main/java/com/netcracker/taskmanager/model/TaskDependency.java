@@ -11,12 +11,12 @@ public class TaskDependency {
     /**
      * Task dependencies from task's identifier
      */
-    @XmlAttribute
+    @XmlAttribute(name = "taskIdFrom")
     private long taskIdFrom;
     /**
      * Task dependencies to task's identifier
      */
-    @XmlAttribute
+    @XmlAttribute(name = "taskIdTo")
     private long taskIdTo;
 
     /**
