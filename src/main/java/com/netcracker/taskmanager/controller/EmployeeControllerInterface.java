@@ -9,19 +9,19 @@ public interface EmployeeControllerInterface{
     /**
      *Function creates and receives new employee
      */
-    Employee createEmployee();
+    Employee createEmployee(Employee employee) throws TaskManagerException;
     /**
      *Function updates employee
      *@param employeeId
      *@param employee
      *@return Employee
      */
-    Employee updateEmployee (Long employeeId, Employee employee);
+    Employee updateEmployee (Long employeeId, Employee employee) throws TaskManagerException;
     /**
      *Procedure deletes employee
      *@param employeeId
      */
-    void deleteEmployee(Long employeeId) throws TaskManagerException;
+    void deleteEmployeeByEmployeeTd(Long employeeId) throws TaskManagerException;
     /**
      *Procedure deletes employee
      *@param employee
@@ -32,16 +32,22 @@ public interface EmployeeControllerInterface{
      *@param employeeId
      *@return Employee
      */
-    Employee getEmployee(Long employeeId);
+    Employee getEmployeeByEmployeeId(Long employeeId) throws TaskManagerException;
     /**
      *Function receives employee
      *@param username
      *@return Employee
      */
-    Employee getEmployee(String username);
+    Employee getEmployeeByUsername(String username) throws TaskManagerException;
+    /**
+     *Function receives employee
+     *@param email
+     *@return Employee
+     */
+    Employee getEmployeeByEmail(String email) throws TaskManagerException;
     /**
      *Function receives list of employees
      *@return List<Employee>
      */
-    List<Employee> getAllEmployees();
+    List<Employee> getAllEmployees() throws TaskManagerException;
 }

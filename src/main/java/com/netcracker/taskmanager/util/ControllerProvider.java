@@ -10,6 +10,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Properties;
 
+import static com.netcracker.taskmanager.Constants.*;
+
 public final class ControllerProvider {
     private static ControllerProvider instance;
     private static HashMap<Class,String> controllers;
@@ -27,10 +29,12 @@ public final class ControllerProvider {
             controllers.put(cl,property.getProperty(key));
         }
 
-        } catch (FileNotFoundException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            throw new TaskManagerException(e, FILE_NOT_FOUND_EXCEPTION);
+        } catch (ClassNotFoundException e) {
+            throw new TaskManagerException(e, CLASS_NOT_FOUND_EXCEPTION);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaskManagerException(e, IOEXCEPTION);
         }
     }
 
@@ -48,10 +52,16 @@ public final class ControllerProvider {
             Constructor<T> cons = cl.getDeclaredConstructor();
             return cons.newInstance();
         }
-        catch (InstantiationException | ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
+        catch (InstantiationException e) {
+            throw new TaskManagerException(e, INSTANTIATION_EXCEPTION);
+        } catch (InvocationTargetException e) {
+            throw new TaskManagerException(e, INVOCATION_TARGET_EXCEPTION);
+        } catch (NoSuchMethodException e) {
+            throw new TaskManagerException(e, NO_SUCH_METHOD_EXCEPTION);
+        } catch (IllegalAccessException e) {
+            throw new TaskManagerException(e, ILLEGAL_ACCESS_EXCEPTION);
+        } catch (ClassNotFoundException e) {
+            throw new TaskManagerException(e, CLASS_NOT_FOUND_EXCEPTION);
         }
-
-        return null;
     }
 }
