@@ -5,13 +5,17 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Time;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 /**
  * Describes the workflow. Process contains a description, name, starDate, endDate,excpectaionStartDate,excpectaionEndDate,status
  */
 @XmlRootElement(name = "process")
 public class Process {
+
+
 
     /**
      * process identifier
@@ -60,14 +64,15 @@ public class Process {
      * @param exceptionEndDate-exceptionsEndDate of process
      * @see Process#Process()
      */
-    public Process(long processId,String description,String name,LocalDateTime startDate, LocalDateTime endDate, LocalDateTime exceptionStartDate,LocalDateTime exceptionEndDate){
-       this.processId=processId;
-       this.description=description;
-       this.name=name;
-       this.startDate=startDate;
-       this.endDate=endDate;
-       this.excpectaionStartDate=exceptionStartDate;
-       this.excpectaionEndDate=exceptionEndDate;
+    public Process(HashMap<String, String> params;){
+
+       this.processId= Long.getLong(params.get("processId"));
+       this.description = params.get("description");
+       this.name = params.get("name");
+       this.startDate = new LocalDateTime( params.get("startDate"));
+       this.endDate = new LocalDateTime(params.get("endDate"));
+       this.excpectaionStartDate= new LocalDateTime(params.get("exceptionStartDate"));
+       this.excpectaionEndDate = new LocalDateTime(params.get("exceptionEndDate"));
 
     }
     /**
