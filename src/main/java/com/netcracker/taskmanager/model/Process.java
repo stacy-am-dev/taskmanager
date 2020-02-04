@@ -64,7 +64,7 @@ public class Process {
      * @param exceptionEndDate-exceptionsEndDate of process
      * @see Process#Process()
      */
-    public Process(HashMap<String, String> params;){
+    public Process(HashMap<String, String> params){
 
        this.processId= Long.getLong(params.get("processId"));
        this.description = params.get("description");

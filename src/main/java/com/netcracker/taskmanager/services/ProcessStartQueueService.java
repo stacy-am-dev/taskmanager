@@ -4,24 +4,24 @@ import java.util.concurrent.PriorityBlockingQueue;
 import com.netcracker.taskmanager.model.Process;
 
 public class ProcessStartQueueService  {
-    private static PriorityBlockingQueue<Process> pbq;
+    private static PriorityBlockingQueue<Process> priorityBlockingQueue;
 
     private ProcessStartQueueService(){
 
     }
 
-    public static synchronized PriorityBlockingQueue<Process> getPBQ(){
-        if (pbq == null)
-            pbq = new PriorityBlockingQueue<Process>();
-        return pbq;
+    public static synchronized PriorityBlockingQueue<Process> getPriorityBlockingQueue(){
+        if (priorityBlockingQueue == null)
+            priorityBlockingQueue = new PriorityBlockingQueue<Process>();
+        return priorityBlockingQueue;
     }
 
     public void add(Process process){
-        pbq.add(process);
+        priorityBlockingQueue.add(process);
     }
 
     public Process get(){
-        return pbq.peek();
+        return priorityBlockingQueue.peek();
     }
 
 }
