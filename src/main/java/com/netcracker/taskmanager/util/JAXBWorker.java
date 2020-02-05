@@ -9,17 +9,15 @@ import java.io.File;
 /**
  * Class describes saving object to XML-file and return of object from XML-file
  */
-public class JAXBWorker implements JAXBInterface{
+public class JAXBWorker{
 
-    @Override
-    public void saveObject(File file, Object o) throws JAXBException {
+    public static void saveObject(File file, Object o) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(o.getClass());
         Marshaller marshaller = context.createMarshaller();
         marshaller.marshal(o,file);
     }
 
-    @Override
-    public Object getObject(File file, Class c) throws JAXBException {
+    public static Object getObject(File file, Class c) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(c);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         return unmarshaller.unmarshal(file);
