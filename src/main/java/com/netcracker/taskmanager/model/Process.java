@@ -69,10 +69,10 @@ public class Process {
        this.processId= Long.getLong(params.get("processId"));
        this.description = params.get("description");
        this.name = params.get("name");
-       this.startDate = new LocalDateTime( params.get("startDate"));
-       this.endDate = new LocalDateTime(params.get("endDate"));
-       this.excpectaionStartDate= new LocalDateTime(params.get("exceptionStartDate"));
-       this.excpectaionEndDate = new LocalDateTime(params.get("exceptionEndDate"));
+       this.startDate = LocalDateTime.parse(params.get("startDate"));
+       this.endDate = LocalDateTime.parse(params.get("endDate"));
+       this.excpectaionStartDate= LocalDateTime.parse(params.get("exceptionStartDate"));
+       this.excpectaionEndDate = LocalDateTime.parse(params.get("exceptionEndDate"));
 
     }
     /**

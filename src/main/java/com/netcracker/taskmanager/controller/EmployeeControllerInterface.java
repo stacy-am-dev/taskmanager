@@ -3,7 +3,7 @@ package com.netcracker.taskmanager.controller;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Employee;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface EmployeeControllerInterface{
     /**
@@ -12,16 +12,15 @@ public interface EmployeeControllerInterface{
     Employee createEmployee(Employee employee) throws TaskManagerException;
     /**
      *Function updates employee
-     *@param employeeId
      *@param employee
      *@return Employee
      */
-    Employee updateEmployee (Long employeeId, Employee employee) throws TaskManagerException;
+    Employee updateEmployee ( Employee employee) throws TaskManagerException;
     /**
      *Procedure deletes employee
      *@param employeeId
      */
-    void deleteEmployeeByEmployeeTd(Long employeeId) throws TaskManagerException;
+    void deleteEmployee(Long employeeId) throws TaskManagerException;
     /**
      *Procedure deletes employee
      *@param employee
@@ -40,14 +39,8 @@ public interface EmployeeControllerInterface{
      */
     Employee getEmployeeByUsername(String username) throws TaskManagerException;
     /**
-     *Function receives employee
-     *@param email
-     *@return Employee
-     */
-    Employee getEmployeeByEmail(String email) throws TaskManagerException;
-    /**
      *Function receives list of employees
      *@return List<Employee>
      */
-    List<Employee> getAllEmployees() throws TaskManagerException;
+    Collection<Employee> getAllEmployees() throws TaskManagerException;
 }
