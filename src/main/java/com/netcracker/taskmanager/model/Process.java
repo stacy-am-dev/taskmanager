@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 
 /**
- * Describes the workflow. Process contains a description, name, starDate, endDate,excpectaionStartDate,excpectaionEndDate,status
+ * Describes the workflow. Process contains a description, name, starDate, endDate,expectationStartDate,expectationEndDate,status
  */
 @XmlRootElement(name = "process")
 public class Process {
@@ -40,28 +40,26 @@ public class Process {
      */
     private LocalDateTime endDate;
     /**
-     * process excpectionStarDate
+     * process expectationStarDate
      */
-    private LocalDateTime excpectaionStartDate;
+    private LocalDateTime expectationStartDate;
     /**
-     * Process excpectaionEndDate
+     * Process expectationEndDate
      */
-    private LocalDateTime excpectaionEndDate;
+    private LocalDateTime expectationEndDate;
     /**
      * Process status
      */
     private ProcessStatus status;
+    /**
+     * Identifier of process template
+     */
+    private Long ProcessTemplateId;
 
 
     /**
        *Constructor creates new object with definite values
-     * @param processId - ID of process
-     * @param description - description of process
-     * @param name - name of process
-     * @param startDate - starDate of process
-     * @param endDate - endDate of process
-     * @param exceptionStartDate- exceptionStartDate of process
-     * @param exceptionEndDate-exceptionsEndDate of process
+     * @param params
      * @see Process#Process()
      */
     public Process(HashMap<String, String> params){
@@ -71,8 +69,8 @@ public class Process {
        this.name = params.get("name");
        this.startDate = LocalDateTime.parse(params.get("startDate"));
        this.endDate = LocalDateTime.parse(params.get("endDate"));
-       this.excpectaionStartDate= LocalDateTime.parse(params.get("exceptionStartDate"));
-       this.excpectaionEndDate = LocalDateTime.parse(params.get("exceptionEndDate"));
+       this.expectationStartDate= LocalDateTime.parse(params.get("exceptionStartDate"));
+       this.expectationEndDate = LocalDateTime.parse(params.get("exceptionEndDate"));
 
     }
     /**
@@ -128,24 +126,24 @@ public class Process {
     }
 
     public LocalDateTime getExceptionStartDate() {
-        return excpectaionStartDate;
+        return expectationStartDate;
     }
 
     public void setExceptionStartDate(LocalDateTime exceptionStartDate) {
-        this.excpectaionStartDate = exceptionStartDate;
+        this.expectationStartDate = exceptionStartDate;
     }
 
-    public LocalDateTime getExcpectaionEndDate() {
-        return excpectaionEndDate;
+    public LocalDateTime getExpectationEndDate() {
+        return expectationEndDate;
     }
 
     /**
      * Function of setting the actual runtime
-     * @param excpectaionEndDate runtime
+     * @param expectationEndDate runtime
 
      */
-    public void setExcpectaionEndDate(LocalDateTime excpectaionEndDate) {
-        this.excpectaionEndDate = excpectaionEndDate;
+    public void setExpectationEndDate(LocalDateTime expectationEndDate) {
+        this.expectationEndDate = expectationEndDate;
     }
 
     /**
@@ -176,12 +174,12 @@ public class Process {
         this.processId = processId;
     }
 
-    public LocalDateTime getExcpectaionStartDate() {
-        return excpectaionStartDate;
+    public LocalDateTime getExpectationStartDate() {
+        return expectationStartDate;
     }
 
-    public void setExcpectaionStartDate(LocalDateTime excpectaionStartDate) {
-        this.excpectaionStartDate = excpectaionStartDate;
+    public void setExpectationStartDate(LocalDateTime expectationStartDate) {
+        this.expectationStartDate = expectationStartDate;
     }
 
     public ProcessStatus getStatus() {
