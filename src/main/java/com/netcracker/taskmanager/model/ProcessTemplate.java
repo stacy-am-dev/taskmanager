@@ -39,6 +39,8 @@ public class ProcessTemplate {
      * Constructor creates new object
      */
     ProcessTemplate() {
+        this.setParameter("First","1");
+        this.setParameter("Second","2");
     }
 
     /**
