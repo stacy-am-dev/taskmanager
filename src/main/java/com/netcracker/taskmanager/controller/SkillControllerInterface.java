@@ -52,14 +52,14 @@ public interface SkillControllerInterface {
     /**
      * Function receives skill
      * @param skillName
-     * @return Collection
+     * @return Collection<Skill>
      * @throws TaskManagerException
      */
-    Collection getSkillsByName(String skillName) throws TaskManagerException;
+    Collection<Skill> getSkillsByName(String skillName) throws TaskManagerException;
 
     /**
      * Function receives list of skills
-     * @return Collection
+     * @return Collection<Skiil>
      */
-    Collection getAllSkill() throws TaskManagerException;
+    Collection<Skill> getAllSkill() throws TaskManagerException;
 }
