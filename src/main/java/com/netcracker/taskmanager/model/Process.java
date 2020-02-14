@@ -22,6 +22,10 @@ public class Process {
     @XmlAttribute(name = "processId")
     private long processId;
     /**
+     * Identifier of process template
+     */
+    private Long processTemplateId;
+    /**
      * process description
      */
     private String description;
@@ -50,7 +54,6 @@ public class Process {
      * Process status
      */
     private ProcessStatus status;
-    private Long processTemplateId;
 
 
     /**

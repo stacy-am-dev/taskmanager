@@ -19,6 +19,10 @@ public class Task {
      */
     @XmlAttribute(name = "taskId")
     private long taskId;
+    /**
+     * Identifier of task template
+     */
+    private Long taskTemplateId;
 
     /**
      * Task's status
@@ -98,6 +102,24 @@ public class Task {
      */
     public void setProcessId(long processId) {
         this.processId = processId;
+    }
+
+    /**
+     * Function receives value of field {@link Task#taskTemplateId}
+     *
+     * @return taskTemplateId
+     */
+    public Long getTaskTemplateId() {
+        return taskTemplateId;
+    }
+
+    /**
+     * Procedure defines value of field {@link Task#taskTemplateId}
+     *
+     * @param taskTemplateId
+     */
+    public void setTaskTemplateId(Long taskTemplateId) {
+        this.taskTemplateId = taskTemplateId;
     }
 
     /**
