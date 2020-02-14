@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
@@ -51,10 +50,7 @@ public class Process {
      * Process status
      */
     private ProcessStatus status;
-    /**
-     * Identifier of process template
-     */
-    private Long ProcessTemplateId;
+    private Long processTemplateId;
 
 
     /**
@@ -71,7 +67,7 @@ public class Process {
        this.endDate = LocalDateTime.parse(params.get("endDate"));
        this.expectationStartDate= LocalDateTime.parse(params.get("exceptionStartDate"));
        this.expectationEndDate = LocalDateTime.parse(params.get("exceptionEndDate"));
-
+       this.processTemplateId = Long.getLong(params.get("processTemplateId"));
     }
     /**
      * Constructor creates new object
@@ -172,6 +168,14 @@ public class Process {
 
     public void setProcessId(long processId) {
         this.processId = processId;
+    }
+
+    public Long getProcessTemplateId() {
+        return processTemplateId;
+    }
+
+    public void setProcessTemplateId(Long processTemplateId) {
+        this.processTemplateId = processTemplateId;
     }
 
     public LocalDateTime getExpectationStartDate() {

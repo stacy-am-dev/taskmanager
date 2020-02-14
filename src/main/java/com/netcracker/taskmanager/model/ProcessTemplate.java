@@ -39,18 +39,6 @@ public class ProcessTemplate {
      * Constructor creates new object
      */
     ProcessTemplate() {
-        this.setParameter("First","1");
-        this.setParameter("Second","2");
-    }
-
-    /**
-     * Function creates process from template
-     *
-     * @return process
-     */
-    public Process createProcessFromTemplate() {
-        Process process = new Process(getParameters());
-        return process;
     }
 
     /**
@@ -113,8 +101,8 @@ public class ProcessTemplate {
      *
      * @return parameters
      */
-    public HashMap<String, String> getParameters() {
-        return (HashMap<String, String>) parameters;
+    public Map<String, String> getParameters() {
+        return  parameters;
     }
 
     /**
@@ -122,7 +110,7 @@ public class ProcessTemplate {
      *
      * @param parameters
      */
-    public void setParameters(HashMap<String, String> parameters) {
+    public void setParameters(Map<String, String> parameters) {
         this.parameters = parameters;
     }
 
