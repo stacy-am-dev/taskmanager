@@ -18,7 +18,7 @@ public final class ControllerProvider {
     private static ControllerProvider instance;
     private Map<Class, Class> controllers;
     private static final String FILE_NAME = "controllers.properties";
-    final static Logger logger = Logger.getLogger(ControllerProvider.class);
+    static final Logger LOGGER = Logger.getLogger(ControllerProvider.class);
 
     private ControllerProvider() throws TaskManagerException {
         ClassLoader classLoader = ControllerProvider.class.getClassLoader();
@@ -31,7 +31,7 @@ public final class ControllerProvider {
                 controllers.put(cl, Class.forName(property.getProperty(key)));
             }
         } catch (IOException | ClassNotFoundException e) {
-            logger.error("Problems with initialization of controller provider",e);
+            LOGGER.error("Problems with initialization of controller provider",e);
             throw new TaskManagerException(e, CONTROLLER_PROVIDER_INITIALIZATION_ERROR);
         }
 
@@ -51,7 +51,7 @@ public final class ControllerProvider {
             return (T) cons.newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 
-            logger.error("Problems with getting controller",e);
+            LOGGER.error("Problems with getting controller",e);
             throw new TaskManagerException(e, GET_CONTROLLER_ERROR);
         }
     }
