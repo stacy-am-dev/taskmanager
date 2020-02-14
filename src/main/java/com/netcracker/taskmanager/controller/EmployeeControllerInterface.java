@@ -50,12 +50,12 @@ public interface EmployeeControllerInterface{
      */
     Employee getEmployeeByUsername(String username) throws TaskManagerException;
     /**
-     *Function receives list of employees
+     *Function receives collection of employees
      *@return Collection<Employee>
      */
     Collection<Employee> getAllEmployees() throws TaskManagerException;
     /**
-     *Function receives list of employee's skills by employee's identifier
+     *Function receives collection of employee's skills by employee's identifier
      *@param employeeId
      *@return Collection<EmployeeSkill>
      */
