@@ -17,7 +17,7 @@ public interface ProcessTemplateControllerInterface {
      *@param processTemplate
      *@return ProcessTemplate
      */
-    ProcessTemplate updateEmployee (ProcessTemplate processTemplate) throws TaskManagerException;
+    ProcessTemplate updateProcessTemplate(ProcessTemplate processTemplate) throws TaskManagerException;
 
     /**
      *Procedure deletes process template by identifier
