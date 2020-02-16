@@ -5,21 +5,24 @@ import com.netcracker.taskmanager.model.Task;
 import java.util.concurrent.PriorityBlockingQueue;
 
 public class TaskStartQueueService {
-    private static PriorityBlockingQueue<Task> priorityBlockingQueue;
+    private static TaskStartQueueService taskStartQueueService;
+    private PriorityBlockingQueue<Task> priorityBlockingQueue;
 
-    public TaskStartQueueService(){}
-
-    public static synchronized PriorityBlockingQueue<Task> getPriorityBlockingQueue() {
-        if(priorityBlockingQueue == null)
-            priorityBlockingQueue = new PriorityBlockingQueue<>();
-        return priorityBlockingQueue;
+    private TaskStartQueueService() {
+        priorityBlockingQueue = new PriorityBlockingQueue<>();
     }
 
-    public void addTask(Task task){
+    public static synchronized TaskStartQueueService getTaskStartQueueService() {
+        if (taskStartQueueService == null)
+            taskStartQueueService = new TaskStartQueueService();
+        return taskStartQueueService;
+    }
+
+    public void addTask(Task task) {
         priorityBlockingQueue.add(task);
     }
 
-    public Task getTask(){
+    public Task getTask() {
         return priorityBlockingQueue.peek();
     }
 }

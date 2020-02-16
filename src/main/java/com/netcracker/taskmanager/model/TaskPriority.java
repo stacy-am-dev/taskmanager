@@ -10,21 +10,30 @@ public enum TaskPriority {
     /**
      * Low priority
      */
-    LOW,
+    LOW(1),
     /**
      * Normal priority
      */
-    NORMAL,
+    NORMAL(2),
     /**
      * Major priority
      */
-    MAJOR,
+    MAJOR(3),
     /**
      * Critical priority
      */
-    CRITICAL,
+    CRITICAL(4),
     /**
      * Blocker priority
      */
-    BLOCKER
+    BLOCKER(0);
+
+    private final int priority;
+    TaskPriority(int priority){
+        this.priority = priority;
+    }
+
+    public int getTaskPriority() {
+        return priority;
+    }
 }
