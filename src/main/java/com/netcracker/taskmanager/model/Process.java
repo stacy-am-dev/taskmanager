@@ -15,7 +15,6 @@ import java.util.HashMap;
 public class Process {
 
 
-
     /**
      * process identifier
      */
@@ -30,7 +29,7 @@ public class Process {
      */
     private String description;
     /**
-     *  process name
+     * process name
      */
     @XmlElement
     private String name;
@@ -57,70 +56,84 @@ public class Process {
 
 
     /**
-       *Constructor creates new object with definite values
+     * Constructor creates new object with definite values
+     *
      * @param params
      * @see Process#Process()
      */
-    public Process(HashMap<String, String> params){
+    public Process(HashMap<String, String> params) {
 
-       this.processId= Long.getLong(params.get("processId"));
-       this.description = params.get("description");
-       this.name = params.get("name");
-       this.startDate = LocalDateTime.parse(params.get("startDate"));
-       this.endDate = LocalDateTime.parse(params.get("endDate"));
-       this.expectationStartDate= LocalDateTime.parse(params.get("exceptionStartDate"));
-       this.expectationEndDate = LocalDateTime.parse(params.get("exceptionEndDate"));
-       this.processTemplateId = Long.getLong(params.get("processTemplateId"));
+        this.processId = Long.getLong(params.get("processId"));
+        this.description = params.get("description");
+        this.name = params.get("name");
+        this.startDate = LocalDateTime.parse(params.get("startDate"));
+        this.endDate = LocalDateTime.parse(params.get("endDate"));
+        this.expectationStartDate = LocalDateTime.parse(params.get("exceptionStartDate"));
+        this.expectationEndDate = LocalDateTime.parse(params.get("exceptionEndDate"));
+        this.processTemplateId = Long.getLong(params.get("processTemplateId"));
     }
+
     /**
      * Constructor creates new object
      */
-    public Process(){
+    public Process() {
 
     }
+
     /**
-     *Function receives value of field{@link Process#processId}
-     *@return processId
+     * Function receives value of field{@link Process#processId}
+     *
+     * @return processId
      */
 
     public long getprocessId() {
         return processId;
     }
+
     /**
-     *Function defines value of field {@link Process#processId}
-     *@param processId
+     * Function defines value of field {@link Process#processId}
+     *
+     * @param processId
      */
 
     public void setId(long processId) {
         this.processId = processId;
     }
+
     /**
-     *Function receives value of description{@link Process#description}
-     *@return description
+     * Function receives value of description{@link Process#description}
+     *
+     * @return description
      */
 
     public String getDescription() {
         return description;
     }
+
     /**
-     *Function defines value of field {@link Process#description}
-     *@param description
+     * Function defines value of field {@link Process#description}
+     *
+     * @param description
      */
     public void setDescription(String description) {
         this.description = description;
     }
+
     /**
-     *Function defines value of field {@link Process#name}
-     *@param name
+     * Function defines value of field {@link Process#name}
+     *
+     * @param name
      */
-    public void setName(String name){
-        this.name=name;
+    public void setName(String name) {
+        this.name = name;
     }
+
     /**
-     *Function receives value of description{@link Process#name}
-     *@return name
+     * Function receives value of description{@link Process#name}
+     *
+     * @return name
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -138,18 +151,19 @@ public class Process {
 
     /**
      * Function of setting the actual runtime
+     *
      * @param expectationEndDate runtime
-
      */
     public void setExpectationEndDate(LocalDateTime expectationEndDate) {
         this.expectationEndDate = expectationEndDate;
     }
 
     /**
-     *Function of obtaining start time procecss
-      * @return startDate the start time of the process
+     * Function of obtaining start time procecss
+     *
+     * @return startDate the start time of the process
      */
-    public LocalDateTime getStartDate(){
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
@@ -157,12 +171,12 @@ public class Process {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate(){
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate){
-        this.endDate=endDate;
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
     }
 
     public long getProcessId() {
@@ -197,10 +211,11 @@ public class Process {
         this.status = status;
     }
 
-    public void saveToFile(OutputStream out){
+    public void saveToFile(OutputStream out) {
 
     }
-    public void upload(InputStream in){
+
+    public void upload(InputStream in) {
 
     }
 }

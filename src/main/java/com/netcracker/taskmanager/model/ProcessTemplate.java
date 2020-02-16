@@ -1,9 +1,7 @@
 package com.netcracker.taskmanager.model;
 
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +13,7 @@ import java.util.Map;
  * @version 1.0
  */
 @XmlRootElement(name = "processTemplate")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ProcessTemplate {
     /**
      * Identifier of process template
@@ -29,35 +28,18 @@ public class ProcessTemplate {
     /**
      * Description of process template
      */
+    @XmlElement
     private String description;
     /**
      * Parameters of process template
      */
+    @XmlElement
     private Map<String, String> parameters = new HashMap<String, String>();
 
     /**
      * Constructor creates new object
      */
     ProcessTemplate() {
-    }
-
-    /**
-     * Procedure defines value of parameter
-     *
-     * @param key
-     * @param value
-     */
-    public void setParameter(String key, String value) {
-        parameters.put(key, value);
-    }
-
-    /**
-     * Function receives value of parameter
-     *
-     * @return parameters.get(key)
-     */
-    public String getParameter(String key) {
-        return parameters.get(key);
     }
 
     /**
@@ -102,7 +84,7 @@ public class ProcessTemplate {
      * @return parameters
      */
     public Map<String, String> getParameters() {
-        return  parameters;
+        return parameters;
     }
 
     /**

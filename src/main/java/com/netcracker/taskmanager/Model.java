@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Model {
-//
+    //
     private Collection<Employee> employees;
     private Collection<Process> processes;
     private Collection<Skill> skills;
@@ -16,8 +16,10 @@ public class Model {
     private Collection<EmployeeSkill> employeeSkills;
     private Collection<TaskSkill> taskSkills;
     private Collection<TaskDependency> taskDependencies;
+    private Collection<TaskTemplate> taskTemplates;
+    private Collection<ProcessTemplate> processTemplates;
 
-   public  Model() {
+    public Model() {
         employees = new ArrayList<>();
         processes = new ArrayList<>();
         skills = new ArrayList<>();
@@ -25,8 +27,9 @@ public class Model {
         employeeSkills = new ArrayList<>();
         taskSkills = new ArrayList<>();
         taskDependencies = new ArrayList<>();
+        taskTemplates = new ArrayList<>();
+        processTemplates = new ArrayList<>();
     }
-
 
 
     public Collection<Process> getProcesses() {
@@ -85,4 +88,19 @@ public class Model {
         this.taskDependencies = taskDependencies;
     }
 
+    public Collection<TaskTemplate> getTaskTemplates() {
+        return taskTemplates;
+    }
+
+    public void setTaskTemplates(Collection<TaskTemplate> taskTemplates) {
+        this.taskTemplates = taskTemplates;
+    }
+
+    public Collection<ProcessTemplate> getProcessTemplates() {
+        return processTemplates;
+    }
+
+    public void setProcessTemplates(Collection<ProcessTemplate> processTemplates) {
+        this.processTemplates = processTemplates;
+    }
 }

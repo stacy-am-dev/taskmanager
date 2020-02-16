@@ -1,20 +1,20 @@
 package com.netcracker.taskmanager.model;
 
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Class describes  template of task with such properties as <b>taskTemplateId</b>,
- * <b>name</b>, <b>description</b>, <b>parameters</b>.
+ * <b>name</b>, <b>description</b>,<b>expectationExecutionTime</b>, <b>parameters</b>.
  *
  * @version 1.0
  */
 @XmlRootElement(name = "taskTemplate")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class TaskTemplate {
     /**
      * Identifier of task template
@@ -29,35 +29,26 @@ public class TaskTemplate {
     /**
      * Description of task template
      */
+    @XmlElement
     private String description;
+
+    @XmlElement
+    private LocalDateTime expectationExecutionTime;
+    /**
+     *Expected execution time
+     */
+    @XmlElement
+    private String;
     /**
      * Parameters of task template
      */
+    @XmlElement
     private Map<String, String> parameters = new HashMap<>();
 
     /**
      * Constructor creates new object
      */
     public TaskTemplate() {
-    }
-
-    /**
-     * Procedure defines value of parameter
-     *
-     * @param key
-     * @param value
-     */
-    public void setParameter(String key, String value) {
-        parameters.put(key, value);
-    }
-
-    /**
-     * Function receives value of parameter
-     *
-     * @return parameters.get(key)
-     */
-    public String getParameter(String key) {
-        return parameters.get(key);
     }
 
     /**
@@ -130,5 +121,23 @@ public class TaskTemplate {
      */
     public void setParameters(Map<String, String> parameters) {
         this.parameters = parameters;
+    }
+
+    /**
+     * Function receives value of field {@link TaskTemplate#expectationExecutionTime}
+     *
+     * @return expectationExecutionTime
+     */
+    public LocalDateTime getExpectationExecutionTime() {
+        return expectationExecutionTime;
+    }
+
+    /**
+     * Procedure defines value of field {@link TaskTemplate#expectationExecutionTime}
+     *
+     * @param expectationExecutionTime
+     */
+    public void setExpectationExecutionTime(LocalDateTime expectationExecutionTime) {
+        this.expectationExecutionTime = expectationExecutionTime;
     }
 }
