@@ -18,7 +18,7 @@ public final class ControllerProvider {
     private static ControllerProvider instance;
     private Map<Class, Class> controllers;
     private static final String FILE_NAME = "controllers.properties";
-    static final Logger LOGGER = Logger.getLogger(ControllerProvider.class);
+    private static final Logger LOGGER = Logger.getLogger(ControllerProvider.class);
 
     private ControllerProvider() throws TaskManagerException {
         ClassLoader classLoader = ControllerProvider.class.getClassLoader();

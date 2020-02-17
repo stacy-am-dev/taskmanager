@@ -31,14 +31,16 @@ public class TaskTemplate {
      */
     @XmlElement
     private String description;
-
-    @XmlElement
-    private LocalDateTime expectationExecutionTime;
     /**
      *Expected execution time
      */
     @XmlElement
-    private String;
+    private LocalDateTime expectationExecutionTime;
+    /**
+     *Necessary level of skill for task
+     */
+    @XmlElement
+    private int skillLevel;
     /**
      * Parameters of task template
      */
