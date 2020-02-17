@@ -6,7 +6,7 @@ import com.netcracker.taskmanager.model.Skill;
 
 import java.util.Collection;
 
-public class Controller implements SkillControllerInterface {
+public class SkillController implements SkillControllerInterface {
     @Override
     public Skill createSkill(Skill skill) throws TaskManagerException {
         return null;
