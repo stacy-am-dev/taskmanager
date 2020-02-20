@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @version 1.0*
  */
 @XmlRootElement(name = "task")
-public class Task implements Comparable<Task>{
+public class Task {
     /**
      * Task's identifier
      */
@@ -268,10 +268,5 @@ public class Task implements Comparable<Task>{
 
     public TaskPriority getPriority() {
         return priority;
-    }
-
-    @Override
-    public int compareTo(Task o) {
-        return Integer.compare(o.getPriority().getTaskPriority(), priority.getTaskPriority());
     }
 }
