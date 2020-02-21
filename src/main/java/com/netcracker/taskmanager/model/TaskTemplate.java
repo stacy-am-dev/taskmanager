@@ -37,10 +37,10 @@ public class TaskTemplate {
     @XmlElement
     private LocalDateTime expectationExecutionTime;
     /**
-     *Necessary level of skill for task
+     * Necessary skills for task execution
      */
     @XmlElement
-    private int skillLevel;
+    private Map<Skill, Integer> skills = new HashMap<>();
     /**
      * Parameters of task template
      */
@@ -141,5 +141,22 @@ public class TaskTemplate {
      */
     public void setExpectationExecutionTime(LocalDateTime expectationExecutionTime) {
         this.expectationExecutionTime = expectationExecutionTime;
+    }
+
+    /**
+     * Function receives value of field {@link TaskTemplate#skills}
+     *
+     * @return skills
+     */
+    public Map<Skill, Integer> getSkills() {
+        return skills;
+    }
+    /**
+     * Procedure defines value of field {@link TaskTemplate#skills}
+     *
+     * @param skills
+     */
+    public void setSkills(Map<Skill, Integer> skills) {
+        this.skills = skills;
     }
 }
