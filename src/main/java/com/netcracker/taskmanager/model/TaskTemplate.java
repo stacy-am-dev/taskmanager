@@ -3,7 +3,7 @@ package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +35,18 @@ public class TaskTemplate {
      *Expected execution time
      */
     @XmlElement
-    private LocalDateTime expectationExecutionTime;
+    private Duration expectationExecutionTime;
+
+    /**
+     *Type of task
+     */
+    @XmlElement
+    private TaskType taskType;
+    /**
+     *Priority of task
+     */
+    @XmlElement
+    private TaskPriority taskPriority;
     /**
      * Necessary skills for task execution
      */
@@ -130,7 +141,7 @@ public class TaskTemplate {
      *
      * @return expectationExecutionTime
      */
-    public LocalDateTime getExpectationExecutionTime() {
+    public Duration getExpectationExecutionTime() {
         return expectationExecutionTime;
     }
 
@@ -139,7 +150,7 @@ public class TaskTemplate {
      *
      * @param expectationExecutionTime
      */
-    public void setExpectationExecutionTime(LocalDateTime expectationExecutionTime) {
+    public void setExpectationExecutionTime(Duration expectationExecutionTime) {
         this.expectationExecutionTime = expectationExecutionTime;
     }
 
@@ -158,5 +169,39 @@ public class TaskTemplate {
      */
     public void setSkills(Map<Skill, Integer> skills) {
         this.skills = skills;
+    }
+
+    /**
+     * Function receives value of field {@link TaskTemplate#taskType}
+     *
+     * @return taskType
+     */
+    public TaskType getTaskType() {
+        return taskType;
+    }
+    /**
+     * Procedure defines value of field {@link TaskTemplate#taskType}
+     *
+     * @param taskType
+     */
+    public void setTaskType(TaskType taskType) {
+        this.taskType = taskType;
+    }
+
+    /**
+     * Function receives value of field {@link TaskTemplate#taskPriority}
+     *
+     * @return taskPriority
+     */
+    public TaskPriority getTaskPriority() {
+        return taskPriority;
+    }
+    /**
+     * Procedure defines value of field {@link TaskTemplate#taskPriority}
+     *
+     * @param taskPriority
+     */
+    public void setTaskPriority(TaskPriority taskPriority) {
+        this.taskPriority = taskPriority;
     }
 }
