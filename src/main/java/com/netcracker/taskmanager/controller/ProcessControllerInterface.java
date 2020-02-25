@@ -2,6 +2,7 @@ package com.netcracker.taskmanager.controller;
 
 import com.netcracker.taskmanager.exception.TaskManagerException;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface ProcessControllerInterface {
@@ -9,14 +10,14 @@ public interface ProcessControllerInterface {
      * Function creates new Process
      * @param process
      */
-    Process createProcess(Process process);
+    Process createProcess(Process process) throws TaskManagerException;
 
     /**
      * Function update process
      * @param process
      * @return Process
      */
-    Process updateProcess(Process process);
+    Process updateProcess(Process process) throws TaskManagerException;
 
     /**
      * Function delete process
@@ -37,18 +38,18 @@ public interface ProcessControllerInterface {
      * @param processId
      * @return Process
      */
-    Process getProcessBySomething(Long processId);
+    Process getProcessByProcessId(Long processId) throws TaskManagerException;
 
     /**
      * Function receives process
      * @param processName
      * @return Process
      */
-    Process getProcessBySomething(String processName);
+    Process getProcessByProcessName(String processName) throws TaskManagerException;
 
     /**
-     * Function receives list of processs
-     * @return List<Process>
+     * Function receives list of processes
+     * @return Collection<Process>
      */
-    List<Process> getAllProcess();
+    Collection<Process> getAllProcesses() throws TaskManagerException;
 }

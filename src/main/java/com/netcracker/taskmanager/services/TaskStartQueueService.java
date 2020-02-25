@@ -9,7 +9,7 @@ public class TaskStartQueueService {
     private PriorityBlockingQueue<Task> priorityBlockingQueue;
 
     private TaskStartQueueService() {
-        priorityBlockingQueue = new PriorityBlockingQueue<>();
+        priorityBlockingQueue = new PriorityBlockingQueue<>(1, new Comparator());
     }
 
     public static synchronized TaskStartQueueService getTaskStartQueueService() {
@@ -23,6 +23,6 @@ public class TaskStartQueueService {
     }
 
     public Task getTask() {
-        return priorityBlockingQueue.peek();
+        return priorityBlockingQueue.poll();
     }
 }

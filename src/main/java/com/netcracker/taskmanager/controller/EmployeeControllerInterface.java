@@ -59,5 +59,5 @@ public interface EmployeeControllerInterface{
      *@param employeeId
      *@return Collection<EmployeeSkill>
      */
-    Collection<EmployeeSkill> getEmployeeSkillsByEmployeeId(Long employeeId);
+    Collection<EmployeeSkill> getEmployeeSkillsByEmployeeId(Long employeeId) throws TaskManagerException;
 }

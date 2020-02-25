@@ -26,7 +26,7 @@ public enum TaskPriority {
     /**
      * Blocker priority
      */
-    BLOCKER(0);
+    BLOCKER(5);
 
     private final int priority;
     TaskPriority(int priority){
