@@ -7,19 +7,18 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Describes the workflow. Process contains a description, name, starDate, endDate,expectationStartDate,expectationEndDate,status
  */
 @XmlRootElement(name = "process")
 public class Process {
-
-
     /**
      * process identifier
      */
     @XmlAttribute(name = "processId")
-    private long processId;
+    private Long processId;
     /**
      * Identifier of process template
      */
@@ -53,25 +52,10 @@ public class Process {
      * Process status
      */
     private ProcessStatus status;
-
-
     /**
-     * Constructor creates new object with definite values
-     *
-     * @param params
-     * @see Process#Process()
+     * Parameters of Process
      */
-    public Process(HashMap<String, String> params) {
-
-        this.processId = Long.getLong(params.get("processId"));
-        this.description = params.get("description");
-        this.name = params.get("name");
-        this.startDate = LocalDateTime.parse(params.get("startDate"));
-        this.endDate = LocalDateTime.parse(params.get("endDate"));
-        this.expectationStartDate = LocalDateTime.parse(params.get("exceptionStartDate"));
-        this.expectationEndDate = LocalDateTime.parse(params.get("exceptionEndDate"));
-        this.processTemplateId = Long.getLong(params.get("processTemplateId"));
-    }
+    private Map<String, String> parameters = new HashMap<>();
 
     /**
      * Constructor creates new object
@@ -86,7 +70,7 @@ public class Process {
      * @return processId
      */
 
-    public long getprocessId() {
+    public Long getProcessId() {
         return processId;
     }
 
@@ -96,8 +80,27 @@ public class Process {
      * @param processId
      */
 
-    public void setId(long processId) {
+    public void setProcessId(Long processId) {
         this.processId = processId;
+    }
+
+    /**
+     * Function receives value of field{@link Process#processTemplateId}
+     *
+     * @return processTemplateId
+     */
+
+    public Long getProcessTemplateId() {
+        return processTemplateId;
+    }
+
+    /**
+     * Function defines value of field {@link Process#processTemplateId}
+     *
+     * @param processTemplateId
+     */
+    public void setProcessTemplateId(Long processTemplateId) {
+        this.processTemplateId = processTemplateId;
     }
 
     /**
@@ -137,85 +140,109 @@ public class Process {
         return name;
     }
 
-    public LocalDateTime getExceptionStartDate() {
+    /**
+     * Function receives value of description{@link Process#expectationStartDate}
+     *
+     * @return expectationStartDate
+     */
+    public LocalDateTime getExpectationStartDate() {
         return expectationStartDate;
     }
 
-    public void setExceptionStartDate(LocalDateTime exceptionStartDate) {
-        this.expectationStartDate = exceptionStartDate;
+    /**
+     * Function defines value of field {@link Process#expectationStartDate}
+     *
+     * @param expectationStartDate
+     */
+    public void setExpectationStartDate(LocalDateTime expectationStartDate) {
+        this.expectationStartDate = expectationStartDate;
     }
 
+    /**
+     * Function receives value of description{@link Process#expectationEndDate}
+     *
+     * @return expectationEndDate
+     */
     public LocalDateTime getExpectationEndDate() {
         return expectationEndDate;
     }
 
     /**
-     * Function of setting the actual runtime
+     * Function defines value of field {@link Process#expectationEndDate}
      *
-     * @param expectationEndDate runtime
+     * @param expectationEndDate
      */
     public void setExpectationEndDate(LocalDateTime expectationEndDate) {
         this.expectationEndDate = expectationEndDate;
     }
 
     /**
-     * Function of obtaining start time procecss
+     * Function receives value of description{@link Process#startDate}
      *
-     * @return startDate the start time of the process
+     * @return startDate
      */
     public LocalDateTime getStartDate() {
         return startDate;
     }
 
+    /**
+     * Function defines value of field {@link Process#startDate}
+     *
+     * @param startDate
+     */
     public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
+    /**
+     * Function receives value of description{@link Process#endDate}
+     *
+     * @return endDate
+     */
     public LocalDateTime getEndDate() {
         return endDate;
     }
 
+    /**
+     * Function defines value of field {@link Process#endDate}
+     *
+     * @param endDate
+     */
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
-    public long getProcessId() {
-        return processId;
-    }
-
-    public void setProcessId(long processId) {
-        this.processId = processId;
-    }
-
-    public Long getProcessTemplateId() {
-        return processTemplateId;
-    }
-
-    public void setProcessTemplateId(Long processTemplateId) {
-        this.processTemplateId = processTemplateId;
-    }
-
-    public LocalDateTime getExpectationStartDate() {
-        return expectationStartDate;
-    }
-
-    public void setExpectationStartDate(LocalDateTime expectationStartDate) {
-        this.expectationStartDate = expectationStartDate;
-    }
-
+    /**
+     * Function receives value of description{@link Process#status}
+     *
+     * @return status
+     */
     public ProcessStatus getStatus() {
         return status;
     }
 
+    /**
+     * Function defines value of field {@link Process#status}
+     *
+     * @param status
+     */
     public void setStatus(ProcessStatus status) {
         this.status = status;
     }
-
-    public void saveToFile(OutputStream out) {
-
+    /**
+     * Function receives value of description{@link Process#parameters}
+     *
+     * @return parameters
+     */
+    public Map<String, String> getParameters() {
+        return parameters;
     }
-
-    public void upload(InputStream in) {
-
+    /**
+     * Function defines value of field {@link Process#parameters}
+     *
+     * @param parameters
+     */
+    public void setParameters(Map<String, String> parameters) {
+        this.parameters = parameters;
     }
 }
