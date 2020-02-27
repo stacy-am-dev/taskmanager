@@ -1,66 +1,77 @@
 package com.netcracker.taskmanager.util;
 
 import com.netcracker.taskmanager.model.*;
-import com.netcracker.taskmanager.model.Process;
 
 
-import java.util.*;
+import java.lang.Process;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Model {
 
-    private Map<Employee, IDGenerator> employees;
-    private Map<Process, IDGenerator> processes;
-    private Map<Skill, IDGenerator> skills;
-    private Map<Task, IDGenerator> tasks;
+    private Collection<Employee> employees;
+    private Collection<Process> processes;
+    private Collection<Skill> skills;
+    private Collection<Task> tasks;
     private Collection<EmployeeSkill> employeeSkills;
     private Collection<TaskSkill> taskSkills;
     private Collection<TaskDependency> taskDependencies;
-    private Map<TaskTemplate, IDGenerator> taskTemplates;
-    private Map<ProcessTemplate, IDGenerator> processTemplates;
-
+    private Collection<TaskTemplate> taskTemplates;
+    private Collection<ProcessTemplate> processTemplates;
+    private Map<Class,IDGenerator> matchMap;
 
     public Model() {
-        employees = new HashMap<>();
-        processes = new HashMap<>();
-        skills = new HashMap<>();
-        tasks = new HashMap<>();
+        employees = new ArrayList<>();
+        processes = new ArrayList<>();
+        skills = new ArrayList<>();
+        tasks = new ArrayList<>();
         employeeSkills = new ArrayList<>();
         taskSkills = new ArrayList<>();
         taskDependencies = new ArrayList<>();
-        taskTemplates = new HashMap<>();
-        processTemplates = new HashMap<>();
+        taskTemplates = new ArrayList<>();
+        processTemplates = new ArrayList<>();
+        matchMap = new HashMap<>();
+        matchMap.put(Employee.class, new IDGenerator());
+        matchMap.put(Process.class, new IDGenerator());
+        matchMap.put(Skill.class, new IDGenerator());
+        matchMap.put(Task.class, new IDGenerator());
+        matchMap.put(TaskTemplate.class, new IDGenerator());
+        matchMap.put(ProcessTemplate.class, new IDGenerator());
     }
 
-    public Map<Employee, IDGenerator> getEmployees() {
-        return employees;
-    }
 
-    public void setEmployees(Map<Employee, IDGenerator> employees) {
-        this.employees = employees;
-    }
-
-    public Map<Process, IDGenerator> getProcesses() {
+    public Collection<Process> getProcesses() {
         return processes;
     }
 
-    public void setProcesses(Map<Process, IDGenerator> processes) {
+    public void setProcesses(Collection<Process> processes) {
         this.processes = processes;
     }
 
-    public Map<Skill, IDGenerator> getSkills() {
+    public Collection<Skill> getSkills() {
         return skills;
     }
 
-    public void setSkills(Map<Skill, IDGenerator> skills) {
+    public void setSkills(Collection<Skill> skills) {
         this.skills = skills;
     }
 
-    public Map<Task, IDGenerator> getTasks() {
+    public Collection<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(Map<Task, IDGenerator> tasks) {
+    public void setTasks(Collection<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public Collection<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Collection<Employee> employees) {
+        this.employees = employees;
     }
 
     public Collection<EmployeeSkill> getEmployeeSkills() {
@@ -87,19 +98,27 @@ public class Model {
         this.taskDependencies = taskDependencies;
     }
 
-    public Map<TaskTemplate, IDGenerator> getTaskTemplates() {
+    public Collection<TaskTemplate> getTaskTemplates() {
         return taskTemplates;
     }
 
-    public void setTaskTemplates(Map<TaskTemplate, IDGenerator> taskTemplates) {
+    public void setTaskTemplates(Collection<TaskTemplate> taskTemplates) {
         this.taskTemplates = taskTemplates;
     }
 
-    public Map<ProcessTemplate, IDGenerator> getProcessTemplates() {
+    public Collection<ProcessTemplate> getProcessTemplates() {
         return processTemplates;
     }
 
-    public void setProcessTemplates(Map<ProcessTemplate, IDGenerator> processTemplates) {
+    public void setProcessTemplates(Collection<ProcessTemplate> processTemplates) {
         this.processTemplates = processTemplates;
+    }
+
+    public Map<Class, IDGenerator> getMatchMap() {
+        return matchMap;
+    }
+
+    public void setMatchMap(Map<Class, IDGenerator> matchMap) {
+        this.matchMap = matchMap;
     }
 }
