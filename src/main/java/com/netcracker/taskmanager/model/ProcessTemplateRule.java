@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class ProcessTemplateRule {
     private Long processTemplateRuleId;
-    private ProcessTemplate processTemplate;
+    private Long processTemplateId;
     private String name;
     private String description;
     private String ruleClass;
@@ -24,12 +24,12 @@ public class ProcessTemplateRule {
         this.processTemplateRuleId = processTemplateRuleId;
     }
 
-    public ProcessTemplate getProcessTemplate() {
-        return processTemplate;
+    public Long getProcessTemplateId() {
+        return processTemplateId;
     }
 
-    public void setProcessTemplate(ProcessTemplate processTemplate) {
-        this.processTemplate = processTemplate;
+    public void setProcessTemplateId(Long processTemplateId) {
+        this.processTemplateId = processTemplateId;
     }
 
     public String getName() {
