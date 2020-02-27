@@ -36,6 +36,12 @@ public interface ProcessTemplateRuleControllerInterface {
      */
     ProcessTemplateRule getProcessTemplateRuleByProcessTemplateRuleId(Long processTemplateRuleId) throws TaskManagerException;
     /**
+     *Function receives collection of process template rules by identifier of process template
+     *@param processTemplateId
+     *@return Collection<ProcessTemplateRule>
+     */
+    Collection<ProcessTemplateRule> getProcessTemplateRulesByProcessTemplateId(Long processTemplateId) throws TaskManagerException;
+    /**
      *Function receives collection of all process templates rules
      *@return Collection<ProcessTemplateRule>
      */
