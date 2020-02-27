@@ -81,11 +81,11 @@ public class Task {
      * End date of task
      */
     private LocalDateTime endDate;
-
     /**
      * Parameters of task
      */
     private Map<String, String> parameters = new HashMap<>();
+
     /**
      * Constructor creates new object
      */
@@ -272,7 +272,77 @@ public class Task {
         this.name = name;
     }
 
+    /**
+     * Function receives value of field {@link Task#status}
+     *
+     * @return TaskStatus
+     */
+    public TaskStatus getStatus() {
+        return status;
+    }
+
+    /**
+     * Procedure defines value of field {@link Task#status}
+     *
+     * @param status
+     */
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
+
+    /**
+     * Function receives value of field {@link Task#type}
+     *
+     * @return TaskType
+     */
+    public TaskType getType() {
+        return type;
+    }
+
+    /**
+     * Procedure defines value of field {@link Task#type}
+     *
+     * @param type
+     */
+    public void setType(TaskType type) {
+        this.type = type;
+    }
+
+    /**
+     * Function receives value of field {@link Task#priority}
+     *
+     * @return TaskPriority
+     */
     public TaskPriority getPriority() {
         return priority;
     }
+
+    /**
+     * Procedure defines value of field {@link Task#priority}
+     *
+     * @param priority
+     */
+    public void setPriority(TaskPriority priority) {
+        this.priority = priority;
+    }
+
+    /**
+     * Function receives value of field {@link Task#parameters}
+     *
+     * @return parameters
+     */
+    public Map<String, String> getParameters() {
+        return parameters;
+    }
+
+    /**
+     * Procedure defines value of field {@link Task#parameters}
+     *
+     * @param parameters
+     */
+    public void setParameters(Map<String, String> parameters) {
+        this.parameters = parameters;
+    }
+
+
 }
