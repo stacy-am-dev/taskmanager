@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class describes task of process with such properties as <b>taskID</b>, <b>status</b>
@@ -80,6 +82,10 @@ public class Task {
      */
     private LocalDateTime endDate;
 
+    /**
+     * Parameters of task
+     */
+    private Map<String, String> parameters = new HashMap<>();
     /**
      * Constructor creates new object
      */

@@ -8,31 +8,35 @@ import javax.xml.bind.annotation.XmlEnum;
 @XmlEnum
 public enum TaskStatus{
     /**
-     * Free status
+     * Planing status
      */
-    FREE,
+    PLANNING,
     /**
-     * Occupied status
+     * Planned status
      */
-    OCCUPIED,
+    PLANNED,
     /**
-     * Started status
+     * Not started status
      */
-    STARTED,
+    NOT_STARTED,
     /**
      * Status in progress
      */
     IN_PROGRESS,
     /**
+     * Error status
+     */
+    ERROR,
+    /**
      * Waiting status
      */
     WAITING,
     /**
-     * Delayed status
+     * Cancelled status
      */
-    DELAYED,
+    CANCELLED,
     /**
-     * Finished status
+     * Completed status
      */
-    FINISHED,
+    COMPLETED,
 }

@@ -8,15 +8,11 @@ import javax.xml.bind.annotation.XmlEnum;
 @XmlEnum
 public enum TaskType{
     /**
-     * Action command type
+     * Java action type
      */
-    ACTION_COMMAND,
+    JAVA_ACTION,
     /**
-     * Default type
+     * Manual type
      */
-    DEFAULT,
-    /**
-     * Selected type
-     */
-    SELECTED,
+    MANUAL
 }
