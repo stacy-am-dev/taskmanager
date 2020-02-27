@@ -51,7 +51,7 @@ public class TaskTemplate {
      * Necessary skills for task execution
      */
     @XmlElement
-    private Map<Skill, Integer> skills = new HashMap<>();
+    private Map<Long, Integer> skills = new HashMap<>();
     /**
      * Parameters of task template
      */
@@ -159,7 +159,7 @@ public class TaskTemplate {
      *
      * @return skills
      */
-    public Map<Skill, Integer> getSkills() {
+    public Map<Long, Integer> getSkills() {
         return skills;
     }
     /**
@@ -167,7 +167,7 @@ public class TaskTemplate {
      *
      * @param skills
      */
-    public void setSkills(Map<Skill, Integer> skills) {
+    public void setSkills(Map<Long, Integer> skills) {
         this.skills = skills;
     }
 
