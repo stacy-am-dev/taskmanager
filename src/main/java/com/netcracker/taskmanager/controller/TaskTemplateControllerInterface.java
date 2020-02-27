@@ -35,13 +35,7 @@ public interface TaskTemplateControllerInterface {
      *@return TaskTemplate
      */
     TaskTemplate getTaskTemplateByTaskTemplateId(Long taskTemplateId) throws TaskManagerException;
-    /**
-     *Function receives task template by name
-     *@param name
-     *@return TaskTemplate
-     */
-    TaskTemplate getTaskTemplateByName(String name) throws TaskManagerException;
-    /**
+     /**
      *Function receives collection of all task templates
      *@return Collection<TaskTemplate>
      */
