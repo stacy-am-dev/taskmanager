@@ -1,4 +1,4 @@
-package com.netcracker.taskmanager;
+package com.netcracker.taskmanager.util;
 
 
 public class ModelFacade {

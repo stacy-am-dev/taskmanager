@@ -1,4 +1,4 @@
-package com.netcracker.taskmanager.model;
+package com.netcracker.taskmanager.util;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
