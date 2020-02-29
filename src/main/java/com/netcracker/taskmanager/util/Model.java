@@ -20,6 +20,7 @@ public class Model {
     private Collection<TaskDependency> taskDependencies;
     private Collection<TaskTemplate> taskTemplates;
     private Collection<ProcessTemplate> processTemplates;
+    private Collection<TaskTemplateRule> taskTemplateRules;
     private Collection<ProcessTemplateRule> processTemplateRules;
     private Map<Class, IDGenerator> matchMap;
 
@@ -33,6 +34,7 @@ public class Model {
         taskDependencies = new ArrayList<>();
         taskTemplates = new ArrayList<>();
         processTemplates = new ArrayList<>();
+        taskTemplateRules = new ArrayList<>();
         processTemplateRules = new ArrayList<>();
         matchMap = new HashMap<>();
         matchMap.put(Employee.class, new IDGenerator());
@@ -41,7 +43,9 @@ public class Model {
         matchMap.put(Task.class, new IDGenerator());
         matchMap.put(TaskTemplate.class, new IDGenerator());
         matchMap.put(ProcessTemplate.class, new IDGenerator());
+        matchMap.put(TaskTemplateRule.class, new IDGenerator());
         matchMap.put(ProcessTemplateRule.class, new IDGenerator());
+
     }
 
 
@@ -117,6 +121,14 @@ public class Model {
         this.processTemplates = processTemplates;
     }
 
+    public Collection<TaskTemplateRule> getTaskTemplateRules() {
+        return taskTemplateRules;
+    }
+
+    public void setTaskTemplateRules(Collection<TaskTemplateRule> taskTemplateRules) {
+        this.taskTemplateRules = taskTemplateRules;
+    }
+
     public Collection<ProcessTemplateRule> getProcessTemplateRules() {
         return processTemplateRules;
     }
@@ -132,6 +144,4 @@ public class Model {
     public void setMatchMap(Map<Class, IDGenerator> matchMap) {
         this.matchMap = matchMap;
     }
-
-
 }
