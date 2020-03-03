@@ -1,5 +1,6 @@
 package com.netcracker.taskmanager.services;
 
+import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Task;
 
 import java.util.concurrent.PriorityBlockingQueue;
@@ -9,7 +10,7 @@ public class TaskStartQueueService {
     private PriorityBlockingQueue<Task> priorityBlockingQueue;
 
     private TaskStartQueueService() {
-        priorityBlockingQueue = new PriorityBlockingQueue<>(1, new Comparator());
+        priorityBlockingQueue = new PriorityBlockingQueue<>(1, (o1, o2) -> Integer.compare(o2.getPriority().getTaskPriority(), o1.getPriority().getTaskPriority()));
     }
 
     public static synchronized TaskStartQueueService getTaskStartQueueService() {
@@ -22,7 +23,11 @@ public class TaskStartQueueService {
         priorityBlockingQueue.add(task);
     }
 
-    public Task getTask() {
-        return priorityBlockingQueue.poll();
+    public synchronized Task getTask() throws TaskManagerException {
+        if (priorityBlockingQueue == null)
+            throw new TaskManagerException(new NullPointerException(), 123);
+        else
+            return priorityBlockingQueue.poll();
     }
+
 }
