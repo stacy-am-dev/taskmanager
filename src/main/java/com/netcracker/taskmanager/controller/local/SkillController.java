@@ -3,13 +3,16 @@ package com.netcracker.taskmanager.controller.local;
 import com.netcracker.taskmanager.controller.SkillControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Skill;
+import com.netcracker.taskmanager.util.IDGenerator;
 
 import java.util.Collection;
 
 public class SkillController implements SkillControllerInterface {
     @Override
     public Skill createSkill(Skill skill) throws TaskManagerException {
-        return null;
+        IDGenerator idGenerator = new IDGenerator();
+        skill.setSkillId(idGenerator.generate(skill.getSkillId()));
+        return skill;
     }
 
     @Override
