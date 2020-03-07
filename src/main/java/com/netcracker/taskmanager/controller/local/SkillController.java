@@ -11,10 +11,9 @@ public class SkillController implements SkillControllerInterface {
     @Override
     public Skill createSkill(Skill skill) throws TaskManagerException {
         IDGenerator idGenerator = new IDGenerator();
-        skill.setSkillId(idGenerator.generate(skill.getSkillId()));
+        skill.setSkillId(idGenerator.generate());
         return skill;
     }
-
 
     @Override
     public Skill updateSkill(Skill skill) throws TaskManagerException {
