@@ -52,4 +52,22 @@ public class JAXBWorker {
     private static void unmarshalInitialization() throws JAXBException {
         unmarshaller = jaxbContext.createUnmarshaller();
     }
+
+    public static JAXBContext getJaxbContext() throws TaskManagerException{
+        if(jaxbContext != null)
+            return jaxbContext;
+        else throw new TaskManagerException(new NullPointerException(), 123);
+    }
+
+    public static Marshaller getMarshaller() throws TaskManagerException {
+        if(marshaller != null)
+            return marshaller;
+        else throw new TaskManagerException(new NullPointerException(), 123);
+    }
+
+    public static Unmarshaller getUnmarshaller() throws TaskManagerException{
+        if(unmarshaller != null)
+            return unmarshaller;
+        else throw new TaskManagerException(new NullPointerException(), 123);
+    }
 }
