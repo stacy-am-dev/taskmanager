@@ -10,9 +10,13 @@ import java.util.Collection;
 public class SkillController implements SkillControllerInterface {
     @Override
     public Skill createSkill(Skill skill) throws TaskManagerException {
-        IDGenerator idGenerator = new IDGenerator();
-        skill.setSkillId(idGenerator.generate());
-        return skill;
+        if(skill.getMaxLevel() > skill.getMinLevel()) {
+            IDGenerator idGenerator = new IDGenerator();
+            skill.setSkillId(idGenerator.generate());
+            return skill;
+        }
+        else
+            throw new TaskManagerException(new Throwable(""), 345);
     }
 
     @Override
