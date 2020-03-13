@@ -2,8 +2,11 @@ package com.netcracker.taskmanager.controller.local;
 
 import com.netcracker.taskmanager.controller.ProcessControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
+import com.netcracker.taskmanager.model.Process;
+import com.netcracker.taskmanager.model.ProcessStatus;
 
 import java.util.Collection;
+import java.util.concurrent.PriorityBlockingQueue;
 
 public class ProcessController implements ProcessControllerInterface {
     @Override
@@ -39,5 +42,16 @@ public class ProcessController implements ProcessControllerInterface {
     @Override
     public Collection<Process> getAllProcesses() throws TaskManagerException {
         return null;
+    }
+
+    @Override
+    public Collection<Process> getPlannedProcesses(PriorityBlockingQueue<Process> processPriorityBlockingQueue) throws TaskManagerException {
+        PriorityBlockingQueue<Process> priorityBlockingQueue = new PriorityBlockingQueue<>();
+        for (Process process : processPriorityBlockingQueue) {
+            if (process.getStatus() == ProcessStatus.PLANNED) {
+                priorityBlockingQueue.add(process);
+            }
+        }
+        return priorityBlockingQueue;
     }
 }

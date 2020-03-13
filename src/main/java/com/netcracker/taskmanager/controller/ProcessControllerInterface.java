@@ -1,9 +1,10 @@
 package com.netcracker.taskmanager.controller;
 
 import com.netcracker.taskmanager.exception.TaskManagerException;
+import com.netcracker.taskmanager.model.Process;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.concurrent.PriorityBlockingQueue;
 
 public interface ProcessControllerInterface {
     /**
@@ -48,8 +49,16 @@ public interface ProcessControllerInterface {
     Process getProcessByProcessName(String processName) throws TaskManagerException;
 
     /**
-     * Function receives list of processes
+     * Function receives collection of processes
      * @return Collection<Process>
      */
     Collection<Process> getAllProcesses() throws TaskManagerException;
+
+    /**
+     * Function receives collection of processes with planned status
+     * @param processPriorityBlockingQueue
+     * @return Collection<Process>
+     * @throws TaskManagerException
+     */
+    Collection<Process> getPlannedProcesses(PriorityBlockingQueue<Process> processPriorityBlockingQueue) throws TaskManagerException;
 }
