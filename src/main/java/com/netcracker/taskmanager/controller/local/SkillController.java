@@ -3,20 +3,19 @@ package com.netcracker.taskmanager.controller.local;
 import com.netcracker.taskmanager.controller.SkillControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Skill;
-import com.netcracker.taskmanager.util.IDGenerator;
+import com.netcracker.taskmanager.util.ModelFacade;
 
 import java.util.Collection;
 
 public class SkillController implements SkillControllerInterface {
     @Override
     public Skill createSkill(Skill skill) throws TaskManagerException {
-        if(skill.getMaxLevel() > skill.getMinLevel()) {
-            IDGenerator idGenerator = new IDGenerator();
-            skill.setSkillId(idGenerator.generate());
+        if (skill.getMaxLevel() < skill.getMinLevel())
+            throw new TaskManagerException(new Throwable(""), 345);
+        else {
+            skill.setSkillId(ModelFacade.getInstance().getModel().getIdGenerator().generate());
             return skill;
         }
-        else
-            throw new TaskManagerException(new Throwable(""), 345);
     }
 
     @Override
@@ -36,7 +35,13 @@ public class SkillController implements SkillControllerInterface {
 
     @Override
     public Skill getSkillById(Long skillId) throws TaskManagerException {
-        return null;
+        Skill skillResult = ModelFacade.getInstance().getModel().getSkills().stream()
+                .filter(skill -> skill.getSkillId().equals(skillId))
+                .findAny()
+                .orElse(null);
+        if (skillResult == null)
+            throw new TaskManagerException(new Throwable("Not found"), 404);
+        else return skillResult;
     }
 
     @Override

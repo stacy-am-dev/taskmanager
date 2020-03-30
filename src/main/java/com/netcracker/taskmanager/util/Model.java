@@ -2,7 +2,6 @@ package com.netcracker.taskmanager.util;
 
 import com.netcracker.taskmanager.model.*;
 
-
 import java.lang.Process;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +22,7 @@ public class Model {
     private Collection<TaskTemplateRule> taskTemplateRules;
     private Collection<ProcessTemplateRule> processTemplateRules;
     private Map<Class, IDGenerator> matchMap;
+    private IDGenerator idGenerator;
 
     public Model() {
         employees = new ArrayList<>();
@@ -36,6 +36,7 @@ public class Model {
         processTemplates = new ArrayList<>();
         taskTemplateRules = new ArrayList<>();
         processTemplateRules = new ArrayList<>();
+        idGenerator = new IDGenerator();
         matchMap = new HashMap<>();
         matchMap.put(Employee.class, new IDGenerator());
         matchMap.put(Process.class, new IDGenerator());
@@ -143,5 +144,9 @@ public class Model {
 
     public void setMatchMap(Map<Class, IDGenerator> matchMap) {
         this.matchMap = matchMap;
+    }
+
+    public IDGenerator getIdGenerator() {
+        return idGenerator;
     }
 }
