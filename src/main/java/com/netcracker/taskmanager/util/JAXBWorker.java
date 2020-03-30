@@ -12,62 +12,59 @@ import java.io.File;
  * Class describes saving object to XML-file and return of object from XML-file
  */
 public class JAXBWorker {
-    private static JAXBContext jaxbContext;
+    private static JAXBContext jaxbContext = null;
     private static Marshaller marshaller;
     private static Unmarshaller unmarshaller;
 
     public static void saveObjectToFile(String fileName, Object o) throws TaskManagerException {
         try {
-            if (jaxbContext != null && marshaller != null) {
-                marshallerInitialization();
-                context(o.getClass());
-                marshaller.marshal(o, new File(fileName));
-            }
+            getMarshaller().marshal(o, new File(fileName));
         } catch (JAXBException e) {
             throw new TaskManagerException(new JAXBException(""), 234);
         }
     }
 
-    public static Object loadObjectFromFile(String fileName, Object o) throws TaskManagerException {
+    public static Object loadObjectFromFile(String fileName) throws TaskManagerException {
         try {
-            if (jaxbContext != null && unmarshaller != null) {
-                context(o.getClass());
-                unmarshalInitialization();
-                return unmarshaller.unmarshal(new File(fileName));
-            }
+            return getUnmarshaller().unmarshal(new File(fileName));
         } catch (JAXBException e) {
             throw new TaskManagerException(new JAXBException(""), 234);
         }
-        return null;
     }
 
-    private static void context(Class c) throws JAXBException {
-        jaxbContext = JAXBContext.newInstance(c);
+    private static JAXBContext createContext() throws TaskManagerException {
+        try {
+            return JAXBContext.newInstance();
+
+        } catch (JAXBException e) {
+            throw new TaskManagerException(new JAXBException(""), 234);
+        }
     }
 
-    private static void marshallerInitialization() throws JAXBException {
-        marshaller = jaxbContext.createMarshaller();
-    }
-
-    private static void unmarshalInitialization() throws JAXBException {
-        unmarshaller = jaxbContext.createUnmarshaller();
-    }
-
-    public static JAXBContext getJaxbContext() throws TaskManagerException{
-        if(jaxbContext != null)
+    public static JAXBContext getJaxbContext() throws TaskManagerException {
+        if (jaxbContext != null)
             return jaxbContext;
-        else throw new TaskManagerException(new NullPointerException(), 123);
+        else return jaxbContext = createContext();
     }
 
     public static Marshaller getMarshaller() throws TaskManagerException {
-        if(marshaller != null)
-            return marshaller;
-        else throw new TaskManagerException(new NullPointerException(), 123);
+        try {
+            if (marshaller != null)
+                return marshaller;
+            else return marshaller = getJaxbContext().createMarshaller();
+        } catch (JAXBException e) {
+            throw new TaskManagerException(new JAXBException(""), 234);
+        }
+
     }
 
-    public static Unmarshaller getUnmarshaller() throws TaskManagerException{
-        if(unmarshaller != null)
-            return unmarshaller;
-        else throw new TaskManagerException(new NullPointerException(), 123);
+    public static Unmarshaller getUnmarshaller() throws TaskManagerException {
+        try {
+            if (unmarshaller != null)
+                return unmarshaller;
+            else return unmarshaller = getJaxbContext().createUnmarshaller();
+        } catch (JAXBException e) {
+            throw new TaskManagerException(new JAXBException(""), 234);
+        }
     }
 }
