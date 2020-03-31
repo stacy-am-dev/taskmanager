@@ -45,10 +45,10 @@ public class ProcessController implements ProcessControllerInterface {
     }
 
     @Override
-    public Collection<Process> getPlannedProcesses(PriorityBlockingQueue<Process> processPriorityBlockingQueue) throws TaskManagerException {
+    public Collection<Process> getProcessesByStatus(PriorityBlockingQueue<Process> processPriorityBlockingQueue, ProcessStatus status) throws TaskManagerException {
         PriorityBlockingQueue<Process> priorityBlockingQueue = new PriorityBlockingQueue<>();
         for (Process process : processPriorityBlockingQueue) {
-            if (process.getStatus() == ProcessStatus.PLANNED) {
+            if (process.getStatus() == status) {
                 priorityBlockingQueue.add(process);
             }
         }

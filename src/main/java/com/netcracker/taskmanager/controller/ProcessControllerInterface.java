@@ -2,6 +2,7 @@ package com.netcracker.taskmanager.controller;
 
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Process;
+import com.netcracker.taskmanager.model.ProcessStatus;
 
 import java.util.Collection;
 import java.util.concurrent.PriorityBlockingQueue;
@@ -60,5 +61,5 @@ public interface ProcessControllerInterface {
      * @return Collection<Process>
      * @throws TaskManagerException
      */
-    Collection<Process> getPlannedProcesses(PriorityBlockingQueue<Process> processPriorityBlockingQueue) throws TaskManagerException;
+    Collection<Process> getProcessesByStatus(PriorityBlockingQueue<Process> processPriorityBlockingQueue, ProcessStatus status) throws TaskManagerException;
 }
