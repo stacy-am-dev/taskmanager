@@ -58,6 +58,7 @@ public interface ProcessControllerInterface {
     /**
      * Function receives collection of processes with planned status
      * @param processPriorityBlockingQueue
+     * @param status
      * @return Collection<Process>
      * @throws TaskManagerException
      */

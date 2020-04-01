@@ -6,7 +6,6 @@ import com.netcracker.taskmanager.model.Process;
 import com.netcracker.taskmanager.model.ProcessStatus;
 import com.netcracker.taskmanager.util.ControllerProvider;
 
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.concurrent.PriorityBlockingQueue;
 
@@ -14,16 +13,14 @@ public class ProcessStartQueueService {
     private static ProcessStartQueueService processStartQueueService;
     private PriorityBlockingQueue<Process> priorityBlockingQueue;
 
-    private ProcessStartQueueService(PriorityBlockingQueue<Process> processPriorityBlockingQueue) throws TaskManagerException {
+    private ProcessStartQueueService() throws TaskManagerException {
         priorityBlockingQueue = new PriorityBlockingQueue<>(1, Comparator.comparing(Process::getStartDate));
-        ProcessController processController = ControllerProvider.getControllerProvider().getController(ProcessController.class);
-        Collection<Process> processCollection = processController.getProcessesByStatus(processPriorityBlockingQueue, ProcessStatus.PLANNED);
-        priorityBlockingQueue.addAll(processCollection);
+        priorityBlockingQueue.addAll(ControllerProvider.getControllerProvider().getController(ProcessController.class).getProcessesByStatus(priorityBlockingQueue, ProcessStatus.PLANNED));
     }
 
-    public static synchronized ProcessStartQueueService getProcessStartQueueService(PriorityBlockingQueue<Process> processPriorityBlockingQueue) throws TaskManagerException {
+    public static synchronized ProcessStartQueueService getProcessStartQueueService() throws TaskManagerException {
         if (processStartQueueService == null)
-            processStartQueueService = new ProcessStartQueueService(processPriorityBlockingQueue);
+            processStartQueueService = new ProcessStartQueueService();
         return processStartQueueService;
     }
 
