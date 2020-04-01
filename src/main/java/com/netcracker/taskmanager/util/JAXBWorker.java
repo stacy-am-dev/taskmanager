@@ -8,6 +8,8 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
+import static com.netcracker.taskmanager.Constants.JAXB_EXCEPTION;
+
 /**
  * Class describes saving object to XML-file and return of object from XML-file
  */
@@ -20,7 +22,7 @@ public class JAXBWorker {
         try {
             getMarshaller().marshal(o, new File(fileName));
         } catch (JAXBException e) {
-            throw new TaskManagerException(new JAXBException(""), 234);
+            throw new TaskManagerException(new JAXBException("Problem with save object to file"), JAXB_EXCEPTION);
         }
     }
 
@@ -28,43 +30,42 @@ public class JAXBWorker {
         try {
             return getUnmarshaller().unmarshal(new File(fileName));
         } catch (JAXBException e) {
-            throw new TaskManagerException(new JAXBException(""), 234);
+            throw new TaskManagerException(new JAXBException("Problem with load object from file"), JAXB_EXCEPTION);
         }
     }
 
     private static JAXBContext createContext() throws TaskManagerException {
         try {
             return JAXBContext.newInstance();
-
         } catch (JAXBException e) {
-            throw new TaskManagerException(new JAXBException(""), 234);
+            throw new TaskManagerException(new JAXBException("Problem with context initialization"), JAXB_EXCEPTION);
         }
     }
 
     public static JAXBContext getJaxbContext() throws TaskManagerException {
-        if (jaxbContext != null)
-            return jaxbContext;
-        else return jaxbContext = createContext();
+        if (jaxbContext == null)
+            jaxbContext = createContext();
+        return jaxbContext;
     }
 
     public static Marshaller getMarshaller() throws TaskManagerException {
         try {
-            if (marshaller != null)
-                return marshaller;
-            else return marshaller = getJaxbContext().createMarshaller();
+            if (marshaller == null)
+                marshaller = getJaxbContext().createMarshaller();
+            return marshaller;
         } catch (JAXBException e) {
-            throw new TaskManagerException(new JAXBException(""), 234);
+            throw new TaskManagerException(new JAXBException("Problem with marshaller initialization"), JAXB_EXCEPTION);
         }
 
     }
 
     public static Unmarshaller getUnmarshaller() throws TaskManagerException {
         try {
-            if (unmarshaller != null)
-                return unmarshaller;
-            else return unmarshaller = getJaxbContext().createUnmarshaller();
+            if (unmarshaller == null)
+                unmarshaller = getJaxbContext().createUnmarshaller();
+            return unmarshaller;
         } catch (JAXBException e) {
-            throw new TaskManagerException(new JAXBException(""), 234);
+            throw new TaskManagerException(new JAXBException("Problem with unmarshaller initialization"), JAXB_EXCEPTION);
         }
     }
 }
