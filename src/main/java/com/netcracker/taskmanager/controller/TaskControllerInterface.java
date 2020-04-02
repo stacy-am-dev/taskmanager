@@ -2,8 +2,10 @@ package com.netcracker.taskmanager.controller;
 
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Task;
+import com.netcracker.taskmanager.model.TaskStatus;
 
 import java.util.Collection;
+import java.util.concurrent.PriorityBlockingQueue;
 
 public interface TaskControllerInterface {
 
@@ -53,4 +55,12 @@ public interface TaskControllerInterface {
      * @return Collection<Task>
      */
     Collection<Task> getAllTasks() throws TaskManagerException;
+
+    /**
+     * Function receives collection of tasks with different status
+     * @param taskPriorityBlockingQueue
+     * @param status
+     * @return Collection<Task>
+     */
+    Collection<Task> getTasksByStatus(PriorityBlockingQueue<Task> taskPriorityBlockingQueue, TaskStatus status);
 }

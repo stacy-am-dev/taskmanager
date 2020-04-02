@@ -1,7 +1,10 @@
 package com.netcracker.taskmanager.services;
 
+import com.netcracker.taskmanager.controller.local.TaskController;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Task;
+import com.netcracker.taskmanager.model.TaskStatus;
+import com.netcracker.taskmanager.util.ControllerProvider;
 
 import java.util.concurrent.PriorityBlockingQueue;
 
@@ -9,11 +12,12 @@ public class TaskStartQueueService {
     private static TaskStartQueueService taskStartQueueService;
     private PriorityBlockingQueue<Task> priorityBlockingQueue;
 
-    private TaskStartQueueService() {
+    private TaskStartQueueService() throws TaskManagerException {
         priorityBlockingQueue = new PriorityBlockingQueue<>(1, (o1, o2) -> Integer.compare(o2.getPriority().getTaskPriority(), o1.getPriority().getTaskPriority()));
+        priorityBlockingQueue.addAll(ControllerProvider.getControllerProvider().getController(TaskController.class).getTasksByStatus(priorityBlockingQueue, TaskStatus.PLANNED));
     }
 
-    public static synchronized TaskStartQueueService getTaskStartQueueService() {
+    public static synchronized TaskStartQueueService getTaskStartQueueService() throws TaskManagerException {
         if (taskStartQueueService == null)
             taskStartQueueService = new TaskStartQueueService();
         return taskStartQueueService;
@@ -24,10 +28,7 @@ public class TaskStartQueueService {
     }
 
     public synchronized Task getTask() throws TaskManagerException {
-        if (priorityBlockingQueue == null)
-            throw new TaskManagerException(new NullPointerException(), 123);
-        else
-            return priorityBlockingQueue.poll();
+        return priorityBlockingQueue.poll();
     }
 
 }

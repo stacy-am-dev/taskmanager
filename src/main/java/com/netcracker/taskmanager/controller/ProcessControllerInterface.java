@@ -56,7 +56,7 @@ public interface ProcessControllerInterface {
     Collection<Process> getAllProcesses() throws TaskManagerException;
 
     /**
-     * Function receives collection of processes with planned status
+     * Function receives collection of processes with different status
      * @param processPriorityBlockingQueue
      * @param status
      * @return Collection<Process>
