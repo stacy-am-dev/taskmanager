@@ -1,8 +1,8 @@
 package com.netcracker.taskmanager.util;
 
+import com.netcracker.taskmanager.model.Process;
 import com.netcracker.taskmanager.model.*;
 
-import java.lang.Process;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;

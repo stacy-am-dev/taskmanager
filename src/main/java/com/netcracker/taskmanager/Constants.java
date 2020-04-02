@@ -9,4 +9,7 @@ public class Constants {
     public static final int MAX_AND_MIN_LEVEL_OF_SKILL_INCORRECT = 9;
     public static final int NO_SUCH_IDENTIFIER_OF_SKILL = 10;
     public static final int JAXB_EXCEPTION = 11;
+    public static final int START_OR_END_DATE_OF_PROCESS_INCORRECT = 12;
+    public static final int NO_SUCH_PROCESS = 13;
+    public static final int NO_SUCH_IDENTIFIER_OF_PROCESS = 14;
 }
