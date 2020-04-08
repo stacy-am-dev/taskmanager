@@ -14,7 +14,7 @@ public class TaskStartQueueService {
 
     private TaskStartQueueService() throws TaskManagerException {
         priorityBlockingQueue = new PriorityBlockingQueue<>(1, (o1, o2) -> Integer.compare(o2.getPriority().getTaskPriority(), o1.getPriority().getTaskPriority()));
-        priorityBlockingQueue.addAll(ControllerProvider.getControllerProvider().getController(TaskController.class).getTasksByStatus(priorityBlockingQueue, TaskStatus.PLANNED));
+        priorityBlockingQueue.addAll(ControllerProvider.getControllerProvider().getController(TaskController.class).getTasksByStatus(TaskStatus.PLANNED));
     }
 
     public static synchronized TaskStartQueueService getTaskStartQueueService() throws TaskManagerException {
