@@ -48,7 +48,7 @@ public class ProcessController implements ProcessControllerInterface {
     @Override
     public Process getProcessByProcessId(Long processId) throws TaskManagerException {
         return ModelFacade.getInstance().getModel().getProcesses().stream()
-                .filter(process -> process.getProcessId().equals(processId))
+                .filter(process -> process.getProcessId() == processId)
                 .findAny()
                 .orElseThrow(() -> new TaskManagerException(new Throwable(""), NO_SUCH_PROCESS));
     }
