@@ -5,7 +5,6 @@ import com.netcracker.taskmanager.model.Process;
 import com.netcracker.taskmanager.model.ProcessStatus;
 
 import java.util.Collection;
-import java.util.concurrent.PriorityBlockingQueue;
 
 public interface ProcessControllerInterface {
     /**
@@ -57,10 +56,9 @@ public interface ProcessControllerInterface {
 
     /**
      * Function receives collection of processes with different status
-     * @param processPriorityBlockingQueue
      * @param status
      * @return Collection<Process>
      * @throws TaskManagerException
      */
-    Collection<Process> getProcessesByStatus(PriorityBlockingQueue<Process> processPriorityBlockingQueue, ProcessStatus status) throws TaskManagerException;
+    Collection<Process> getProcessesByStatus(ProcessStatus status) throws TaskManagerException;
 }

@@ -15,7 +15,7 @@ public class ProcessStartQueueService {
 
     private ProcessStartQueueService() throws TaskManagerException {
         priorityBlockingQueue = new PriorityBlockingQueue<>(1, Comparator.comparing(Process::getStartDate));
-        priorityBlockingQueue.addAll(ControllerProvider.getControllerProvider().getController(ProcessController.class).getProcessesByStatus(priorityBlockingQueue, ProcessStatus.PLANNED));
+        priorityBlockingQueue.addAll(ControllerProvider.getControllerProvider().getController(ProcessController.class).getProcessesByStatus(ProcessStatus.PLANNED));
     }
 
     public static synchronized ProcessStartQueueService getProcessStartQueueService() throws TaskManagerException {
