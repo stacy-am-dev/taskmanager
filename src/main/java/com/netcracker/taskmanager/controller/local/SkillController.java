@@ -3,88 +3,71 @@ package com.netcracker.taskmanager.controller.local;
 import com.netcracker.taskmanager.controller.SkillControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Skill;
-import com.netcracker.taskmanager.util.Model;
 import com.netcracker.taskmanager.util.ModelFacade;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import static com.netcracker.taskmanager.Constants.*;
+import static com.netcracker.taskmanager.Constants.FIELDS_OF_SKILL_INCORRECT;
+import static com.netcracker.taskmanager.Constants.NO_SUCH_SKILL;
 
 public class SkillController implements SkillControllerInterface {
-    private Model getModel = ModelFacade.getInstance().getModel();
 
     @Override
     public Skill createSkill(Skill skill) throws TaskManagerException {
-        if (skill.getMaxLevel() < skill.getMinLevel())
-            throw new TaskManagerException(new Throwable(""), MAX_AND_MIN_LEVEL_OF_SKILL_INCORRECT);
-        else {
-            skill.setSkillId(getModel.getMatchMap().get(Skill.class).generate());
-            getModel.getSkills().add(skill);
-            return skill;
-        }
+        if ((skill.getMaxLevel() < skill.getMinLevel()) || (ModelFacade.getInstance().getModel().getSkills().stream().anyMatch(skill1 -> skill1.getSkillName().equals(skill.getSkillName()))))
+            throw new TaskManagerException(new Throwable(""), FIELDS_OF_SKILL_INCORRECT);
+        skill.setSkillId(ModelFacade.getInstance().getModel().getMatchMap().get(Skill.class).generate());
+        ModelFacade.getInstance().getModel().getSkills().add(skill);
+        return skill;
     }
 
     @Override
     public Skill updateSkill(Skill skill) throws TaskManagerException {
-        if(skill.getMaxLevel() < skill.getMinLevel())
-            throw new TaskManagerException(new Throwable(""), MAX_AND_MIN_LEVEL_OF_SKILL_INCORRECT);
-        else {
-            getModel.getSkills().removeIf(skill1 -> skill1.getSkillId().equals(skill.getSkillId()));
-            getModel.getSkills().add(skill);
-            return skill;
-        }
+        if((skill.getMaxLevel() < skill.getMinLevel()) || (ModelFacade.getInstance().getModel().getSkills().stream().anyMatch(skill1 -> skill1.getSkillName().equals(skill.getSkillName()))))
+            throw new TaskManagerException(new Throwable(""), FIELDS_OF_SKILL_INCORRECT);
+        return ModelFacade.getInstance().getModel().getSkills().stream()
+                .filter(skill1 -> skill1.getSkillId() == skill.getSkillId())
+                .peek(skill1 -> skill1 = skill)
+                .findAny()
+                .orElseThrow(() -> new TaskManagerException(new Throwable(""), NO_SUCH_SKILL));
     }
 
     @Override
     public void deleteSkill(Long skillId) throws TaskManagerException {
-        if(skillId == null)
-            throw new TaskManagerException(new Throwable(""), NO_SUCH_IDENTIFIER_OF_SKILL);
-        else {
-            getModel.getSkills().removeIf(skill -> skill.getSkillId().equals(skillId));
-        }
+        ModelFacade.getInstance().getModel().getSkills().removeIf(skill -> skill.getSkillId() == skillId);
     }
 
     @Override
     public void deleteSkill(Skill skill) throws TaskManagerException {
-        if(skill.getMaxLevel() < skill.getMinLevel())
-            throw  new TaskManagerException(new Throwable(""), MAX_AND_MIN_LEVEL_OF_SKILL_INCORRECT);
-        else {
-            getModel.getSkills().removeIf(skill1 -> skill1.equals(skill));
-        }
+        ModelFacade.getInstance().getModel().getSkills().remove(skill);
     }
 
     @Override
     public Skill getSkillById(Long skillId) throws TaskManagerException {
-        Skill skillResult = getModel.getSkills().stream()
-                .filter(skill -> skill.getSkillId().equals(skillId))
+        return ModelFacade.getInstance().getModel().getSkills().stream()
+                .filter(skill -> skill.getSkillId() == skillId)
                 .findAny()
-                .orElse(null);
-        if (skillResult == null)
-            throw new TaskManagerException(new Throwable(""), NO_SUCH_SKILL);
-        else return skillResult;
+                .orElseThrow(() -> new TaskManagerException(new Throwable(""), NO_SUCH_SKILL));
     }
 
     @Override
     public Skill getSkillByName(String skillName) throws TaskManagerException {
-        Skill skillResult = getModel.getSkills().stream()
+        return ModelFacade.getInstance().getModel().getSkills().stream()
                 .filter(skill -> skill.getSkillName().equals(skillName))
                 .findAny()
-                .orElse(null);
-        if (skillResult == null)
-            throw new TaskManagerException(new Throwable(""), NO_SUCH_SKILL);
-        else return skillResult;
+                .orElseThrow(() -> new TaskManagerException(new Throwable(""), NO_SUCH_SKILL));
     }
 
     @Override
     public Collection<Skill> getSkillsByName(String skillName) throws TaskManagerException {
-        return getModel.getSkills().stream()
-                .filter(skill -> skill.getSkillName().equals(skillName))
+        return ModelFacade.getInstance().getModel().getSkills().stream()
+                .filter(skill -> skill.getSkillName().contains(skillName))
                 .collect(Collectors.toList());
     }
 
     @Override
     public Collection<Skill> getAllSkill() throws TaskManagerException {
-        return getModel.getSkills();
+        return ModelFacade.getInstance().getModel().getSkills();
     }
 }
