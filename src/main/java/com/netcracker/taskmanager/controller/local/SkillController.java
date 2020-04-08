@@ -46,7 +46,7 @@ public class SkillController implements SkillControllerInterface {
     @Override
     public Skill getSkillById(Long skillId) throws TaskManagerException {
         return ModelFacade.getInstance().getModel().getSkills().stream()
-                .filter(skill -> skill.getSkillId() == skillId)
+                .filter(skill -> skill.getSkillId().equals(skillId))
                 .findAny()
                 .orElseThrow(() -> new TaskManagerException(new Throwable(""), NO_SUCH_SKILL));
     }
