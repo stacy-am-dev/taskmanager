@@ -34,18 +34,14 @@ public class JAXBWorker {
         }
     }
 
-    private static JAXBContext createContext() throws TaskManagerException {
+    public static JAXBContext getJaxbContext() throws TaskManagerException {
         try {
-            return JAXBContext.newInstance();
-        } catch (JAXBException e) {
+            if (jaxbContext == null)
+                jaxbContext = JAXBContext.newInstance();
+            return jaxbContext;
+        }catch (JAXBException e){
             throw new TaskManagerException(new JAXBException("Problem with context initialization"), JAXB_EXCEPTION);
         }
-    }
-
-    public static JAXBContext getJaxbContext() throws TaskManagerException {
-        if (jaxbContext == null)
-            jaxbContext = createContext();
-        return jaxbContext;
     }
 
     public static Marshaller getMarshaller() throws TaskManagerException {

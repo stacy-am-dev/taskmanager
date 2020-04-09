@@ -1,34 +1,39 @@
 package com.netcracker.taskmanager.model;
 
-import com.netcracker.taskmanager.model.ProcessTemplate;
-import com.netcracker.taskmanager.model.TaskTemplate;
+import javax.xml.bind.annotation.*;
 
-import java.util.Map;
-
+@XmlRootElement(name = "process_template_rule")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ProcessTemplateRule {
     /**
      * Identifier of process template rule
      */
+    @XmlAttribute(name = "process_template_rule_id")
     private Long processTemplateRuleId;
     /**
      * Identifier of process template
      */
+    @XmlElement(name = "process_template_id")
     private Long processTemplateId;
     /**
      * Name of process template rule
      */
+    @XmlElement(name = "name")
     private String name;
     /**
      * Description of process template rule
      */
+    @XmlElement(name = "description")
     private String description;
     /**
      * Name of rule class
      */
+    @XmlElement(name = "rule_class")
     private String ruleClass;
     /**
      * Number of process template rule
      */
+    @XmlElement(name = "order")
     private Integer order;
 
     /**

@@ -2,7 +2,6 @@ package com.netcracker.taskmanager.model;
 
 
 import javax.xml.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,28 +11,28 @@ import java.util.Map;
  *
  * @version 1.0
  */
-@XmlRootElement(name = "processTemplate")
+@XmlRootElement(name = "process_template")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ProcessTemplate {
     /**
      * Identifier of process template
      */
-    @XmlAttribute(name = "processTemplateId")
+    @XmlAttribute(name = "process_template_id")
     private Long processTemplateId;
     /**
      * Name of process template
      */
-    @XmlElement
+    @XmlElement(name = "name")
     private String name;
     /**
      * Description of process template
      */
-    @XmlElement
+    @XmlElement(name = "description")
     private String description;
     /**
      * Parameters of process template
      */
-    @XmlElement
+    @XmlElement(name = "parameters")
     private Map<String, String> parameters = new HashMap<String, String>();
 
     /**

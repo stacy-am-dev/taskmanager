@@ -3,25 +3,43 @@ package com.netcracker.taskmanager.util;
 import com.netcracker.taskmanager.model.Process;
 import com.netcracker.taskmanager.model.*;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@XmlRootElement(name = "model")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Model {
-
+    @XmlElement(name = "employees")
     private Collection<Employee> employees;
+    @XmlElement(name = "processes")
     private Collection<Process> processes;
+    @XmlElement(name = "skills")
     private Collection<Skill> skills;
+    @XmlElement(name = "tasks")
     private Collection<Task> tasks;
+    @XmlElement(name = "employee_skills")
     private Collection<EmployeeSkill> employeeSkills;
+    @XmlElement(name = "task_skills")
     private Collection<TaskSkill> taskSkills;
+    @XmlElement(name = "task_dependencies")
     private Collection<TaskDependency> taskDependencies;
+    @XmlElement(name = "task_templates")
     private Collection<TaskTemplate> taskTemplates;
+    @XmlElement(name = "process_templates")
     private Collection<ProcessTemplate> processTemplates;
+    @XmlElement(name = "task_template_rules")
     private Collection<TaskTemplateRule> taskTemplateRules;
+    @XmlElement(name = "process_template_rules")
     private Collection<ProcessTemplateRule> processTemplateRules;
+    @XmlElement(name = "match_map")
     private Map<Class, IDGenerator> matchMap;
+    @XmlElement(name = "id_generator")
     private IDGenerator idGenerator;
 
     public Model() {
@@ -148,5 +166,9 @@ public class Model {
 
     public IDGenerator getIdGenerator() {
         return idGenerator;
+    }
+
+    public void setIdGenerator(IDGenerator idGenerator) {
+        this.idGenerator = idGenerator;
     }
 }

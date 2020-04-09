@@ -1,7 +1,6 @@
 package com.netcracker.taskmanager.model;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 /**
  *Class describes  employees with such properties as <b>employeeId</b>,
@@ -9,31 +8,37 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @version 1.0
  */
 @XmlRootElement(name = "employee")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Employee  {
     /**
      * Employee's identifier
      */
-    @XmlAttribute(name = "employeeId")
+    @XmlAttribute(name = "employee_id")
     private Long employeeId;
     /**
      * Employee's username
      */
+    @XmlElement(name = "username")
     private String username;
     /**
      * Employee's password
      */
+    @XmlElement(name = "password")
     private String password;
     /**
      * Employee's name
      */
+    @XmlElement(name = "first_name")
     private String firstName;
     /**
      * Employee's surname
      */
+    @XmlElement(name = "last_name")
     private String lastName;
     /**
      * Employee's email
      */
+    @XmlElement(name = "email")
     private String email;
 
     /**

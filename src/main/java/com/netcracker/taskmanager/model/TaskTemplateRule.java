@@ -1,35 +1,45 @@
 package com.netcracker.taskmanager.model;
 
+import javax.xml.bind.annotation.*;
+
 /**
  * Class describes  rule of  task template with such properties as <b>taskTemplateRuleId</b>, <b>taskTemplateId</b>,
  * <b>name</b>, <b>description</b>,<b>ruleClass</b>, <b>order</b>.
  *
  * @version 1.0
  */
+@XmlRootElement(name = "task_template_rule")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class TaskTemplateRule {
     /**
      * Identifier of task template rule
      */
+    @XmlAttribute(name = "task_template_rule_id")
     private Long taskTemplateRuleId;
     /**
      * Identifier of task template
      */
+    @XmlElement(name = "task_template_id")
     private Long taskTemplateId;
     /**
      * Name of task template rule
      */
+    @XmlElement(name = "name")
     private String name;
     /**
      * Description of task template rule
      */
+    @XmlElement(name = "description")
     private String description;
     /**
      * Name of rule class
      */
+    @XmlElement(name = "rule_class")
     private String ruleClass;
     /**
      * Number of task template rule
      */
+    @XmlElement(name = "order")
     private Integer order;
 
     /**
