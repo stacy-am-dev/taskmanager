@@ -12,5 +12,7 @@ public class Constants {
     public static final int FIELDS_OF_PROCESS_INCORRECT = 12;
     public static final int NO_SUCH_PROCESS = 13;
     public static final int NO_SUCH_IDENTIFIER_OF_PROCESS = 14;
+    public static final int FIELDS_OF_EMPLOYEE_INCORRECT = 15;
+
 }
 
