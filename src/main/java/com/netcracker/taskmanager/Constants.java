@@ -5,9 +5,6 @@ public class Constants {
     public static final int GET_CONTROLLER_ERROR = 1;
     public static final int TASK_INITIALIZATION_ERROR = 2;
     public static final int NO_SUCH_EMPLOYEE = 7;
-<<<<<<< HEAD
-}
-=======
     public static final int NO_SUCH_SKILL = 8;
     public static final int FIELDS_OF_SKILL_INCORRECT = 9;
     public static final int NO_SUCH_IDENTIFIER_OF_SKILL = 10;
@@ -16,4 +13,4 @@ public class Constants {
     public static final int NO_SUCH_PROCESS = 13;
     public static final int NO_SUCH_IDENTIFIER_OF_PROCESS = 14;
 }
->>>>>>> d0aaaa3282afa3ab9cc6aa7aa1bbc8384a9b61c6
+
