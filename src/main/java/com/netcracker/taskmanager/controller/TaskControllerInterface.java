@@ -2,8 +2,9 @@ package com.netcracker.taskmanager.controller;
 
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Task;
+import com.netcracker.taskmanager.model.TaskStatus;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface TaskControllerInterface {
 
@@ -11,14 +12,14 @@ public interface TaskControllerInterface {
      * Function creates new task
      *  @param task
      */
-    Task createTask(Task task);
+    Task createTask(Task task) throws TaskManagerException;
 
     /**
      * Function update task
      * @param task
      * @return Task
      */
-    Task updateTask(Task task);
+    Task updateTask(Task task) throws TaskManagerException;
 
     /**
      * Function delete task
@@ -39,18 +40,25 @@ public interface TaskControllerInterface {
      * @param taskId
      * @return Task
      */
-    Task getTaskBySomething(Long taskId);
+    Task getTaskById(Long taskId) throws TaskManagerException;
 
     /**
      * Function receives task
      * @param taskName
      * @return Task
      */
-    Task getTaskBySomething(String taskName);
+    Task getTaskByName(String taskName) throws TaskManagerException;
 
     /**
      * Function receives list of tasks
-     * @return List<Task>
+     * @return Collection<Task>
      */
-    List<Task> getAllTask();
+    Collection<Task> getAllTasks() throws TaskManagerException;
+
+    /**
+     * Function receives collection of tasks with different status
+     * @param status
+     * @return Collection<Task>
+     */
+    Collection<Task> getTasksByStatus(TaskStatus status);
 }

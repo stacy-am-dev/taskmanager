@@ -1,10 +1,6 @@
 package com.netcracker.taskmanager.model;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.InputStream;
-import java.io.OutputStream;
+import javax.xml.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,48 +9,57 @@ import java.util.Map;
  * Describes the workflow. Process contains a description, name, starDate, endDate,expectationStartDate,expectationEndDate,status
  */
 @XmlRootElement(name = "process")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Process {
     /**
      * process identifier
      */
-    @XmlAttribute(name = "processId")
+    @XmlAttribute(name = "process_id")
     private Long processId;
     /**
      * Identifier of process template
      */
+    @XmlElement(name = "process_template_id")
     private Long processTemplateId;
     /**
      * process description
      */
+    @XmlElement(name = "description")
     private String description;
     /**
      * process name
      */
-    @XmlElement
+    @XmlElement(name = "name")
     private String name;
     /**
      * process starDate
      */
+    @XmlElement(name = "start_date")
     private LocalDateTime startDate;
     /**
      * process endDate
      */
+    @XmlElement(name = "end_date")
     private LocalDateTime endDate;
     /**
      * process expectationStarDate
      */
+    @XmlElement(name = "expectation_start_date")
     private LocalDateTime expectationStartDate;
     /**
      * Process expectationEndDate
      */
+    @XmlElement(name = "expectation_end_date")
     private LocalDateTime expectationEndDate;
     /**
      * Process status
      */
+    @XmlElement(name = "status")
     private ProcessStatus status;
     /**
      * Parameters of Process
      */
+    @XmlElement(name = "parameters")
     private Map<String, String> parameters = new HashMap<>();
 
     /**

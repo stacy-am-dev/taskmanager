@@ -1,27 +1,65 @@
 package com.netcracker.taskmanager.services;
 
-import java.util.concurrent.PriorityBlockingQueue;
+import com.netcracker.taskmanager.controller.ProcessControllerInterface;
+import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Process;
+import com.netcracker.taskmanager.model.ProcessStatus;
+import com.netcracker.taskmanager.util.ControllerProvider;
 
-public class ProcessStartQueueService  {
-    private static PriorityBlockingQueue<Process> priorityBlockingQueue;
+import java.util.Comparator;
+import java.util.concurrent.PriorityBlockingQueue;
 
-    private ProcessStartQueueService(){
+/**
+ * Class describes start service of processes's queue with such properties as <b>processStartQueueService</b>,
+ * <b>priorityBlockingQueue</b>
+ */
+public class ProcessStartQueueService {
+    /**
+     * Static variable of type ProcessStartQueueService
+     */
+    private static ProcessStartQueueService processStartQueueService;
+    /**
+     * Queue of processes with priority
+     */
+    private PriorityBlockingQueue<Process> priorityBlockingQueue;
 
+    /**
+     * Private constructor restricted to this class itself
+     * Create processes's queue with priority
+     * @throws TaskManagerException
+     */
+    private ProcessStartQueueService() throws TaskManagerException {
+        priorityBlockingQueue = new PriorityBlockingQueue<>(1, Comparator.comparing(Process::getStartDate));
+        priorityBlockingQueue.addAll(ControllerProvider.getControllerProvider().getController(ProcessControllerInterface.class).getProcessesByStatus(ProcessStatus.PLANNED));
     }
 
-    public static synchronized PriorityBlockingQueue<Process> getPriorityBlockingQueue(){
-        if (priorityBlockingQueue == null)
-            priorityBlockingQueue = new PriorityBlockingQueue<Process>();
-        return priorityBlockingQueue;
+    /**
+     * Static method to create instance of ProcessStartQueueService class
+     * @return processStartQueueService
+     * @throws TaskManagerException
+     */
+    public static synchronized ProcessStartQueueService getProcessStartQueueService() throws TaskManagerException {
+        if (processStartQueueService == null)
+            processStartQueueService = new ProcessStartQueueService();
+        return processStartQueueService;
     }
 
-    public void add(Process process){
+    /**
+     * Method to add process to queue of processes
+     * @param process
+     * @throws TaskManagerException
+     */
+    public void addProcess(Process process) throws TaskManagerException {
         priorityBlockingQueue.add(process);
     }
 
-    public Process get(){
-        return priorityBlockingQueue.peek();
+    /**
+     * Method to receive the head process from processes's queue
+     * @return Process
+     * @throws TaskManagerException
+     */
+    public Process getProcess() throws TaskManagerException {
+        return priorityBlockingQueue.poll();
     }
 
 }

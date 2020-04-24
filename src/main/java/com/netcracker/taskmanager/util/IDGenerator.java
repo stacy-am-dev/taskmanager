@@ -76,10 +76,9 @@ public class IDGenerator {
     /**
      * Function returns new value of last identifier
      *
-     * @param step
      * @return last
      */
-    public long generate(long step) {
+    public long generate() {
         return this.last += step;
     }
 }

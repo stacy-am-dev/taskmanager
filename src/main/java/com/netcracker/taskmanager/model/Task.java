@@ -1,8 +1,6 @@
 package com.netcracker.taskmanager.model;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,75 +13,88 @@ import java.util.Map;
  * @version 1.0*
  */
 @XmlRootElement(name = "task")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Task {
     /**
      * Task's identifier
      */
-    @XmlAttribute(name = "taskId")
+    @XmlAttribute(name = "task_id")
     private long taskId;
     /**
      * Identifier of task template
      */
+    @XmlElement(name = "task_template_id")
     private Long taskTemplateId;
 
     /**
      * Task's status
      */
+    @XmlElement(name = "status")
     private TaskStatus status;
 
     /**
      * Task's type
      */
+    @XmlElement(name = "type")
     private TaskType type;
 
     /**
      * Task's priority
      */
+    @XmlElement(name = "priority")
     private TaskPriority priority;
 
     /**
      * Task's name
      */
-    @XmlElement
+    @XmlElement(name = "name")
     private String name;
 
     /**
      * Task's description
      */
+    @XmlElement(name = "description")
     private String description;
 
     /**
      * Identifier of process
      */
+    @XmlElement(name = "process_id")
     private long processId;
 
     /**
      * Identifier of assignee
      */
+    @XmlElement(name = "assignee_id")
     private long assigneeId;
 
     /**
      * Expectation start date of task
      */
+    @XmlElement(name = "expectation_start_date")
     private LocalDateTime expectationStartDate;
 
     /**
      * Expectation end date of task
      */
+    @XmlElement(name = "expectation_end_date")
     private LocalDateTime expectationEndDate;
 
     /**
      * Start date of task
      */
+    @XmlElement(name = "start_date")
     private LocalDateTime startDate;
 
     /**
      * End date of task
      */
+    @XmlElement(name = "end_date")
     private LocalDateTime endDate;
     /**
      * Parameters of task
      */
+    @XmlElement(name = "parameters")
     private Map<String, String> parameters = new HashMap<>();
 
     /**

@@ -2,7 +2,6 @@ package com.netcracker.taskmanager.model;
 
 
 import javax.xml.bind.annotation.*;
-
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,49 +12,49 @@ import java.util.Map;
  *
  * @version 1.0
  */
-@XmlRootElement(name = "taskTemplate")
+@XmlRootElement(name = "task_template")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TaskTemplate {
     /**
      * Identifier of task template
      */
-    @XmlAttribute(name = "taskTemplateId")
+    @XmlAttribute(name = "task_template_id")
     private Long taskTemplateId;
     /**
      * Name of task template
      */
-    @XmlElement
+    @XmlElement(name = "name")
     private String name;
     /**
      * Description of task template
      */
-    @XmlElement
+    @XmlElement(name = "description")
     private String description;
     /**
      *Expected execution time
      */
-    @XmlElement
+    @XmlElement(name = "expectation_execution_time")
     private Duration expectationExecutionTime;
 
     /**
      *Type of task
      */
-    @XmlElement
+    @XmlElement(name = "task_type")
     private TaskType taskType;
     /**
      *Priority of task
      */
-    @XmlElement
+    @XmlElement(name = "task_priority")
     private TaskPriority taskPriority;
     /**
      * Necessary skills for task execution
      */
-    @XmlElement
+    @XmlElement(name = "skills")
     private Map<Long, Integer> skills = new HashMap<>();
     /**
      * Parameters of task template
      */
-    @XmlElement
+    @XmlElement(name = "parameters")
     private Map<String, String> parameters = new HashMap<>();
 
     /**
