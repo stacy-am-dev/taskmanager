@@ -16,7 +16,7 @@ public class ProcessController implements ProcessControllerInterface {
 
     @Override
     public Process createProcess(Process process) throws TaskManagerException {
-        if((process.getStartDate().compareTo(process.getEndDate()) > 0) || (ModelFacade.getInstance().getModel().getProcesses().stream().anyMatch(process1 -> process1.getName().equals(process.getName()))))
+        if(process.getStartDate().compareTo(process.getEndDate()) > 0)
             throw new TaskManagerException(new Throwable(""), FIELDS_OF_PROCESS_INCORRECT);
         process.setProcessId(ModelFacade.getInstance().getModel().getMatchMap().get(Process.class).generate());
         ModelFacade.getInstance().getModel().getProcesses().add(process);
@@ -25,7 +25,7 @@ public class ProcessController implements ProcessControllerInterface {
 
     @Override
     public Process updateProcess(Process process) throws TaskManagerException {
-        if((process.getStartDate().compareTo(process.getEndDate()) > 0) || (ModelFacade.getInstance().getModel().getProcesses().stream().anyMatch(process1 -> process1.getName().equals(process.getName()))))
+        if(process.getStartDate().compareTo(process.getEndDate()) > 0)
             throw new TaskManagerException(new Throwable(""), FIELDS_OF_PROCESS_INCORRECT);
         return ModelFacade.getInstance().getModel().getProcesses().stream()
                     .filter(process1 -> process1.getProcessId() == process.getProcessId())
