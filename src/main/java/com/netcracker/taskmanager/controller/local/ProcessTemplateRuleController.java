@@ -16,7 +16,7 @@ public class ProcessTemplateRuleController implements ProcessTemplateRuleControl
     public ProcessTemplateRule createProcessTemplateRule(ProcessTemplateRule processTemplateRule) throws TaskManagerException {
         if(ModelFacade.getInstance().getModel().getProcessTemplateRules().stream().anyMatch(processTemplateRule1 -> processTemplateRule1.getName().equals(processTemplateRule.getName())))
             throw new TaskManagerException(new Throwable(""), NAME_OF_PROCESS_TEMPLATE_RULE_INCORRECT);
-        processTemplateRule.setProcessTemplateId(ModelFacade.getInstance().getModel().getMatchMap().get(ProcessTemplateRule.class).generate());
+        processTemplateRule.setProcessTemplateRuleId(ModelFacade.getInstance().getModel().getMatchMap().get(ProcessTemplateRule.class).generate());
         ModelFacade.getInstance().getModel().getProcessTemplateRules().add(processTemplateRule);
         return processTemplateRule;
     }
@@ -26,7 +26,7 @@ public class ProcessTemplateRuleController implements ProcessTemplateRuleControl
         if(ModelFacade.getInstance().getModel().getProcessTemplateRules().stream().anyMatch(processTemplateRule1 -> processTemplateRule1.getName().equals(processTemplateRule.getName())))
             throw new TaskManagerException(new Throwable(""), NAME_OF_PROCESS_TEMPLATE_RULE_INCORRECT);
         return ModelFacade.getInstance().getModel().getProcessTemplateRules().stream()
-                .filter(processTemplateRule1 -> processTemplateRule1.getProcessTemplateId() == processTemplateRule.getProcessTemplateRuleId())
+                .filter(processTemplateRule1 -> processTemplateRule1.getProcessTemplateRuleId() == processTemplateRule.getProcessTemplateRuleId())
                 .peek(processTemplateRule1 -> processTemplateRule1 = processTemplateRule)
                 .findAny()
                 .orElseThrow(() -> new TaskManagerException(new Throwable(""), NO_SUCH_PROCESS_TEMPLATE_RULE));
