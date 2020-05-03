@@ -37,7 +37,7 @@ public class JAXBWorker {
     public static JAXBContext getJaxbContext() throws TaskManagerException {
         try {
             if (jaxbContext == null)
-                jaxbContext = JAXBContext.newInstance();
+                jaxbContext = JAXBContext.newInstance("com.netcracker.taskmanager.model");
             return jaxbContext;
         }catch (JAXBException e){
             throw new TaskManagerException(new JAXBException("Problem with context initialization"), JAXB_EXCEPTION);
