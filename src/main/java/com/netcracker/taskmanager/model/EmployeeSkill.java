@@ -3,8 +3,9 @@ package com.netcracker.taskmanager.model;
 import javax.xml.bind.annotation.*;
 
 /**
- *Class describes relation between skills and employees with such properties as
+ * Class describes relation between skills and employees with such properties as
  * <b>employeeId</b>, <b>skillId</b>, <b>skillLevel</b>.
+ *
  * @version 1.0
  */
 @XmlRootElement(name = "employee_skill")
@@ -27,56 +28,79 @@ public class EmployeeSkill {
     private int skillLevel;
 
     /**
-     *Constructor creates new object
+     * Constructor creates new object
      */
     public EmployeeSkill() {
     }
 
     /**
-     *Function receives value of field {@link EmployeeSkill#employeeId}
-     *@return employeeId
+     * Function receives value of field {@link EmployeeSkill#employeeId}
+     *
+     * @return employeeId
      */
     public Long getEmployeeId() {
         return employeeId;
     }
 
     /**
-     *Procedure defines value of field {@link EmployeeSkill#employeeId}
-     *@param employeeId
+     * Procedure defines value of field {@link EmployeeSkill#employeeId}
+     *
+     * @param employeeId
      */
     public void setEmployeeId(long employeeId) {
         this.employeeId = employeeId;
     }
 
     /**
-     *Function receives value of field {@link EmployeeSkill#skillId}
-     *@return skillId
+     * Function receives value of field {@link EmployeeSkill#skillId}
+     *
+     * @return skillId
      */
     public Long getSkillId() {
         return skillId;
     }
 
     /**
-     *Procedure defines value of field {@link EmployeeSkill#skillId}
-     *@param skillId
+     * Procedure defines value of field {@link EmployeeSkill#skillId}
+     *
+     * @param skillId
      */
     public void setSkillId(long skillId) {
         this.skillId = skillId;
     }
 
     /**
-     *Function receives value of field {@link EmployeeSkill#skillLevel}
-     *@return skillLevel
+     * Function receives value of field {@link EmployeeSkill#skillLevel}
+     *
+     * @return skillLevel
      */
     public int getSkillLevel() {
         return skillLevel;
     }
 
     /**
-     *Procedure defines value of field {@link EmployeeSkill#skillLevel}
-     *@param skillLevel
+     * Procedure defines value of field {@link EmployeeSkill#skillLevel}
+     *
+     * @param skillLevel
      */
     public void setSkillLevel(int skillLevel) {
         this.skillLevel = skillLevel;
+    }
+
+    @Override
+    public boolean equals(Object employeeSkill) {
+        if (employeeSkill instanceof EmployeeSkill)
+            return this.getSkillId().equals(((EmployeeSkill) employeeSkill).getSkillId()) && this.getEmployeeId().equals(((EmployeeSkill) employeeSkill).getEmployeeId())
+                    && this.getSkillLevel() == ((EmployeeSkill) employeeSkill).getSkillLevel();
+        else return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + skillId.hashCode();
+        result = 31 * result + skillLevel;
+        result = 31 * result + employeeId.hashCode();
+        return result;
     }
 }
