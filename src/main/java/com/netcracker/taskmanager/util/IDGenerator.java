@@ -1,12 +1,13 @@
 package com.netcracker.taskmanager.util;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * Class describes generator identifier with such properties as <b>last</b>, <b>step</b>
  */
 @XmlRootElement(name = "idGenerator")
-public class IDGenerator {
+public class IDGenerator implements Serializable {
     /**
      * Last identifier
      */

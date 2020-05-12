@@ -1,6 +1,7 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 
 /**
  * Class describes relation between skills and tasks with such properties as <b>taskId</b>,
@@ -8,7 +9,7 @@ import javax.xml.bind.annotation.*;
  */
 @XmlRootElement(name = "task_skill")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TaskSkill {
+public class TaskSkill implements Serializable {
     /**
      * Task identifier
      */

@@ -2,6 +2,7 @@ package com.netcracker.taskmanager.model;
 
 
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  */
 @XmlRootElement(name = "process_template")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ProcessTemplate {
+public class ProcessTemplate implements Serializable {
     /**
      * Identifier of process template
      */

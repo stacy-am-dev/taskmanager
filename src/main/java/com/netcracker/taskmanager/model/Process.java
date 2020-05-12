@@ -1,6 +1,7 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
  */
 @XmlRootElement(name = "process")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Process {
+public class Process implements Serializable {
     /**
      * process identifier
      */

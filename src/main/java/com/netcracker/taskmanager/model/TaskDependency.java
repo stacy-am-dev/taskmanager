@@ -4,13 +4,14 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * Class describes task dependencies with such properties as <b>taskIdFrom</b>, <b>taskIdTo</b>
  */
 @XmlRootElement(name = "task_dependency")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TaskDependency {
+public class TaskDependency implements Serializable {
     /**
      * Task dependencies from task's identifier
      */

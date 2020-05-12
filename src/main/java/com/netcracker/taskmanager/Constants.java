@@ -23,5 +23,7 @@ public class Constants {
     public static final int NO_SUCH_PROCESS_TEMPLATE_RULE = 23;
     public static final int NAME_OF_TASK_TEMPLATE_RULE_INCORRECT = 24;
     public static final int NO_SUCH_TASK_TEMPLATE_RULE = 25;
+    public static final int AUTOSAVE_ERROR = 26;
+
 }
 

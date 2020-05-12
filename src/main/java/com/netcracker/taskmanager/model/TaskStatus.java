@@ -1,12 +1,13 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.XmlEnum;
+import java.io.Serializable;
 
 /**
  * Class of enums describes status of task
  */
 @XmlEnum
-public enum TaskStatus{
+public enum TaskStatus implements Serializable {
     /**
      * Planing status
      */

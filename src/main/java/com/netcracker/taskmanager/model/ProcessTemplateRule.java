@@ -1,10 +1,11 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 
 @XmlRootElement(name = "process_template_rule")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ProcessTemplateRule {
+public class ProcessTemplateRule implements Serializable {
     /**
      * Identifier of process template rule
      */

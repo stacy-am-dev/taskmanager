@@ -1,6 +1,7 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 
 /**
  * Class describes relation between skills and employees with such properties as
@@ -10,7 +11,7 @@ import javax.xml.bind.annotation.*;
  */
 @XmlRootElement(name = "employee_skill")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EmployeeSkill {
+public class EmployeeSkill implements Serializable {
     /**
      * Employee's identifier
      */

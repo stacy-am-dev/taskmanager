@@ -1,6 +1,7 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
  */
 @XmlRootElement(name = "task")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Task {
+public class Task implements Serializable {
     /**
      * Task's identifier
      */

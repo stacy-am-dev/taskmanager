@@ -1,6 +1,7 @@
 package com.netcracker.taskmanager.model;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 
 /**
  * Class describes  rule of  task template with such properties as <b>taskTemplateRuleId</b>, <b>taskTemplateId</b>,
@@ -10,7 +11,7 @@ import javax.xml.bind.annotation.*;
  */
 @XmlRootElement(name = "task_template_rule")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TaskTemplateRule {
+public class TaskTemplateRule implements Serializable {
     /**
      * Identifier of task template rule
      */
