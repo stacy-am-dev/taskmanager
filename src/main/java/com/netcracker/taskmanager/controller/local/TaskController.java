@@ -67,7 +67,7 @@ public class TaskController implements TaskControllerInterface {
     }
 
     @Override
-    public Collection<Task> getTasksByStatus(TaskStatus status) {
+    public Collection<Task> getTasksByStatus(TaskStatus status) throws TaskManagerException {
         PriorityBlockingQueue<Task> priorityBlockingQueue = new PriorityBlockingQueue<>();
         for (Task task : ModelFacade.getInstance().getModel().getTasks()) {
             if (task.getStatus() == status) {

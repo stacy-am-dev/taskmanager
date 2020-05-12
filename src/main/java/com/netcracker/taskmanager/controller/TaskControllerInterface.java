@@ -60,5 +60,5 @@ public interface TaskControllerInterface {
      * @param status
      * @return Collection<Task>
      */
-    Collection<Task> getTasksByStatus(TaskStatus status);
+    Collection<Task> getTasksByStatus(TaskStatus status) throws TaskManagerException;
 }
