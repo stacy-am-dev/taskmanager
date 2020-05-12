@@ -63,4 +63,8 @@ public class TaskDependency {
     public void setTaskIdTo(long taskIdTo) {
         this.taskIdTo = taskIdTo;
     }
+
+    public boolean isTaskIndependent(Task task) {
+            return this.taskIdFrom!= task.getTaskId();
+    }
 }
