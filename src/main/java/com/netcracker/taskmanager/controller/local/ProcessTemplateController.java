@@ -4,12 +4,18 @@ import com.netcracker.taskmanager.controller.ProcessTemplateControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.ProcessTemplate;
 import com.netcracker.taskmanager.util.ModelFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 
-import static com.netcracker.taskmanager.Constants.*;
+import static com.netcracker.taskmanager.Constants.FIELDS_OF_PROCESS_TEMPLATE_INCORRECT;
+import static com.netcracker.taskmanager.Constants.NO_SUCH_PROCESS_TEMPLATE;
 
 public class ProcessTemplateController implements ProcessTemplateControllerInterface {
+
+    @Autowired
+    private ModelFacade modelFacade;
+
     @Override
     public ProcessTemplate createProcessTemplate(ProcessTemplate processTemplate) throws TaskManagerException {
         if( ModelFacade.getInstance().getModel().getProcessTemplates().stream().anyMatch(processTemplate1 ->  processTemplate1.getName().equals(processTemplate.getName())))

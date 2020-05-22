@@ -5,13 +5,19 @@ import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Employee;
 import com.netcracker.taskmanager.model.EmployeeSkill;
 import com.netcracker.taskmanager.util.ModelFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import static com.netcracker.taskmanager.Constants.*;
+import static com.netcracker.taskmanager.Constants.FIELDS_OF_EMPLOYEE_INCORRECT;
+import static com.netcracker.taskmanager.Constants.NO_SUCH_EMPLOYEE;
 
 public class EmployeeController implements EmployeeControllerInterface {
+
+    @Autowired
+    private ModelFacade modelFacade;
+
     @Override
     public Employee createEmployee(Employee employee, Collection<EmployeeSkill> employeeSkills) throws TaskManagerException {
         if (ModelFacade.getInstance().getModel().getEmployees().stream().anyMatch(employee1 -> employee1.getEmail().equals(employee.getEmail()))

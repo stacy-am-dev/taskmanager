@@ -4,6 +4,7 @@ import com.netcracker.taskmanager.controller.SkillControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Skill;
 import com.netcracker.taskmanager.util.ModelFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -12,6 +13,9 @@ import static com.netcracker.taskmanager.Constants.FIELDS_OF_SKILL_INCORRECT;
 import static com.netcracker.taskmanager.Constants.NO_SUCH_SKILL;
 
 public class SkillController implements SkillControllerInterface {
+
+    @Autowired
+    private ModelFacade modelFacade;
 
     @Override
     public Skill createSkill(Skill skill) throws TaskManagerException {

@@ -4,6 +4,7 @@ import com.netcracker.taskmanager.controller.TaskTemplateRuleControllerInterface
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.TaskTemplateRule;
 import com.netcracker.taskmanager.util.ModelFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -12,6 +13,10 @@ import static com.netcracker.taskmanager.Constants.NAME_OF_TASK_TEMPLATE_RULE_IN
 import static com.netcracker.taskmanager.Constants.NO_SUCH_TASK_TEMPLATE_RULE;
 
 public class TaskTemplateRuleController implements TaskTemplateRuleControllerInterface {
+
+    @Autowired
+    private ModelFacade modelFacade;
+
     @Override
     public TaskTemplateRule createTaskTemplateRule(TaskTemplateRule taskTemplateRule) throws TaskManagerException {
         if(ModelFacade.getInstance().getModel().getTaskTemplateRules().stream().anyMatch(taskTemplateRule1 -> taskTemplateRule1.getName().equals(taskTemplateRule.getName())))

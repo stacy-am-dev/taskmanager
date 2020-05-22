@@ -5,6 +5,7 @@ import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Process;
 import com.netcracker.taskmanager.model.ProcessStatus;
 import com.netcracker.taskmanager.util.ModelFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.concurrent.PriorityBlockingQueue;
@@ -13,6 +14,9 @@ import static com.netcracker.taskmanager.Constants.FIELDS_OF_PROCESS_INCORRECT;
 import static com.netcracker.taskmanager.Constants.NO_SUCH_PROCESS;
 
 public class ProcessController implements ProcessControllerInterface {
+
+    @Autowired
+    private ModelFacade modelFacade;
 
     @Override
     public Process createProcess(Process process) throws TaskManagerException {

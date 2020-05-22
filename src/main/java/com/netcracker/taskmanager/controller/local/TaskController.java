@@ -5,13 +5,19 @@ import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Task;
 import com.netcracker.taskmanager.model.TaskStatus;
 import com.netcracker.taskmanager.util.ModelFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.concurrent.PriorityBlockingQueue;
 
-import static com.netcracker.taskmanager.Constants.*;
+import static com.netcracker.taskmanager.Constants.FIELDS_OF_TASK_INCORRECT;
+import static com.netcracker.taskmanager.Constants.NO_SUCH_TASK;
 
 public class TaskController implements TaskControllerInterface {
+
+    @Autowired
+    private ModelFacade modelFacade;
+
     @Override
     public Task createTask(Task task) throws TaskManagerException {
         if((task.getStartDate().compareTo(task.getEndDate()) > 0) || (ModelFacade.getInstance().getModel().getTasks().stream().anyMatch(task1 -> task1.getName().equals(task.getName()))))

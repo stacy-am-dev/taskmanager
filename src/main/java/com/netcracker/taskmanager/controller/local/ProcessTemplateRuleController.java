@@ -4,6 +4,7 @@ import com.netcracker.taskmanager.controller.ProcessTemplateRuleControllerInterf
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.ProcessTemplateRule;
 import com.netcracker.taskmanager.util.ModelFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -12,6 +13,10 @@ import static com.netcracker.taskmanager.Constants.NAME_OF_PROCESS_TEMPLATE_RULE
 import static com.netcracker.taskmanager.Constants.NO_SUCH_PROCESS_TEMPLATE_RULE;
 
 public class ProcessTemplateRuleController implements ProcessTemplateRuleControllerInterface {
+
+    @Autowired
+    private ModelFacade modelFacade;
+
     @Override
     public ProcessTemplateRule createProcessTemplateRule(ProcessTemplateRule processTemplateRule) throws TaskManagerException {
         if(ModelFacade.getInstance().getModel().getProcessTemplateRules().stream().anyMatch(processTemplateRule1 -> processTemplateRule1.getName().equals(processTemplateRule.getName())))
