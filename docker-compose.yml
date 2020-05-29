@@ -7,3 +7,8 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+
+  app:
+    image: openjdk:8
+    depends_on:
+      - db
