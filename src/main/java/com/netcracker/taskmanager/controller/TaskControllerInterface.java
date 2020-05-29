@@ -61,4 +61,12 @@ public interface TaskControllerInterface {
      * @return Collection<Task>
      */
     Collection<Task> getTasksByStatus(TaskStatus status) throws TaskManagerException;
+
+    /**
+     *
+     * @param processId
+     * @return
+     * @throws TaskManagerException
+     */
+    Collection<Task> getTasksByProcessId(Long processId) throws TaskManagerException;
 }
