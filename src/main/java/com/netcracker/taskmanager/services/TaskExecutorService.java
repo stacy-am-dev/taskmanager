@@ -1,39 +1,53 @@
 package com.netcracker.taskmanager.services;
 
+import com.netcracker.taskmanager.controller.EmployeeControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
-import com.netcracker.taskmanager.model.EmployeeSkill;
+import com.netcracker.taskmanager.model.Process;
 import com.netcracker.taskmanager.model.Task;
-import com.netcracker.taskmanager.model.TaskSkill;
 import com.netcracker.taskmanager.model.TaskType;
-import com.netcracker.taskmanager.util.ModelFacade;
+import com.netcracker.taskmanager.util.ControllerProvider;
+import org.apache.log4j.Logger;
 
-public class TaskExecutorService {
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class TaskExecutorService extends TaskActionService {
     private static TaskExecutorService taskExecutorService;
+    private static final Logger LOGGER = Logger.getLogger(TaskExecutorService.class);
+    private Collection<Thread> threads;
+    private int quantityThreads = 10;
 
     private TaskExecutorService() throws TaskManagerException {
+        threads = new ArrayList<Thread>(quantityThreads);
 
     }
 
     public static synchronized TaskExecutorService getTaskExecutorService() throws TaskManagerException {
-        if(taskExecutorService == null)
+        if (taskExecutorService == null)
             taskExecutorService = new TaskExecutorService();
         return taskExecutorService;
     }
 
     public void startTask() throws TaskManagerException {
-        Task task = TaskStartQueueService.getTaskStartQueueService().getTask();
-        if(task.getType() == TaskType.MANUAL){
-            TaskSkill taskSkill = ModelFacade.getInstance().getModel().getTaskSkills().stream()
-                    .filter(taskSkill1 -> taskSkill1.getTaskId() == task.getTaskId())
-                    .findAny()
-                    .orElseThrow(() -> new TaskManagerException(new Throwable(""), 234));
-            EmployeeSkill employeeSkill = ModelFacade.getInstance().getModel().getEmployeeSkills().stream()
-                    .filter(employeeSkill1 -> employeeSkill1.getSkillLevel() == taskSkill.getLevelSkill())
-                    .findAny()
-                    .orElseThrow(() -> new TaskManagerException(new Throwable(""), 234));
-            new Task().setAssigneeId(employeeSkill.getEmployeeId());
+        while (TaskStartQueueService.getTaskStartQueueService().getTask() != null) {
+            Task task = TaskStartQueueService.getTaskStartQueueService().getTask();
+            Thread newThread = new Thread(() -> {
+                try {
+                    if (task.getType() == TaskType.MANUAL)
+                        task.setAssigneeId(ControllerProvider.getControllerProvider().getController(EmployeeControllerInterface.class).getAssigneeEmployeeId(task));
+                    else if (task.getType() == TaskType.JAVA_ACTION)
+                        start();
+                }catch (TaskManagerException e){
+                    LOGGER.error("Problems with getting controller or TaskActionService",e);
+                }
+            });
+            newThread.start();
+            threads.add(newThread);
         }
-        else if(task.getType() == TaskType.JAVA_ACTION)
-            new TaskActionService().setTaskAction(task);
+    }
+
+    @Override
+    public void run(Process process, Task task) throws TaskManagerException {
+
     }
 }

@@ -3,6 +3,7 @@ package com.netcracker.taskmanager.controller;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Employee;
 import com.netcracker.taskmanager.model.EmployeeSkill;
+import com.netcracker.taskmanager.model.Task;
 
 import java.util.Collection;
 
@@ -69,4 +70,8 @@ public interface EmployeeControllerInterface {
      *@throws TaskManagerException if getting employee's skills exception occurred
      */
     Collection<EmployeeSkill> getEmployeeSkillsByEmployeeId(Long employeeId) throws TaskManagerException;
+
+    Collection<EmployeeSkill> getAllEmployeeSkills() throws TaskManagerException;
+
+    Long getAssigneeEmployeeId(Task task) throws TaskManagerException;
 }

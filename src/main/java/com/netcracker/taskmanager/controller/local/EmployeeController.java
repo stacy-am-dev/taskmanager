@@ -4,15 +4,16 @@ import com.netcracker.taskmanager.controller.EmployeeControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Employee;
 import com.netcracker.taskmanager.model.EmployeeSkill;
+import com.netcracker.taskmanager.model.Task;
+import com.netcracker.taskmanager.model.TaskSkill;
 import com.netcracker.taskmanager.util.ModelFacade;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.netcracker.taskmanager.Constants.*;
+import static com.netcracker.taskmanager.Constants.FIELDS_OF_EMPLOYEE_INCORRECT;
+import static com.netcracker.taskmanager.Constants.NO_SUCH_EMPLOYEE;
 
 public class EmployeeController implements EmployeeControllerInterface {
     @Override
@@ -110,6 +111,24 @@ public class EmployeeController implements EmployeeControllerInterface {
                 .filter(employeeSkill -> employeeSkill.getEmployeeId() == employeeId)
                 .collect(Collectors.toList());
 
+    }
+
+    @Override
+    public Collection<EmployeeSkill> getAllEmployeeSkills() throws TaskManagerException {
+        return ModelFacade.getInstance().getModel().getEmployeeSkills();
+    }
+
+    @Override
+    public Long getAssigneeEmployeeId(Task task) throws TaskManagerException{
+        TaskSkill taskSkill = ModelFacade.getInstance().getModel().getTaskSkills().stream()
+                .filter(taskSkill1 -> taskSkill1.getTaskId() == task.getTaskId())
+                .findAny()
+                .orElseThrow(() -> new TaskManagerException(new Throwable(""), 234));
+        for (EmployeeSkill employeeSkill: getAllEmployeeSkills()) {
+            if (employeeSkill.getSkillLevel() >= taskSkill.getLevelSkill())
+                return employeeSkill.getEmployeeId();
+        }
+        return null;
     }
 
     public ArrayList<EmployeeSkill> sortArrayList(ArrayList<EmployeeSkill> collection) { // сортировка Массива который передается в функцию
