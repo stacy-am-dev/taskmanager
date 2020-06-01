@@ -14,7 +14,8 @@ public class ModelFacade {
     private static ModelFacade instance;
     private Model model;
     private static final Logger LOGGER = Logger.getLogger(ModelFacade.class);
-
+    private Timer timer = new Timer();
+    private Autosave auto = new Autosave();
 
     private ModelFacade() throws TaskManagerException {
         try {
@@ -24,8 +25,7 @@ public class ModelFacade {
         } catch (IOException | ClassNotFoundException e) {
             throw new TaskManagerException(new Throwable(""), AUTOSAVE_ERROR);
         }
-        Timer timer = new Timer();
-        timer.schedule(new Autosave(), 0, 10000);
+        timer.schedule(auto, 0, 10000);
     }
 
     public static synchronized ModelFacade getInstance() throws TaskManagerException {
@@ -54,6 +54,10 @@ public class ModelFacade {
             }
         }
     }
+    public void closeModel()
+    {
+        timer.schedule( auto, 0);
+        timer.cancel();
+        auto.cancel();
+    }
 }
-
-
