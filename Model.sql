@@ -44,7 +44,6 @@ insert ProcessStatus(process_status) values
 ('error'), 
 ('cancelled'), 
 ('completed')
---drop table ProcessStatus
 
 
 go
@@ -96,9 +95,8 @@ insert TaskStatus (task_status) values
 ('waiting'), 
 ('cancelled'), 
 ('completed')
---drop table TaskStatus
-go
 
+go
 Create Table TaskType
 (
 	task_type varchar(20) Primary key 
@@ -106,9 +104,8 @@ Create Table TaskType
 insert TaskStatus (task_status) values
 ('JAVA_ACTION'), 
 ('MANUAL')
---drop table TaskType
-go
 
+go
 Create Table TaskPriority
 (
 	task_priority numeric(1,0) Primary key 
@@ -119,7 +116,6 @@ insert TaskStatus (task_status) values
 (3),
 (4),
 (5)
---drop table TaskPriority
 
 go
 Create Table TaskTemplate
@@ -138,7 +134,7 @@ go
 Create Table TaskTemplateRule
 (
 	task_template_rule_id uniqueidentifier default newid() Primary key,
-	task_tamplate_id uniqueidentifier Foreign Key References TaskTemplate(task_template_id),
+	task_template_id uniqueidentifier Foreign Key References TaskTemplate(task_template_id),
 	name varchar(100) not null,
 	description varchar(250),
 	rule_class varchar(100),
