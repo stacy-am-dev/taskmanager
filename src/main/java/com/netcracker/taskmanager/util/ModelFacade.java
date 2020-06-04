@@ -15,16 +15,10 @@ public class ModelFacade {
     private Model model;
     private static final Logger LOGGER = Logger.getLogger(ModelFacade.class);
     private Timer timer = new Timer();
-    private Autosave auto = new Autosave();
 
     private ModelFacade() throws TaskManagerException {
-        try {
-            FileInputStream fis = new FileInputStream("model");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            model= (Model) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new TaskManagerException(new Throwable(""), AUTOSAVE_ERROR);
-        }
+        loadModel();
+        Autosave auto = new Autosave();
         timer.schedule(auto, 0, 10000);
     }
 
@@ -38,26 +32,43 @@ public class ModelFacade {
         return model;
     }
 
-     static class Autosave extends TimerTask {
-        @Override
-        public void run() {
-            FileOutputStream fos = null;
+
+    public void saveModel()
+    {
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream("model");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(getInstance().getModel());
+        } catch (IOException | TaskManagerException e) {
             try {
-                fos = new FileOutputStream("model");
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(getInstance().getModel());
-            } catch (IOException | TaskManagerException e) {
-                try {
-                    throw new TaskManagerException(new Throwable(""), AUTOSAVE_ERROR);
-                } catch (TaskManagerException ex) {
-                    LOGGER.error("Problems with autosaving");                }
-            }
+                throw new TaskManagerException(new Throwable(""), AUTOSAVE_ERROR);
+            } catch (TaskManagerException ex) {
+                LOGGER.error("Problems with autosaving");                }
         }
     }
+
+    public void loadModel() throws TaskManagerException {
+        try {
+            FileInputStream fis = new FileInputStream("model");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            model= (Model) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new TaskManagerException(new Throwable(""), AUTOSAVE_ERROR);
+        }
+    }
+
     public void closeModel()
     {
-        timer.schedule( auto, 0);
         timer.cancel();
-        auto.cancel();
+        saveModel();
     }
+
+     class Autosave extends TimerTask {
+        @Override
+        public void run() {
+           saveModel();
+        }
+    }
+
 }
