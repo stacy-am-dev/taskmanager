@@ -65,7 +65,22 @@ public class TaskDependency implements Serializable {
         this.taskIdTo = taskIdTo;
     }
 
-    public boolean isTaskIndependent(Task task) {
-            return this.taskIdFrom!= task.getTaskId();
+    /**
+     *
+     * @param taskId
+     * @return
+     */
+    public boolean isTaskDependsOnAnotherTask(Long taskId) {
+            return this.taskIdFrom == taskId;
     }
+
+    /**
+     *
+     * @param taskId
+     * @return
+     */
+    public boolean IsAnotherTaskDependsOnThisTask(Long taskId) {
+        return this.taskIdTo == taskId;
+    }
+
 }

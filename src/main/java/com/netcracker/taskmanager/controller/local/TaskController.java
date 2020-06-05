@@ -3,11 +3,13 @@ package com.netcracker.taskmanager.controller.local;
 import com.netcracker.taskmanager.controller.TaskControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Task;
+import com.netcracker.taskmanager.model.TaskDependency;
 import com.netcracker.taskmanager.model.TaskStatus;
 import com.netcracker.taskmanager.util.ModelFacade;
 
 import java.util.Collection;
 import java.util.concurrent.PriorityBlockingQueue;
+import java.util.stream.Collectors;
 
 import static com.netcracker.taskmanager.Constants.*;
 
@@ -84,6 +86,32 @@ public class TaskController implements TaskControllerInterface {
             if (task.getProcessId() == processId) {
                 priorityBlockingQueue.add(task);
             }
+        }
+        return priorityBlockingQueue;
+    }
+
+    @Override
+    public Collection<Task> getDependentTasksByTaskId(Long taskId) throws TaskManagerException {
+        PriorityBlockingQueue<Task> priorityBlockingQueue = new PriorityBlockingQueue<>();
+        for (TaskDependency taskDependency : ModelFacade.getInstance().getModel().getTaskDependencies().stream()
+                .filter(taskDependency -> taskDependency.IsAnotherTaskDependsOnThisTask(taskId)).collect(Collectors.toList()))
+        {
+            priorityBlockingQueue.add(ModelFacade.getInstance().getModel().getTasks().stream().filter(task -> task.getTaskId() == taskDependency.getTaskIdFrom())
+                    .findAny().orElseThrow(() -> new TaskManagerException(new Throwable(""), NO_SUCH_TASK)));
+
+        }
+        return priorityBlockingQueue;
+    }
+
+    @Override
+    public Collection<Task> getTasksThatTaskDependsOnByTaskId(Long taskId) throws TaskManagerException {
+        PriorityBlockingQueue<Task> priorityBlockingQueue = new PriorityBlockingQueue<>();
+        for (TaskDependency taskDependency : ModelFacade.getInstance().getModel().getTaskDependencies().stream()
+                .filter(taskDependency -> taskDependency.isTaskDependsOnAnotherTask(taskId)).collect(Collectors.toList()))
+        {
+            priorityBlockingQueue.add(ModelFacade.getInstance().getModel().getTasks().stream().filter(task -> task.getTaskId() == taskDependency.getTaskIdTo())
+                    .findAny().orElseThrow(() -> new TaskManagerException(new Throwable(""), NO_SUCH_TASK)));
+
         }
         return priorityBlockingQueue;
     }

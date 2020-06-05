@@ -36,37 +36,39 @@ public class ProcessExecutorService {
 
     public void startService() throws TaskManagerException {
         for (int i = 0; i < NUM_OF_THREADS; i++) {
-            Thread startProcess = new Thread() {
-                @Override
-                public void start() {
-                    while (true) {
-                        Process process = null;
-                        try {
-                            process = ProcessStartQueueService.getProcessStartQueueService().getProcess();
-                        } catch (TaskManagerException e) {
-                            LOGGER.error("Problems with getting ProcessStartQueueService", e);
-                        }
-                        if (process == null) {
-                            LOGGER.error("Problems with getting ProcessStartQueueService", new TaskManagerException(new Throwable(""), NO_SUCH_PROCESS));
-                        }
-                        try {
-                            for (Task task : ControllerProvider.getControllerProvider().getController(TaskControllerInterface.class).getTasksByProcessId(process.getProcessId())) {
-                                if (ModelFacade.getInstance().getModel().getTaskDependencies().
-                                        stream().allMatch(taskDependency -> taskDependency.isTaskIndependent(task))) {
-                                    TaskStartQueueService.getTaskStartQueueService().addTask(task);
-                                }
-                            }
-                        } catch (TaskManagerException e) {
-                            LOGGER.error("Problems with getting controller or TaskStartQueueService", e);
-                        }
-                        process.setStatus(IN_PROGRESS);
-                    }
-                }
-            };
+            StartProcess startProcess = new StartProcess();
             startProcess.start();
             threads.add(startProcess);
         }
     }
 
+    public class StartProcess extends Thread {
+        @Override
+        public void start() {
+            while (true) {
+                Process process = null;
+                try {
+                    process = ProcessStartQueueService.getProcessStartQueueService().getProcess();
+                } catch (TaskManagerException e) {
+                    LOGGER.error("Problems with getting ProcessStartQueueService", e);
+                }
+                if (process == null) {
+                    LOGGER.error("Problems with getting ProcessStartQueueService", new TaskManagerException(new Throwable(""), NO_SUCH_PROCESS));
+                }
+                try {
+                    for (Task task : ControllerProvider.getControllerProvider().getController(TaskControllerInterface.class).getTasksByProcessId(process.getProcessId())) {
+                        {
+                            if (ControllerProvider.getControllerProvider().getController(TaskControllerInterface.class).getTasksThatTaskDependsOnByTaskId(task.getTaskId()) == null) {
+                                TaskStartQueueService.getTaskStartQueueService().addTask(task);
+                            }
+                        }
+                    }
+                } catch (TaskManagerException e) {
+                    LOGGER.error("Problems with getting controller or TaskStartQueueService", e);
+                }
+                process.setStatus(IN_PROGRESS);
+            }
+        }
+    }
 
 }

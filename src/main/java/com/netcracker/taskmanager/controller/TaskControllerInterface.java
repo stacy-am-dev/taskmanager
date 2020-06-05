@@ -2,6 +2,7 @@ package com.netcracker.taskmanager.controller;
 
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Task;
+import com.netcracker.taskmanager.model.TaskDependency;
 import com.netcracker.taskmanager.model.TaskStatus;
 
 import java.util.Collection;
@@ -69,4 +70,21 @@ public interface TaskControllerInterface {
      * @throws TaskManagerException
      */
     Collection<Task> getTasksByProcessId(Long processId) throws TaskManagerException;
+
+    /**
+     *
+     * @param taskId
+     * @return
+     * @throws TaskManagerException
+     */
+    Collection<Task> getDependentTasksByTaskId(Long taskId) throws TaskManagerException;
+
+    /**
+     *
+     * @param taskId
+     * @return
+     * @throws TaskManagerException
+     */
+    Collection<Task> getTasksThatTaskDependsOnByTaskId(Long taskId) throws TaskManagerException;
+
 }
