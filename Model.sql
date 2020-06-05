@@ -1,77 +1,53 @@
-create database TaskManager
-use TaskManager
-
-go
-Create Table Employee
+create Table Employee
 (
-	employee_id uniqueidentifier default newid() Primary key,
-	username varchar(30) unique ,
-	password varchar (30) ,
+	employee_id int(10) Primary key auto_increment,
+	username varchar(30) unique,
+	password varchar (30),
 	first_name varchar (30) not null,
-	last_name varchar  (30) not null,
+	last_name varchar (30) not null,
 	email varchar (30) unique
-)	
+);
 
-go
-Create Table Skill
+create Table Skill
 (
-	skill_id uniqueidentifier default newid() Primary key,
+	skill_id int(10) Primary key auto_increment,
 	skill_name varchar(50) unique not null,
 	min_level numeric (1,0) not null,
 	max_level numeric (1,0) not null,
 	description varchar(250)
-)	
+);	
 
-go
-Create Table EmployeeSkill
+create Table EmployeeSkill
 (
-	employee_id uniqueidentifier Foreign Key References Employee(employee_id),
-	skill_id uniqueidentifier Foreign Key References Skill(skill_id),
-	skill_level numeric(1,0) not null,
-	Constraint EmployeeSkill Primary Key(employee_id, skill_id, skill_level)
-)
+	employee_id int(10),
+	skill_id int(10),
+	skill_level numeric(1,0) not null
+);
 
-
-go
-Create Table ProcessStatus
+create Table ProcessTemplate
 (
-	process_status varchar(20) Primary key 
-)
-insert ProcessStatus(process_status) values
-('planning'),
-('planned'), 
-('in_progress'), 
-('error'), 
-('cancelled'), 
-('completed')
-
-
-go
-Create Table ProcessTemplate
-(
-	process_template_id uniqueidentifier default newid() Primary key,
+	process_template_id int(10) Primary key auto_increment,
 	name varchar(100) not null,
 	description varchar(250),
 	parameters varchar(4000)
-)	
+);	
 
-go
-Create Table ProcessTemplateRule
+create Table ProcessTemplateRule
 (
-	process_template_rule_id uniqueidentifier default newid() Primary key,
-	process_template_id uniqueidentifier Foreign Key References ProcessTemplate(process_template_id),
+	process_template_rule_id int(10) Primary key auto_increment,
+	process_template_id int(10),
 	name varchar(100) not null,
 	description varchar(250),
 	rule_class varchar(100),
 	_order integer not null
-)
+);
 
-go
-Create Table Process
+create Table Process
 (
-	process_id uniqueidentifier default newid() Primary Key,
-	process_template_id uniqueidentifier Foreign key References ProcessTemplate(process_template_id),
-	process_status varchar(20) Not null default 'PLANNED' check (process_status IN(Select process_status from ProcessStatus)),
+	process_id int(10) Primary key auto_increment,
+	process_template_id int(10),
+	process_status enum('planning', 'planned','in_progress', 'error', 'cancelled', 
+    'completed') Not null default 'planned',
 	name varchar(100) not null,
 	description varchar(250),
 	expectation_start_date Datetime ,
@@ -79,101 +55,96 @@ Create Table Process
 	start_date datetime,
 	end_date datetime, check (start_date<=end_date),
 	parameters varchar(4000)
-)
+);
 
-go
-Create Table TaskStatus
+create Table TaskTemplate
 (
-	task_status varchar(20) Primary key 
-)
-insert TaskStatus (task_status) values
-('planning'),
-('planned'), 
-('not_started'), 
-('in_progress'), 
-('error'), 
-('waiting'), 
-('cancelled'), 
-('completed')
-
-go
-Create Table TaskType
-(
-	task_type varchar(20) Primary key 
-)
-insert TaskStatus (task_status) values
-('JAVA_ACTION'), 
-('MANUAL')
-
-go
-Create Table TaskPriority
-(
-	task_priority numeric(1,0) Primary key 
-)
-insert TaskStatus (task_status) values
-(1), 
-(2),
-(3),
-(4),
-(5)
-
-go
-Create Table TaskTemplate
-(
-	task_template_id uniqueidentifier default newid() Primary key,
-	task_type varchar(20) Not null check (task_type IN(Select task_type from TaskType)),
-	task_priority numeric(1,0) not null check (task_priority IN(Select task_priority from TaskPriority)),
+	task_template_id int(10) Primary key auto_increment,
+	task_type enum('java_action', 'manual') Not null,
+	task_priority enum('low','normal','major','critical','blocker') not null,
 	name varchar(100) not null,
 	description varchar(250),
 	expectation_execution_time datetime,
 	skills varchar(4000),
 	parameters varchar(4000)
-)	
+);
 
-go
-Create Table TaskTemplateRule
+create Table TaskTemplateRule
 (
-	task_template_rule_id uniqueidentifier default newid() Primary key,
-	task_template_id uniqueidentifier Foreign Key References TaskTemplate(task_template_id),
+	task_template_rule_id int(10) Primary key auto_increment,
+	task_template_id int(10),
 	name varchar(100) not null,
 	description varchar(250),
 	rule_class varchar(100),
 	_order integer not null
-)	
+);	
 
-go
-Create Table Task
+create Table Task
 (
-	task_id uniqueidentifier default newid() Primary Key,
-	task_template_id uniqueidentifier Foreign key References TaskTemplate(task_template_id),
-	task_status varchar(20) Not null default 'PLANNED' check (task_status IN(Select task_status from TaskStatus)),
-	task_type varchar(20) Not null check (task_type IN(Select task_type from TaskType)),
-	task_priority numeric(1,0) not null check (task_priority IN(Select task_priority from TaskPriority)),
-	name varchar(100) not null,
+	task_id int(10) Primary key auto_increment,
+	task_template_id int(10),
+	task_status enum('planning','planned', 'not_started', 'in_progress', 'error', 'waiting', 
+    'cancelled', 'completed') Not null default 'planned',
+	task_type enum('java_action', 'manual') Not null,
+	task_priority enum('low','normal','major','critical','blocker') not null,
 	description varchar(250),
-	process_id uniqueidentifier Foreign key References Process(process_id),
-	assignee_id uniqueidentifier Foreign Key References Employee(employee_id),
+	process_id int(10),
+	assignee_id int(10),
 	expectation_start_date Datetime ,
 	expectation_end_date Datetime, check(expectation_start_date <= expectation_end_date),
 	start_date datetime,
 	end_date datetime, check (start_date<=end_date),
 	parameters varchar(4000)
-)	
+);	
 
-go
-Create Table TaskDependency
+create Table TaskDependency
 (
-	task_id_from uniqueidentifier Foreign key References Task(task_id),
-	task_id_to uniqueidentifier Foreign key References Task(task_id),
-	Constraint TaskDependency Primary Key(task_id_from, task_id_to)
+	task_id_from int(10),
+	task_id_to int(10)
 
-)	
+);	
 
-go
-Create Table TaskSkill
+create Table TaskSkill
 (
-	task_id uniqueidentifier Foreign key References Task(task_id),
-	skill_id uniqueidentifier Foreign key References Skill(skill_id),
-	skill_level numeric(1,0) not null,
-	Constraint TaskDependency Primary Key(task_id, skill_id,skill_level)
-)	
+	task_id int(10),
+	skill_id int(10),
+	skill_level numeric(1,0) not null
+);
+
+ALTER TABLE EmployeeSkill
+ADD CONSTRAINT FK_EmployeeSkill_Employee
+FOREIGN KEY (employee_id) REFERENCES Employee(employee_id),
+Add constraint FK_EmployeeSkill_Skill
+FOREIGN KEY (skill_id) REFERENCES Skill(skill_id);
+
+ALTER TABLE ProcessTemplateRule
+ADD CONSTRAINT FK_ProcessTemplateRule_ProcessTemplate
+FOREIGN KEY (process_template_id) REFERENCES ProcessTemplate(process_template_id);
+
+ALTER TABLE Process
+ADD CONSTRAINT FK_Process_ProcessTemplate
+FOREIGN KEY (process_template_id) REFERENCES ProcessTemplate(process_template_id);
+
+ALTER TABLE TaskTemplateRule
+ADD CONSTRAINT FK_TaskTemplateRule_TaskTemplate
+FOREIGN KEY (task_template_id) REFERENCES TaskTemplate(task_template_id);
+
+ALTER TABLE TaskDependency
+ADD CONSTRAINT FK_TaskDependency_Task_From
+FOREIGN KEY (task_id_from) REFERENCES Task(task_id),
+ADD CONSTRAINT FK_TaskDependency_Task_To
+FOREIGN KEY (task_id_to) REFERENCES Task(task_id);
+
+ALTER TABLE TaskSkill
+ADD CONSTRAINT FK_TaskSkill_Task
+FOREIGN KEY (task_id) REFERENCES Task(task_id),
+ADD CONSTRAINT FK_TaskSkill_Skill
+FOREIGN KEY (skill_id) REFERENCES Skill(skill_id);
+
+ALTER TABLE Task
+ADD CONSTRAINT FK_Task_TaskTemplate
+FOREIGN KEY (task_template_id) REFERENCES TaskTemplate(task_template_id),
+ADD CONSTRAINT FK_Task_Process
+FOREIGN KEY (process_id) REFERENCES Process(process_id),
+ADD CONSTRAINT FK_Task_Employee
+FOREIGN KEY (assignee_id) REFERENCES Employee(employee_id);
