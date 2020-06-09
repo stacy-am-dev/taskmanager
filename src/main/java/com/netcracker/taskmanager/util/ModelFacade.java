@@ -4,10 +4,8 @@ package com.netcracker.taskmanager.util;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import org.apache.log4j.Logger;
 
-import java.io.*;
-import java.util.*;
-
-import static com.netcracker.taskmanager.Constants.AUTOSAVE_ERROR;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class ModelFacade {
@@ -33,42 +31,29 @@ public class ModelFacade {
     }
 
 
-    public void saveModel()
-    {
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream("model");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(getInstance().getModel());
-        } catch (IOException | TaskManagerException e) {
-            try {
-                throw new TaskManagerException(new Throwable(""), AUTOSAVE_ERROR);
-            } catch (TaskManagerException ex) {
-                LOGGER.error("Problems with autosaving");                }
-        }
+    public void saveModel() throws TaskManagerException {
+        JAXBWorker.saveObjectToFile("model.xml", getInstance().getModel());
     }
 
     public void loadModel() throws TaskManagerException {
-        try {
-            FileInputStream fis = new FileInputStream("model");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            model= (Model) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new TaskManagerException(new Throwable(""), AUTOSAVE_ERROR);
-        }
+        model = (Model) JAXBWorker.loadObjectFromFile("model.xml");
     }
 
-    public void closeModel()
-    {
+    public void closeModel() throws TaskManagerException {
         timer.cancel();
         saveModel();
     }
 
-     class Autosave extends TimerTask {
+    class Autosave extends TimerTask {
         @Override
         public void run() {
-           saveModel();
+            try {
+                saveModel();
+            } catch (TaskManagerException e) {
+                LOGGER.error("Problems with autosaving",e);
+            }
         }
     }
 
 }
+
