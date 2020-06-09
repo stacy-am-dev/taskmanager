@@ -4,16 +4,10 @@ import com.netcracker.taskmanager.controller.TaskControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
 import com.netcracker.taskmanager.model.Process;
 import com.netcracker.taskmanager.model.Task;
-import com.netcracker.taskmanager.model.TaskDependency;
-import com.netcracker.taskmanager.model.TaskStatus;
 import com.netcracker.taskmanager.util.ControllerProvider;
-import com.netcracker.taskmanager.util.ModelFacade;
 import org.apache.log4j.Logger;
-import org.omg.CORBA.NO_IMPLEMENT;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.netcracker.taskmanager.Constants.NO_SUCH_PROCESS;
 import static com.netcracker.taskmanager.model.ProcessStatus.IN_PROGRESS;
@@ -52,21 +46,22 @@ public class ProcessExecutorService {
                 } catch (TaskManagerException e) {
                     LOGGER.error("Problems with getting ProcessStartQueueService", e);
                 }
-                if (process == null) {
-                    LOGGER.error("Problems with getting ProcessStartQueueService", new TaskManagerException(new Throwable(""), NO_SUCH_PROCESS));
-                }
                 try {
-                    for (Task task : ControllerProvider.getControllerProvider().getController(TaskControllerInterface.class).getTasksByProcessId(process.getProcessId())) {
-                        {
-                            if (ControllerProvider.getControllerProvider().getController(TaskControllerInterface.class).getTasksThatTaskDependsOnByTaskId(task.getTaskId()) == null) {
-                                TaskStartQueueService.getTaskStartQueueService().addTask(task);
+                    if (process != null) {
+                        for (Task task : ControllerProvider.getControllerProvider().getController(TaskControllerInterface.class).getTasksByProcessId(process.getProcessId())) {
+                            {
+                                if (ControllerProvider.getControllerProvider().getController(TaskControllerInterface.class).getTasksThatTaskDependsOnByTaskId(task.getTaskId()) == null) {
+                                    TaskStartQueueService.getTaskStartQueueService().addTask(task);
+                                }
                             }
                         }
+                        process.setStatus(IN_PROGRESS);
                     }
+                    else throw new TaskManagerException(new Throwable(""), NO_SUCH_PROCESS);
                 } catch (TaskManagerException e) {
                     LOGGER.error("Problems with getting controller or TaskStartQueueService", e);
                 }
-                process.setStatus(IN_PROGRESS);
+
             }
         }
     }
