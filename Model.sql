@@ -12,8 +12,8 @@ create Table Skill
 (
 	skill_id int(10) Primary key auto_increment,
 	skill_name varchar(50) unique not null,
-	min_level numeric (1,0) not null,
-	max_level numeric (1,0) not null,
+	min_level int(10) not null,
+	max_level int(10) not null,
 	description varchar(250)
 );	
 
@@ -21,7 +21,7 @@ create Table EmployeeSkill
 (
 	employee_id int(10),
 	skill_id int(10),
-	skill_level numeric(1,0) not null
+	skill_level int(10) not null
 );
 
 create Table ProcessTemplate
@@ -38,8 +38,8 @@ create Table ProcessTemplateRule
 	process_template_id int(10),
 	name varchar(100) not null,
 	description varchar(250),
-	rule_class varchar(100),
-	_order integer not null
+	rule_class varchar(1000),
+	_order_number integer not null
 );
 
 create Table Process
@@ -51,9 +51,9 @@ create Table Process
 	name varchar(100) not null,
 	description varchar(250),
 	expectation_start_date Datetime ,
-	expectation_end_date Datetime, check(expectation_start_date <= expectation_end_date),
+	expectation_end_date Datetime,
 	start_date datetime,
-	end_date datetime, check (start_date<=end_date),
+	end_date datetime,
 	parameters varchar(4000)
 );
 
@@ -75,8 +75,8 @@ create Table TaskTemplateRule
 	task_template_id int(10),
 	name varchar(100) not null,
 	description varchar(250),
-	rule_class varchar(100),
-	_order integer not null
+	rule_class varchar(1000),
+	_order_number integer not null
 );	
 
 create Table Task
@@ -91,9 +91,9 @@ create Table Task
 	process_id int(10),
 	assignee_id int(10),
 	expectation_start_date Datetime ,
-	expectation_end_date Datetime, check(expectation_start_date <= expectation_end_date),
+	expectation_end_date Datetime,
 	start_date datetime,
-	end_date datetime, check (start_date<=end_date),
+	end_date datetime,
 	parameters varchar(4000)
 );	
 
@@ -108,7 +108,7 @@ create Table TaskSkill
 (
 	task_id int(10),
 	skill_id int(10),
-	skill_level numeric(1,0) not null
+	skill_level int(10) not null
 );
 
 ALTER TABLE EmployeeSkill
