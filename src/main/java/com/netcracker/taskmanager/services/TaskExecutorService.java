@@ -2,6 +2,7 @@ package com.netcracker.taskmanager.services;
 
 import com.netcracker.taskmanager.controller.EmployeeControllerInterface;
 import com.netcracker.taskmanager.exception.TaskManagerException;
+import com.netcracker.taskmanager.model.Process;
 import com.netcracker.taskmanager.model.Task;
 import com.netcracker.taskmanager.model.TaskType;
 import com.netcracker.taskmanager.util.ControllerProvider;
@@ -17,7 +18,6 @@ public class TaskExecutorService {
     private static final int QUANTITY_THREAD = 10;
 
     private TaskExecutorService() throws TaskManagerException {
-        // threads = new ArrayList<Thread>(QUANTITY_THREAD);
         TaskStartQueueService.getTaskStartQueueService();
     }
 
@@ -27,36 +27,32 @@ public class TaskExecutorService {
         return taskExecutorService;
     }
 
-    public void startService() throws TaskManagerException {
-        for (int i = 0; i < QUANTITY_THREAD; i++) {
-            StartTask startTask = new StartTask();
-            startTask.start();
-            threads.add(startTask);
+
+    public void StartTask() throws TaskManagerException {
+        while (TaskStartQueueService.getTaskStartQueueService().getTask() != null) {
+            Task task = TaskStartQueueService.getTaskStartQueueService().getTask();
+            Thread newThread = new Thread(() -> {
+                try {
+                    if (task.getType() == TaskType.MANUAL)
+                        task.setAssigneeId(ControllerProvider.getControllerProvider().getController(EmployeeControllerInterface.class).getAssigneeEmployeeId(task));
+                    else if (task.getType() == TaskType.JAVA_ACTION) {
+                        Action action = new Action();
+                        action.run(null, task);
+                    }
+                } catch (TaskManagerException e) {
+                    LOGGER.error("Problems with getting controller or TaskActionService", e);
+                }
+            });
+            newThread.start();
+            threads.add(newThread);
         }
     }
 
-    public class StartTask extends Thread {
+    private class Action extends TaskActionService {
+
         @Override
-        public void start() {
-            try {
-                while (TaskStartQueueService.getTaskStartQueueService().getTask() != null) {
-                    Task task = TaskStartQueueService.getTaskStartQueueService().getTask();
-                    Thread newThread = new Thread(() -> {
-                        try {
-                            if (task.getType() == TaskType.MANUAL)
-                                task.setAssigneeId(ControllerProvider.getControllerProvider().getController(EmployeeControllerInterface.class).getAssigneeEmployeeId(task));
-                            else if (task.getType() == TaskType.JAVA_ACTION)
-                                task.getClass();
-                        } catch (TaskManagerException e) {
-                            LOGGER.error("Problems with getting controller or TaskActionService", e);
-                        }
-                    });
-                    newThread.start();
-                    threads.add(newThread);
-                }
-            } catch (TaskManagerException e) {
-                LOGGER.error("Problems with getting TaskStartQueueService", e);
-            }
+        public void run(Process process, Task task) throws TaskManagerException {
+
         }
     }
 }
