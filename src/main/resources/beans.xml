@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="modelFacade" class="com.netcracker.taskmanager.util.ModelFacade" scope="singleton"/>
+    <bean id="modelFacade" class="com.netcracker.taskmanager.util.ModelFacade" factory-method="getInstance"/>
     <bean id="employeeController" class="com.netcracker.taskmanager.controller.EmployeeControllerInterface"/>
     <bean id="processController" class="com.netcracker.taskmanager.controller.ProcessControllerInterface"/>
     <bean id="processTemplateController" class="com.netcracker.taskmanager.controller.ProcessTemplateControllerInterface"/>
