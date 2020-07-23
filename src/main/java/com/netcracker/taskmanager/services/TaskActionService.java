@@ -6,8 +6,8 @@ import com.netcracker.taskmanager.model.Task;
 
 public abstract class TaskActionService{
 
-    protected void start() throws TaskManagerException {
-        run(null,null);
+    protected void start(Process process, Task task) throws TaskManagerException {
+        run(process,task);
     }
 
     public abstract void run(Process process, Task task) throws TaskManagerException;
