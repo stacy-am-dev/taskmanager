@@ -87,6 +87,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <dockerHost>http://localhost:2375</dockerHost>
                     <images>
                         <image>
                             <name>${project.artifactId}</name>
