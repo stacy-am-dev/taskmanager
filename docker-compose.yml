@@ -23,3 +23,8 @@ services:
       DATABASE_DB_USER: user
       DATABASE_DB_PASSWORD: 1234
       DATABASE_DB_NAME: database
+
+  app:
+    image: openjdk:8
+    depends_on:
+      - db
