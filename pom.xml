@@ -100,7 +100,7 @@
                                     <port>8080</port>
                                 </ports>
                                 <cmd>
-                                    <shell>java -cp 'jars/*' com.myapp.MainClass '/config.file'</shell>
+                                    <shell>java -cp 'jars/*' com.netcracker.taskmanager.Main '/config.file'</shell>
                                 </cmd>
                                 <assembly>
                                     <basedir>/</basedir>
